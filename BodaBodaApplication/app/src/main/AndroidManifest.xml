@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bodaboda.bodaboda">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CustomerMainActivity" />
+        <activity android:name=".DriverMainActivity" />
+        <activity android:name=".RegisterAccountActivity" />
+        <activity android:name=".CustomerAccountSettingsActivity" />
+        <activity android:name=".CustomerRequestTripActivity" />
+        <activity android:name=".CustomerTripInfoActivity" />
+        <activity android:name=".CustomerFinishedTripActivity" />
+        <activity android:name=".DriverAccountSettingsActivity" />
+        <activity android:name=".DriverPendingTripsActivity" />
+        <activity android:name=".DriverFindCustomerActivity" />
+        <activity android:name=".DriverTripInfoActivity" />
+        <activity android:name=".DriverFinishedTripActivity" />
+        <activity android:name=".DriverStatisticsActivity"></activity>
+    </application>
+
+</manifest>
