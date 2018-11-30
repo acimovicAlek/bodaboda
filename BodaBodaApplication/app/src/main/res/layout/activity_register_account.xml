@@ -6,4 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".RegisterAccountActivity">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/reg_username_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username:" />
+
+            <EditText
+                android:id="@+id/reg_username_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/reg_firstname_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First name:" />
+
+            <EditText
+                android:id="@+id/reg_firstname_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/reg_lastname_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last name:" />
+
+            <EditText
+                android:id="@+id/reg_lastname_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/reg_phoneNo_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone number:" />
+
+            <EditText
+                android:id="@+id/reg_phoneNo_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/reg_email_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email:" />
+
+            <EditText
+                android:id="@+id/reg_email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/reg_password_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password:" />
+
+            <EditText
+                android:id="@+id/reg_password_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/reg_confirm_password_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm password:" />
+
+            <EditText
+                android:id="@+id/reg_confirm_password_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+            <CheckBox
+                android:id="@+id/reg_driver_reg_checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register as driver" />
+
+            <TextView
+                android:id="@+id/reg_mileage_price_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mileage price:"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/reg_mileage_price_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/reg_trip_starting_fee_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trip starting fee:"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/reg_trip_starting_fee_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/reg_cancel_reg_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:layout_alignParentLeft="true"/>
+
+                <Button
+                    android:id="@+id/reg_register_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

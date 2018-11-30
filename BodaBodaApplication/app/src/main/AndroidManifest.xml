@@ -12,9 +12,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".CustomerMainActivity" />
@@ -25,7 +22,7 @@
         <activity android:name=".CustomerTripInfoActivity" />
         <activity android:name=".CustomerFinishedTripActivity" />
         <activity android:name=".DriverAccountSettingsActivity" />
-        <activity android:name=".DriverPendingTripsActivity" />
+        <activity android:name=".DriverBrowseTripsActivity" />
         <activity android:name=".DriverFindCustomerActivity" />
         <activity android:name=".DriverTripInfoActivity" />
         <activity android:name=".DriverFinishedTripActivity" />
