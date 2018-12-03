@@ -8,7 +8,7 @@ More detailed description of the project can be found in [documentation folder](
 - Aleksandar Aćimović
 - Chingiz Esenbaev
 - Jonathan Major
-- Leo Zacharias 
+- Zacharias Leo
 - Linus Sens Ingels
 - Stanislas Pedebearn
 - Sireesha Kumari Kulari
