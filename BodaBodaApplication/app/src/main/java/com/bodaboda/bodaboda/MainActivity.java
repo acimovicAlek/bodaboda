@@ -6,7 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
+import com.pubnub.api.PNConfiguration;
+import com.pubnub.api.PubNub;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static PubNub pubnub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         initRegisterButton();
         initLoginButton();
-
+        initPubNub();
     }
 
     private void initRegisterButton()
@@ -43,5 +49,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initPubNub()
+    {
+        PNConfiguration pnConfiguration = new PNConfiguration();
+        pnConfiguration.setSubscribeKey("sub-c-2e136416-f735-11e8-b35b-72ed2feff2dd");
+        pnConfiguration.setPublishKey("pub-c-b1a495c8-4d4b-4a10-be69-41f8483c7681");
+        pnConfiguration.setSecure(true);
+        pubnub = new PubNub(pnConfiguration);
+    }
 
 }
