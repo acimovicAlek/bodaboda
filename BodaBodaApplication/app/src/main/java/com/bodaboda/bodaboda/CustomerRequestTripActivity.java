@@ -1,7 +1,11 @@
 package com.bodaboda.bodaboda;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,17 +49,11 @@ public class CustomerRequestTripActivity extends AppCompatActivity
         destinationTextbox = (AutoCompleteTextView)findViewById(R.id.req_trip_destination_searchbox);
         mGeoDataClient = Places.getGeoDataClient(this);
         init();
+        checkPermission();
     }
 
     private void init()
     {
-        /*mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();*/
-
         mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGeoDataClient, LAT_LNG_BOUNDS, null);
         initGoBackButton();
 
@@ -73,5 +71,24 @@ public class CustomerRequestTripActivity extends AppCompatActivity
         });
     }
 
+    private void initRequestButton() {
+        Button requestButton = (Button)findViewById(R.id.req_trip_search_button);
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent registerIntent
+            }
+        });
+    }
+
+    public void checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                ) {//Can add more as per requirement
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    123);
+        }
+    }
 
 }
