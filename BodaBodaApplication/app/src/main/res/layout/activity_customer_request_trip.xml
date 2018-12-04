@@ -52,13 +52,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/req_trip_start_editText"
+                <AutoCompleteTextView
+                    android:id="@+id/req_trip_start_searchbox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:layout_height="wrap_content"
+                    android:text="AutoCompleteTextView" />
+
             </RelativeLayout>
 
             <Space
@@ -87,14 +86,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/req_trip_destination_editText"
+                <AutoCompleteTextView
+                    android:id="@+id/req_trip_destination_searchbox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:layout_height="wrap_content"
+                    android:text="AutoCompleteTextView" />
+
             </RelativeLayout>
+
+
 
             <Space
                 android:layout_width="1dp"

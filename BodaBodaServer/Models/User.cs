@@ -1,12 +1,29 @@
+using System.Collections.Generic;
+
 namespace BodaBodaServer.Models{
+    static public class UserType{
+        public static string Customer { get { return "Customer"; } }
+
+        public static string Taxi { get { return "Taxi"; } }
+
+        public static string Admin { get { return "Admin"; } }
+    }
+
     public class User{
-        public long Id {get; set;}
-        public string username {get; set;}
-        public string password {get; set;}
-        public string userType {get; set;}
-        public string firstName {get; set;}
-        public string lastName {get; set;}
-        public string email {get; set;}
-        public string phoneNumber {get; set;}
+        public long UserId {get; set;}
+        public string Username {get; set;}
+        public string Password {get; set;}
+        public string UserType {get; set;}
+        public string FirstName {get; set;}
+        public string LastName {get; set;}
+        public string Email {get; set;}
+        public string PhoneNumber {get; set;}
+
+        //Navigation to taxi price if user is a taxi driver
+        public virtual TaxiPrice TaxiPrice {get; set;}
+        //Navigation to the location of the user
+        public virtual Location Location {get; set;}
+        //Navigation to payment options for a user
+        public virtual ICollection<PaymentOption> PaymentOptions {get; set;}
     }
 }

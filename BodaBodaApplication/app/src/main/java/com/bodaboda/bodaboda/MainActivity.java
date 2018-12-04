@@ -12,7 +12,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.pubnub.api.PNConfiguration;
+import com.pubnub.api.PubNub;
+
+import static com.bodaboda.bodaboda.Constants.PUBNUB_PUBLISH_KEY;
+import static com.bodaboda.bodaboda.Constants.PUBNUB_SUBSCRIBE_KEY;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static PubNub pubnub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         initRegisterButton();
         initLoginButton();
-
+        initPubNub();
     }
 
     private void initRegisterButton()
@@ -83,5 +91,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initPubNub()
+    {
+        PNConfiguration pnConfiguration = new PNConfiguration();
+        pnConfiguration.setSubscribeKey(PUBNUB_SUBSCRIBE_KEY);
+        pnConfiguration.setPublishKey(PUBNUB_PUBLISH_KEY);
+        pnConfiguration.setSecure(true);
+        pubnub = new PubNub(pnConfiguration);
+    }
 
 }

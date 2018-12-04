@@ -1,0 +1,51 @@
+We believe we are on time.
+
+What did we have planned for the week?
+Write the project plan and the SRS, as well as complete some diagrams to make sure we were understanding all of the requirements from the client. 
+Also to fix the remarks the client had on our requirements.
+This was what we hoped to achieve.
+Presentation done.
+Initial back-end project.
+
+How many hours?
+See the document.
+
+Who did what? 
+Me, Linus and Jonathan mostly  built the foundations of the documents leaving it to the rest to add what they thought was missing.
+ 
+
+
+Stan worked on the templates as well as the presentation
+.
+Sireesha worked on the documentation as well as the presentation
+.
+Chingiz worked on the mockups and the presentation
+
+Aleks worked on the documentation as well as prepared the backbone.
+
+This coming week?
+Review and finishing touch to the presentation.
+Prepare for the oral presentation.
+Preparing the interfaces, both back end and on the front end application.
+Fix the project plan according to the feedback.
+Research the technology to be used during the implementation.
+
+Obstacles, risks or issues.
+Meetings with the clients should be booked earlier. 
+We noticed that unless people are assigned what to do, it is unlikely that someone will volunteer to do it.
+Therefor we put more weight into assigning people to specific tasks, and it has worked out better.
+We assigned more specific roles to the group members as well:
+
+Jonathan - Trello responsible, developer.
+Linus - Client communications, developer.
+Aleks - Project manager, developer.
+Zacharias - Time tracker (people report their time to me, I add it to a document), developer.
+Stan - Template responsible(documents), presentation assistant, developer.
+Sireesha - Tester, developer.
+Chingiz - Presentation responsible, developer.
+
+Note: Developer assignment will be divided into subgroups when we reach implementation.
+Zacharias and Jonathan has some experience in Android Studio so will take responsibility over that part of the project (initializing, interface).
+
+
+

@@ -32,6 +32,9 @@ namespace BodaBodaServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UserContext>(options =>
+            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddCors();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -61,7 +64,7 @@ namespace BodaBodaServer
             services.AddScoped<IUserServices, UserServices>();
 
 
-            services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("User"));
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
