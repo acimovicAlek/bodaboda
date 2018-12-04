@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
+
+import static com.bodaboda.bodaboda.Constants.PUBNUB_PUBLISH_KEY;
+import static com.bodaboda.bodaboda.Constants.PUBNUB_SUBSCRIBE_KEY;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private void initPubNub()
     {
         PNConfiguration pnConfiguration = new PNConfiguration();
-        pnConfiguration.setSubscribeKey("sub-c-2e136416-f735-11e8-b35b-72ed2feff2dd");
-        pnConfiguration.setPublishKey("pub-c-b1a495c8-4d4b-4a10-be69-41f8483c7681");
+        pnConfiguration.setSubscribeKey(PUBNUB_SUBSCRIBE_KEY);
+        pnConfiguration.setPublishKey(PUBNUB_PUBLISH_KEY);
         pnConfiguration.setSecure(true);
         pubnub = new PubNub(pnConfiguration);
     }
