@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
@@ -21,6 +24,8 @@ import static com.bodaboda.bodaboda.Constants.PUBNUB_SUBSCRIBE_KEY;
 public class MainActivity extends AppCompatActivity {
 
     public static PubNub pubnub;
+    public static Retrofit retrofit;
+    public static BodaBodaClientApi client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         initRegisterButton();
         initLoginButton();
         initPubNub();
+        initRetrofit("http://192.168.1.70:5001");
     }
 
     private void initRegisterButton()
@@ -59,34 +65,26 @@ public class MainActivity extends AppCompatActivity {
                 }*/
 
                 //Send fields to server for check
-                Call<ResponseBody> call = BodaBodaClient
-                        .getInstance()
-                        .getApi()
-                        .loginRequest(
-                                username.toString(),
-                                password.toString()
+                Call<ResponseBody> call = client.loginRequest(
+                                username.getText().toString(),
+                                password.getText().toString()
                         );
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        /*if(response.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Server is up and got the message!", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            Toast.makeText(MainActivity.this, "Server is up but return error!", Toast.LENGTH_LONG).show();
-                        }*/
+                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        //Toast.makeText(MainActivity.this, "Network failure", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
                     }
                 });
 
                 //Need to verify first and choose driver or customer
-                Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
-                MainActivity.this.startActivity(loginIntent);
+                /*Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                MainActivity.this.startActivity(loginIntent);*/
             }
         });
     }
@@ -98,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
         pnConfiguration.setPublishKey(PUBNUB_PUBLISH_KEY);
         pnConfiguration.setSecure(true);
         pubnub = new PubNub(pnConfiguration);
+    }
+
+    private void initRetrofit(String url){
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create());
+        retrofit = builder.build();
+        client = retrofit.create(BodaBodaClientApi.class);
     }
 
 }
