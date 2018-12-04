@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 public interface BodaBodaClientApi {
 
     @FormUrlEncoded
-    @POST("login")
+    @POST("authenticate")
     Call<ResponseBody> loginRequest(
             @Field("username") String username,
             @Field("password") String password

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         initRegisterButton();
         initLoginButton();
         initPubNub();
-        initRetrofit("http://192.168.1.70:5001");
+        initRetrofit("http://localhost:5000");
     }
 
     private void initRegisterButton()
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_LONG).show();
                     }
                 });
 
