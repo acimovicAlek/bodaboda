@@ -8,5 +8,11 @@ namespace BodaBodaServer.Models{
         }
         
         public DbSet<User> Users {get; set;}
+        public DbSet<TaxiPrice> TaxiPrices {get; set;}
+        public DbSet<Location> Locations {get; set;}
+        public DbSet<PaymentOption> PaymentOptions {get; set;}
+        public DbSet<Payment> Payments {get; set;}
+        public DbSet<Trip> Trips {get; set;}
+
     }
 }

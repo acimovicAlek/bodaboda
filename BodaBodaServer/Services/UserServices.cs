@@ -16,6 +16,10 @@ namespace BodaBodaServer.Services
         Token Authenticate(string username, string password);
         IEnumerable<User> GetAll();
         User GetById(long id);
+        User Register(User _user);
+        TaxiPrice AddTaxiPrice(TaxiPrice taxiPrice);
+        TaxiPrice UpdateTaxiPrice(TaxiPrice taxiPrice);
+        TaxiPrice GetTaxiPrice(long userId);
     }
 
     public class UserServices : IUserServices
@@ -31,13 +35,13 @@ namespace BodaBodaServer.Services
             if(_context.Users.Count() == 0){
                 
                 _context.Users.Add(new User { 
-                    username = "user",
-                    password = "password",
-                    lastName = "user",
-                    firstName = "user",
-                    email = "user@email.com",
-                    phoneNumber = "+111111111",
-                    userType = "CUSTOMER"
+                    Username = "user",
+                    Password = "password",
+                    LastName = "user",
+                    FirstName = "user",
+                    Email = "user@email.com",
+                    PhoneNumber = "+111111111",
+                    UserType = "CUSTOMER"
                     });
                 _context.SaveChanges();
 
@@ -45,18 +49,19 @@ namespace BodaBodaServer.Services
         }
 
         public Token Authenticate(string username, string password){
-            var user = _context.Users.SingleOrDefault(x => x.username == username && x.password == password);
+            var user = _context.Users.SingleOrDefault(x => x.Username == username && x.Password == password);
             if(user == null) return null;
 
              // authentication successful so generate jwt token
-            Token result = new Token{userId = user.Id, username = user.username, userType=user.userType, token = ""};
+            Token result = new Token{userId = user.UserId, username = user.Username, userType=user.UserType, token = ""};
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[] 
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.UserType)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -72,7 +77,7 @@ namespace BodaBodaServer.Services
         {
             // return users without passwords
             return _context.Users.ToList().Select(x => {
-                x.password = null;
+                x.Password = null;
                 return x;
             });
         }
@@ -81,9 +86,45 @@ namespace BodaBodaServer.Services
             var user = _context.Users.Find(id);
             if(user == null) return null;
             //remove password
-            user.password = "";
+            user.Password = "";
             return user;
         }
 
+        public User Register(User _user){
+            try{
+                _context.Users.Add(_user);
+                _context.SaveChanges();
+                return _context.Users.FirstOrDefault(user => user.Username==_user.Username);
+            }catch(Exception e){
+                throw e;
+            }
+        }
+
+        public TaxiPrice AddTaxiPrice (TaxiPrice taxiPrice){
+            _context.TaxiPrices.Add(taxiPrice);
+            _context.SaveChanges();
+            return taxiPrice;
+        }
+
+        public TaxiPrice UpdateTaxiPrice(TaxiPrice taxiPrice){
+            var _taxiPrice = _context.TaxiPrices.Find(taxiPrice.TaxiPriceId);
+            if(_taxiPrice == null) throw new ArgumentNullException("TaxiPrice Id does not exist!");
+            if(_taxiPrice.UserId != taxiPrice.UserId) throw new AccessViolationException("You are not allowed to change this!");
+            _taxiPrice.PricePerHour = taxiPrice.PricePerHour;
+            _taxiPrice.PricePerUnit = taxiPrice.PricePerUnit;
+            _taxiPrice.SpecialPrice = taxiPrice.SpecialPrice;
+            _taxiPrice.StartingPrice = taxiPrice.StartingPrice;
+            try{
+                _context.TaxiPrices.Update(_taxiPrice);
+                _context.SaveChanges();
+                return _taxiPrice;
+            }catch(Exception e){
+                throw e;
+            }
+        }
+
+        public TaxiPrice GetTaxiPrice(long userId){
+            return _context.TaxiPrices.FirstOrDefault(x => x.UserId == userId);
+        }
     }
 }
