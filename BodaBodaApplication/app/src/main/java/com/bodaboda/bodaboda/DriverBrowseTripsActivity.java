@@ -6,15 +6,57 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.common.util.JsonUtils;
+import com.google.gson.JsonParser;
+import com.pubnub.api.PubNub;
+import com.pubnub.api.callbacks.SubscribeCallback;
+import com.pubnub.api.models.consumer.PNStatus;
+import com.pubnub.api.models.consumer.pubsub.PNMessageResult;
+import com.pubnub.api.models.consumer.pubsub.PNPresenceEventResult;
+
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static com.bodaboda.bodaboda.Constants.PUBNUB_CHANNEL_NAME;
+
 public class DriverBrowseTripsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_browse_trips);
+        MainActivity.pubnub.subscribe()
+                .channels(Arrays.asList(Constants.PUBNUB_CHANNEL_NAME)) // subscribe to channels
+                .execute();
 
         initRefreshButton();
         initGoBackButton();
+        initList();
+    }
+
+    private void initList(){
+        /*Link to the list id here*/
+        MainActivity.pubnub.addListener(new SubscribeCallback() {
+            @Override
+            public void status(PubNub pubnub, PNStatus status) {
+
+            }
+
+            @Override
+            public void message(PubNub pubnub, PNMessageResult message) {
+                String tripRequest = message.getMessage().toString();
+                System.out.println("TRIP REQUEST: " + tripRequest);
+            }
+
+            @Override
+            public void presence(PubNub pubnub, PNPresenceEventResult presence) {
+
+            }
+        });
+
     }
 
     private void initRefreshButton(){
