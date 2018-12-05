@@ -1,4 +1,6 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.utils;
+
+import com.bodaboda.bodaboda.classes.Account;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

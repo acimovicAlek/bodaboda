@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +16,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import com.bodaboda.bodaboda.utils.BodaBodaClientApi;
+import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
 
-import static com.bodaboda.bodaboda.Constants.PUBNUB_PUBLISH_KEY;
-import static com.bodaboda.bodaboda.Constants.PUBNUB_SUBSCRIBE_KEY;
+import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_PUBLISH_KEY;
+import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_SUBSCRIBE_KEY;
 
 public class MainActivity extends AppCompatActivity {
 

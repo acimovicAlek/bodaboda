@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.classes;
 
 public class Customer extends Account {
 

@@ -1,7 +1,9 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.bodaboda.bodaboda.R;
 
 public class CustomerTripInfoActivity extends AppCompatActivity {
 

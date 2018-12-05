@@ -1,6 +1,4 @@
-package com.bodaboda.bodaboda;
-
-import java.util.BitSet;
+package com.bodaboda.bodaboda.classes;
 
 public class Account {
     private String username;
