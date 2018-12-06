@@ -3,8 +3,8 @@ package com.bodaboda.bodaboda.classes;
 public class Trip {
     private Location startingLoc;
     private Location destination;
-    private Customer customer;
-    private Driver driver;
+    private User customer;
+    private User driver;
     private float estPrice;
     private int id;
 
@@ -28,19 +28,19 @@ public class Trip {
         this.destination = destination;
     }
 
-    public Customer getCustomer() {
+    public User getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(User customer) {
         this.customer = customer;
     }
 
-    public Driver getDriver() {
+    public User getDriver() {
         return driver;
     }
 
-    public void setDriver(Driver driver) {
+    public void setDriver(User driver) {
         this.driver = driver;
     }
 

@@ -125,7 +125,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Bank account status:" />
+                    android:text="Bank user status:" />
 
                 <TextView
                     android:id="@+id/cacc_payment_verified_status_textView"
@@ -147,7 +147,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Link a bank account(3rd party)" />
+                    android:text="Link a bank user(3rd party)" />
 
                 <Button
                     android:id="@+id/cacc_link_bank_account_edit_button"
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
-                    android:text="Delete account" />
+                    android:text="Delete user" />
 
             </RelativeLayout>
 

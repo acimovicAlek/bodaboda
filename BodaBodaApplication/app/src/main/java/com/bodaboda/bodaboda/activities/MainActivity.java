@@ -16,6 +16,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import com.bodaboda.bodaboda.classes.User;
 import com.bodaboda.bodaboda.utils.BodaBodaClientApi;
 import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
@@ -64,9 +65,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Check if the info in every field is okey before sending
-                /*if(notOkey){
+                if(username.getTextSize() <= 3){
+                    //Show red text
                     return;
-                }*/
+                }
+
+                if(password.getTextSize() <= 6){
+                    //Show red text
+                    return;
+                }
 
                 //Send fields to server for check
                 Call<ResponseBody> call = client.loginRequest(
@@ -77,7 +84,18 @@ public class MainActivity extends AppCompatActivity {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
+                        if(response.code() == 200)
+                        {
+                            username.setText("");
+                            password.setText("");
+
+                            Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                            MainActivity.this.startActivity(loginIntent);
+                        }
+                        else{
+                            password.setText("");
+                            //Show red text
+                        }
                     }
 
                     @Override
@@ -85,10 +103,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_LONG).show();
                     }
                 });
-
-                //Need to verify first and choose driver or customer
-                /*Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
-                MainActivity.this.startActivity(loginIntent);*/
             }
         });
     }
