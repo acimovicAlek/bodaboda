@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activities.DriverStatisticsActivity">
-=======
     tools:context=".activities.DriverStatisticsActivity">
->>>>>>> f2bcb5c09dbc9619774d6f09c375da14e4d56191
 
 </android.support.constraint.ConstraintLayout>

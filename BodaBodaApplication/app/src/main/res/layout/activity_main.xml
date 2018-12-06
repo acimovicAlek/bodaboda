@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activities.MainActivity">
-=======
     tools:context=".activities.MainActivity">
->>>>>>> f2bcb5c09dbc9619774d6f09c375da14e4d56191
 
     <EditText
 
@@ -124,4 +120,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_login_button" />
+
+    <TextView
+        android:id="@+id/main_error_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ERROR JONATHAN"
+        android:visibility="gone" />
 </android.support.constraint.ConstraintLayout>
