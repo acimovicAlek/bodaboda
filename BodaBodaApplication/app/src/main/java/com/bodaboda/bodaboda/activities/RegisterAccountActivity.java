@@ -53,13 +53,13 @@ public class RegisterAccountActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Check if the info in every field is okey before sending
-                if(username.getTextSize() <= 3){
+                if(username.getText().toString().length() <= 3){
                     error.setVisibility(View.VISIBLE);
                     error.setText("Username must have atleast 3 characters!");
                     return;
                 }
 
-                if(password.getTextSize() <= 6){
+                if(password.getText().toString().length() <= 6){
                     error.setVisibility(View.VISIBLE);
                     error.setText("Password must have atleast 6 characters!");
                     return;
