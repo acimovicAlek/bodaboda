@@ -19,6 +19,6 @@ public interface BodaBodaClientApi {
     );
 
     @POST("user")
-    Call<User> createAccount(@Body User user);
+    Call<ResponseBody> sendNewAccount(@Body User user);
 
 }
