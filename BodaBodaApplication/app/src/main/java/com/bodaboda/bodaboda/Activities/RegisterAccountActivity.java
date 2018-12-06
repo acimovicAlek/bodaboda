@@ -32,11 +32,11 @@ public class RegisterAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isDriverCheckbox.isChecked()){
-                    Intent registerIntent = new Intent(RegisterAccountActivity.this, DriverMainActivity.class);
+                    Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
                     RegisterAccountActivity.this.startActivity(registerIntent);
                 }
                 else {
-                    Intent registerIntent = new Intent(RegisterAccountActivity.this, CustomerMainActivity.class);
+                    Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.CustomerMainActivity.class);
                     RegisterAccountActivity.this.startActivity(registerIntent);
                 }
             }
@@ -48,7 +48,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(RegisterAccountActivity.this, MainActivity.class);
+                Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.MainActivity.class);
                 RegisterAccountActivity.this.startActivity(registerIntent);
             }
         });
