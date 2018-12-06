@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;

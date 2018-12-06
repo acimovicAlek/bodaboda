@@ -20,13 +20,18 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAwWh0L4UmRCW6xszFROblw43lpILHp-ks" />
+<<<<<<< HEAD
         <activity android:name=".Activities.MainActivity">
+=======
+        <activity android:name=".activities.MainActivity">
+>>>>>>> f2bcb5c09dbc9619774d6f09c375da14e4d56191
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".Activities.CustomerMainActivity" />
         <activity android:name=".Activities.DriverMainActivity" />
         <activity android:name=".Activities.RegisterAccountActivity" />
@@ -40,6 +45,21 @@
         <activity android:name=".Activities.DriverTripInfoActivity" />
         <activity android:name=".Activities.DriverFinishedTripActivity" />
         <activity android:name=".Activities.DriverStatisticsActivity"/>
+=======
+        <activity android:name=".activities.CustomerMainActivity" />
+        <activity android:name=".activities.DriverMainActivity" />
+        <activity android:name=".activities.RegisterAccountActivity" />
+        <activity android:name=".activities.CustomerAccountSettingsActivity" />
+        <activity android:name=".activities.CustomerRequestTripActivity" />
+        <activity android:name=".activities.CustomerTripInfoActivity" />
+        <activity android:name=".activities.CustomerFinishedTripActivity" />
+        <activity android:name=".activities.DriverAccountSettingsActivity" />
+        <activity android:name=".activities.DriverBrowseTripsActivity" />
+        <activity android:name=".activities.DriverFindCustomerActivity" />
+        <activity android:name=".activities.DriverTripInfoActivity" />
+        <activity android:name=".activities.DriverFinishedTripActivity" />
+        <activity android:name=".activities.DriverStatisticsActivity"/>
+>>>>>>> f2bcb5c09dbc9619774d6f09c375da14e4d56191
     </application>
 
 </manifest>

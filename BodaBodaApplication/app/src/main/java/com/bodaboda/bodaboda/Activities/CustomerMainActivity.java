@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda.Activities;
+package com.bodaboda.bodaboda.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

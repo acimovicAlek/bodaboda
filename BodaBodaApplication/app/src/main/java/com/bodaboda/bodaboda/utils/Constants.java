@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.utils;
 
 public class Constants {
     public final static String PUBNUB_PUBLISH_KEY = "pub-c-b1a495c8-4d4b-4a10-be69-41f8483c7681";

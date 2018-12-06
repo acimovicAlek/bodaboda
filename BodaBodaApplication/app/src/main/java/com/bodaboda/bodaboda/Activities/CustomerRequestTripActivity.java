@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda.Activities;
+package com.bodaboda.bodaboda.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
-import com.bodaboda.bodaboda.Constants;
-import com.bodaboda.bodaboda.PlaceAutocompleteAdapter;
+import com.bodaboda.bodaboda.utils.Constants;
+import com.bodaboda.bodaboda.utils.PlaceAutocompleteAdapter;
 import com.bodaboda.bodaboda.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;

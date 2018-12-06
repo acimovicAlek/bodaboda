@@ -1,7 +1,9 @@
-package com.bodaboda.bodaboda.Activities;
+package com.bodaboda.bodaboda.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.bodaboda.bodaboda.R;
 
 public class DriverFinishedTripActivity extends AppCompatActivity {
 
