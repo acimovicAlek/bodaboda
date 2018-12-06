@@ -1,13 +1,13 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CustomerTripInfoActivity extends AppCompatActivity {
+public class DriverFinishedTripActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_trip_info);
+        setContentView(R.layout.activity_driver_finished_trip);
     }
 }

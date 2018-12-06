@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import com.bodaboda.bodaboda.Interfaces.BodaBodaClientApi;
+import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         initRegisterButton();
         initLoginButton();
         initPubNub();
-        initRetrofit("http://localhost:5000");
+        initRetrofit("http://192.168.1.70:5000");
     }
 
     private void initRegisterButton()

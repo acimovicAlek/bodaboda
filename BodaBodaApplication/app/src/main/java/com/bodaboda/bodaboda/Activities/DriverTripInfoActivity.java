@@ -1,13 +1,15 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class DriverFindCustomerActivity extends AppCompatActivity {
+import com.bodaboda.bodaboda.R;
+
+public class DriverTripInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_find_customer);
+        setContentView(R.layout.activity_driver_trip_info);
     }
 }

@@ -1,4 +1,8 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.Models;
+
+import com.bodaboda.bodaboda.Models.Customer;
+import com.bodaboda.bodaboda.Models.Driver;
+import com.bodaboda.bodaboda.Models.Location;
 
 public class Trip {
     private Location startingLoc;

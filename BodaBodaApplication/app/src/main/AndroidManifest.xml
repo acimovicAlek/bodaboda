@@ -20,26 +20,26 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAwWh0L4UmRCW6xszFROblw43lpILHp-ks" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerMainActivity" />
-        <activity android:name=".DriverMainActivity" />
-        <activity android:name=".RegisterAccountActivity" />
-        <activity android:name=".CustomerAccountSettingsActivity" />
-        <activity android:name=".CustomerRequestTripActivity" />
-        <activity android:name=".CustomerTripInfoActivity" />
-        <activity android:name=".CustomerFinishedTripActivity" />
-        <activity android:name=".DriverAccountSettingsActivity" />
-        <activity android:name=".DriverBrowseTripsActivity" />
-        <activity android:name=".DriverFindCustomerActivity" />
-        <activity android:name=".DriverTripInfoActivity" />
-        <activity android:name=".DriverFinishedTripActivity" />
-        <activity android:name=".DriverStatisticsActivity"/>
+        <activity android:name=".Activities.CustomerMainActivity" />
+        <activity android:name=".Activities.DriverMainActivity" />
+        <activity android:name=".Activities.RegisterAccountActivity" />
+        <activity android:name=".Activities.CustomerAccountSettingsActivity" />
+        <activity android:name=".Activities.CustomerRequestTripActivity" />
+        <activity android:name=".Activities.CustomerTripInfoActivity" />
+        <activity android:name=".Activities.CustomerFinishedTripActivity" />
+        <activity android:name=".Activities.DriverAccountSettingsActivity" />
+        <activity android:name=".Activities.DriverBrowseTripsActivity" />
+        <activity android:name=".Activities.DriverFindCustomerActivity" />
+        <activity android:name=".Activities.DriverTripInfoActivity" />
+        <activity android:name=".Activities.DriverFinishedTripActivity" />
+        <activity android:name=".Activities.DriverStatisticsActivity"/>
     </application>
 
 </manifest>

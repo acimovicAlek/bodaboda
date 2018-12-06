@@ -1,4 +1,6 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.Interfaces;
+
+import com.bodaboda.bodaboda.Models.Account;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

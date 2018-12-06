@@ -1,6 +1,4 @@
-package com.bodaboda.bodaboda;
-
-import java.util.BitSet;
+package com.bodaboda.bodaboda.Models;
 
 public class Account {
     private String username;
@@ -8,7 +6,7 @@ public class Account {
     private String lastname;
     private String email;
     private String phoneNumber;
-    private boolean isDriver;
+    private boolean isTaxi;
     private String token;
     private Location currentLoc;
 
@@ -56,12 +54,12 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isDriver() {
-        return isDriver;
+    public boolean isTaxi() {
+        return isTaxi;
     }
 
-    public void setDriver(boolean driver) {
-        isDriver = driver;
+    public void setTaxi(boolean taxi) {
+        isTaxi = taxi;
     }
 
     public String getToken() {

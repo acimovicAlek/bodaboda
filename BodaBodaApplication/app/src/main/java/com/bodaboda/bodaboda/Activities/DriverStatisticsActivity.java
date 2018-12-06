@@ -1,4 +1,4 @@
-package com.bodaboda.bodaboda;
+package com.bodaboda.bodaboda.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
