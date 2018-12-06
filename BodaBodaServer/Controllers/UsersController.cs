@@ -42,6 +42,7 @@ namespace BodaBodaServer.Controllers
             return item;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult<User> Register([FromBody]User _user){
             try{
@@ -77,7 +78,7 @@ namespace BodaBodaServer.Controllers
         }
 
         [Authorize(Roles = "Taxi")]
-        [HttpPost("prices")]
+        [HttpPut("prices")]
         public ActionResult UpdateTaxiprice([FromBody] TaxiPrice taxiPrice){
             var identitiy = HttpContext.User.Identity as ClaimsIdentity;
             var userId = Convert.ToInt64(identitiy.FindFirst("Name").Value);
