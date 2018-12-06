@@ -17,3 +17,8 @@ More detailed description of the project can be found in [documentation folder](
 - Robbert Jongeling
 ### OKAPI Finance
 - Leslie Dahlberg
+## How to run the application
+1. Install Android Studio
+2. Click on File -> Open -> BodaBodaApplication in the Git directory
+3. Now either just run the program on an Android simulator or:
+4. Put your phone in developer mode and connect it and run the program

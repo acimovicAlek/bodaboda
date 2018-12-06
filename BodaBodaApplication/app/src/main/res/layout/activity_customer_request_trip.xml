@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerRequestTripActivity">
-
+    tools:context=".activities.CustomerRequestTripActivity">
     <ScrollView
         android:id="@+id/scrollView5"
         android:layout_width="368dp"
@@ -40,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:text="Where does your trip start?"
+                    android:text="  Where does your trip start?"
                     android:textSize="28dp" />
             </RelativeLayout>
 
@@ -52,13 +51,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/req_trip_start_editText"
+                <AutoCompleteTextView
+                    android:id="@+id/req_trip_start_searchbox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:layout_height="wrap_content" />
+
             </RelativeLayout>
 
             <Space
@@ -75,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:text="Where do you want to go?"
+                    android:text="   Where do you want to go?"
                     android:textSize="28dp" />
             </RelativeLayout>
 
@@ -87,14 +84,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/req_trip_destination_editText"
+                <AutoCompleteTextView
+                    android:id="@+id/req_trip_destination_searchbox"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:layout_height="wrap_content" />
+
             </RelativeLayout>
+
+
 
             <Space
                 android:layout_width="1dp"

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterAccountActivity">
-
+    tools:context=".activities.RegisterAccountActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -135,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
                 android:visibility="gone" />
 
             <TextView
@@ -150,7 +149,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/reg_error_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ERROR JONATHAN"
+                android:textColor="@color/errorRed"
                 android:visibility="gone" />
 
             <RelativeLayout
@@ -169,7 +176,7 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="Register"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" />
             </RelativeLayout>
 
         </LinearLayout>
