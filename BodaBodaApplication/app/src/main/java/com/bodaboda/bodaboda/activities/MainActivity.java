@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import okhttp3.ResponseBody;
@@ -60,26 +61,32 @@ public class MainActivity extends AppCompatActivity {
         final EditText username = (EditText) findViewById(R.id.main_enter_username_editText);
         final EditText password = (EditText) findViewById(R.id.main_enter_password_editText);
         Button loginButton = (Button)findViewById(R.id.main_login_button);
+        final TextView error = (TextView)findViewById(R.id.main_error_textView);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //Check if the info in every field is okey before sending
-                if(username.getTextSize() <= 3){
-                    //Show red text
+                if(username.getText().toString().length() <= 3){
+                    error.setVisibility(View.VISIBLE);
+                    error.setText("Username must be atleast 3 characters!");
                     return;
                 }
 
-                if(password.getTextSize() <= 6){
-                    //Show red text
+                if(password.getText().toString().length() <= 6){
+                    error.setVisibility(View.VISIBLE);
+                    error.setText("Password must be atleast 6 characters!");
                     return;
                 }
+
+                error.setVisibility(View.GONE);
 
                 //Send fields to server for check
                 Call<ResponseBody> call = client.loginRequest(
-                                username.getText().toString(),
-                                password.getText().toString()
-                        );
+                        username.getText().toString(),
+                        password.getText().toString()
+                );
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -94,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             password.setText("");
-                            //Show red text
+                            error.setVisibility(View.VISIBLE);
+                            error.setText("Wrong Username or Password!");
                         }
                     }
 

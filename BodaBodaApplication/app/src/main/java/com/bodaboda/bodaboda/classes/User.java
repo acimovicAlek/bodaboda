@@ -129,7 +129,7 @@ public class User {
 
     }
 
-    public void customerModifyCustomerAccount(Customer customer){
+    public void customerModifyCustomerAccount(User customer){
 
     }
 
