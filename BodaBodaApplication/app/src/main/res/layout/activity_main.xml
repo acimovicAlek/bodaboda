@@ -126,5 +126,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ERROR JONATHAN"
+        android:textColor="@color/errorRed"
         android:visibility="gone" />
 </android.support.constraint.ConstraintLayout>
