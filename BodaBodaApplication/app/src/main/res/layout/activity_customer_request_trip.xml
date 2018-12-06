@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activities.CustomerRequestTripActivity">
-=======
     tools:context=".activities.CustomerRequestTripActivity">
->>>>>>> f2bcb5c09dbc9619774d6f09c375da14e4d56191
-
     <ScrollView
         android:id="@+id/scrollView5"
         android:layout_width="368dp"

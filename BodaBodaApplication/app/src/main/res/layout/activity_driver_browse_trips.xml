@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activities.DriverBrowseTripsActivity">
-=======
     tools:context=".activities.DriverBrowseTripsActivity">
->>>>>>> f2bcb5c09dbc9619774d6f09c375da14e4d56191
 
     <RelativeLayout
         android:id="@+id/linearLayout"
