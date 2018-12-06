@@ -100,7 +100,7 @@ public class CustomerRequestTripActivity extends AppCompatActivity
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(CustomerRequestTripActivity.this, CustomerMainActivity.class);
+                Intent registerIntent = new Intent(CustomerRequestTripActivity.this, com.bodaboda.bodaboda.activities.CustomerMainActivity.class);
                 CustomerRequestTripActivity.this.startActivity(registerIntent);
             }
         });
@@ -112,7 +112,7 @@ public class CustomerRequestTripActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 LinkedHashMap<String, String> startingLocationMessage = getNewLocationMessage(startingCoords.latitude, startingCoords.longitude, destinationCoords.latitude, destinationCoords.longitude);
-                MainActivity.pubnub.publish()
+                com.bodaboda.bodaboda.activities.MainActivity.pubnub.publish()
                         .message(startingLocationMessage)
                         .channel(Constants.PUBNUB_CHANNEL_NAME)
                         .async(new PNCallback<PNPublishResult>() {
