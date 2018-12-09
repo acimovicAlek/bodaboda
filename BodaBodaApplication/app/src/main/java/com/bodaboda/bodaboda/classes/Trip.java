@@ -1,8 +1,8 @@
 package com.bodaboda.bodaboda.classes;
 
 public class Trip {
-    private Location startingLoc;
-    private Location destination;
+    private LocationClass startingLoc;
+    private LocationClass destination;
     private User customer;
     private User driver;
     private float estPrice;
@@ -12,19 +12,19 @@ public class Trip {
 
     }
 
-    public Location getStartingLoc() {
+    public LocationClass getStartingLoc() {
         return startingLoc;
     }
 
-    public void setStartingLoc(Location startingLoc) {
+    public void setStartingLoc(LocationClass startingLoc) {
         this.startingLoc = startingLoc;
     }
 
-    public Location getDestination() {
+    public LocationClass getDestination() {
         return destination;
     }
 
-    public void setDestination(Location destination) {
+    public void setDestination(LocationClass destination) {
         this.destination = destination;
     }
 

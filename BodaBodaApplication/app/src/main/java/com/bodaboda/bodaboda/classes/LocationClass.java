@@ -1,6 +1,6 @@
 package com.bodaboda.bodaboda.classes;
 
-public class Location {
+public class LocationClass {
     private float longitude;
     private float latitude;
     private String address;

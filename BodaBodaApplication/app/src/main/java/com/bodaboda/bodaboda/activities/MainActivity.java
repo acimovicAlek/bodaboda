@@ -67,8 +67,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                MainActivity.this.startActivity(loginIntent);
+
                 //Check if the info in every field is okey before sending
-                if(username.getText().toString().length() <= 3){
+                /*if(username.getText().toString().length() <= 3){
                     error.setVisibility(View.VISIBLE);
                     error.setText("Username must be atleast 3 characters!");
                     return;
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(MainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_LONG).show();
                     }
-                });
+                });*/
             }
         });
     }

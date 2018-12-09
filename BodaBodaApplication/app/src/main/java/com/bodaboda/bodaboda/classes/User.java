@@ -21,7 +21,7 @@ public class User {
     private String phoneNumber;
     private boolean isDriver;
     private Token token;
-    private Location currentLoc;
+    private LocationClass currentLoc;
     private float mileagePrice;
     private float startingFee;
 
@@ -85,11 +85,11 @@ public class User {
         this.token = token;
     }
 
-    public Location getCurrentLoc() {
+    public LocationClass getCurrentLoc() {
         return currentLoc;
     }
 
-    public void setCurrentLoc(Location currentLoc) {
+    public void setCurrentLoc(LocationClass currentLoc) {
         this.currentLoc = currentLoc;
     }
 
@@ -133,7 +133,7 @@ public class User {
 
     }
 
-    public void customerRequestTrip(Location startLoc, Location destination){
+    public void customerRequestTrip(LocationClass startLoc, LocationClass destination){
 
     }
 
