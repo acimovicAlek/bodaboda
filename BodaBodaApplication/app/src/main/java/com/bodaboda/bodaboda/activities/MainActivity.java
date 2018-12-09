@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
-                MainActivity.this.startActivity(loginIntent);
-
                 //Check if the info in every field is okey before sending
                 if(username.getText().toString().length() <= 3){
                     error.setVisibility(View.VISIBLE);
