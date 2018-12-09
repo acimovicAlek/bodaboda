@@ -25,6 +25,7 @@ import com.pubnub.api.PubNub;
 
 import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_PUBLISH_KEY;
 import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_SUBSCRIBE_KEY;
+import static com.bodaboda.bodaboda.utils.Constants.SERVER_URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         initRegisterButton();
         initLoginButton();
         initPubNub();
-        initRetrofit("http://localhost:5000");
+        initRetrofit();
     }
 
     private void initRegisterButton()
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(loginIntent);
 
                 //Check if the info in every field is okey before sending
-                /*if(username.getText().toString().length() <= 3){
+                if(username.getText().toString().length() <= 3){
                     error.setVisibility(View.VISIBLE);
                     error.setText("Username must be atleast 3 characters!");
                     return;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(MainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_LONG).show();
                     }
-                });*/
+                });
             }
         });
     }
@@ -127,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
         pubnub = new PubNub(pnConfiguration);
     }
 
-    private void initRetrofit(String url){
+    private void initRetrofit(){
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
         client = retrofit.create(BodaBodaClientApi.class);
