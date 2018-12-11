@@ -105,9 +105,7 @@ public class MainActivity extends AppCompatActivity {
                             token.setUserType(response.body().getUserType());
                             token.setToken(response.body().getToken());
 
-                            error.setVisibility(View.GONE);
-                            username.setText("");
-                            password.setText("");
+                            //Activate popup for choose customer or taxi
 
                             Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
                             MainActivity.this.startActivity(loginIntent);

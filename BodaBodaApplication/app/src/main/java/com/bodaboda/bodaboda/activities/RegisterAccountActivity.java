@@ -113,16 +113,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                     password.getText().toString()
                             );
 
-                            username.setText("");
-                            password.setText("");
-                            phoneNo.setText("");
-                            firstname.setText("");
-                            lastname.setText("");
-                            email.setText("");
-                            mileagePrice.setText("");
-                            startingFee.setText("");
-                            confirmPassword.setText("");
-
                             //Send Login after create
                             Call<Token> call2 = MainActivity.client.loginRequest(login);
 
@@ -136,11 +126,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                         MainActivity.token.setUserType(response.body().getUserType());
                                         MainActivity.token.setToken(response.body().getToken());
 
-                                        error.setVisibility(View.GONE);
-                                        username.setText("");
-                                        password.setText("");
-
-                                        if(isDriverCheckbox.isChecked()){
+                                        if(MainActivity.token.getUserType() == "Taxi"){
                                             Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
                                             RegisterAccountActivity.this.startActivity(registerIntent);
                                         }
