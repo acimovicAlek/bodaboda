@@ -1,151 +1,87 @@
 package com.bodaboda.bodaboda.classes;
 
 public class User {
-
-    private enum paymentMethod{
-        Cash,
-        CreditCard,
-        Okapi
-    }
-
-    private enum reportReason{
-        OffensiveLanguage,
-        //Add reporting sort here
-    }
-
     private long UserId;
-    private String username;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private String phoneNumber;
-    private boolean isDriver;
-    private Token token;
-    private LocationClass currentLoc;
-    private float mileagePrice;
-    private float startingFee;
+    private String Username;
+    private String Password;
+    private String UserType;
+    private String FirstName;
+    private String LastName;
+    private String Email;
+    private String PhoneNumber;
 
-    public void User(){
 
+    public User(String username, String password, String userType, String firstName, String lastName, String email, String phoneNumber) {
+        this.Username = username;
+        this.Password = password;
+        this.UserType = userType;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Email = email;
+        this.PhoneNumber = phoneNumber;
+    }
+
+    public long getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(long userId) {
+        UserId = userId;
     }
 
     public String getUsername() {
-        return username;
+        return Username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        Username = username;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setPassword(String password) {
+        Password = password;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getUserType() {
+        return UserType;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setUserType(String userType) {
+        UserType = userType;
+    }
+
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String lastName) {
+        LastName = lastName;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return PhoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public boolean isDriver() {
-        return isDriver;
-    }
-
-    public void setDriver(boolean driver) {
-        isDriver = driver;
-    }
-
-    public Token getToken() {
-        return token;
-    }
-
-    public void setToken(Token token) {
-        this.token = token;
-    }
-
-    public LocationClass getCurrentLoc() {
-        return currentLoc;
-    }
-
-    public void setCurrentLoc(LocationClass currentLoc) {
-        this.currentLoc = currentLoc;
-    }
-
-    public float getMileagePrice() {
-        return mileagePrice;
-    }
-
-    public void setMileagePrice(float mileagePrice) {
-        this.mileagePrice = mileagePrice;
-    }
-
-    public float getStartingFee() {
-        return startingFee;
-    }
-
-    public void setStartingFee(float startingFee) {
-        this.startingFee = startingFee;
-    }
-
-    public void driverBrowseTrips(){
-
-    }
-
-    public void driverFinishTrip(Trip trip){
-
-    }
-
-    public void driverCheckTransactionHistory(){
-
-    }
-
-    public void driverInitiateTrip(Trip trip){
-
-    }
-
-    public void customerReportDriver(User driver, User.reportReason report){
-
-    }
-
-    public void customerModifyCustomerAccount(User customer){
-
-    }
-
-    public void customerRequestTrip(LocationClass startLoc, LocationClass destination){
-
-    }
-
-    public void customerFinishTrip(){
-
-    }
-
-    public void customerPay(User.paymentMethod payment){
-
-    }
-
-    public void customerRegisterAsDriver(User user){
-
+        PhoneNumber = phoneNumber;
     }
 }

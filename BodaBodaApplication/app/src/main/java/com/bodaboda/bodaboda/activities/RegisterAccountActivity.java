@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bodaboda.bodaboda.R;
+import com.bodaboda.bodaboda.classes.Login;
+import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.classes.User;
 
 import okhttp3.ResponseBody;
@@ -80,30 +82,37 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 error.setVisibility(View.GONE);
 
                 //Make User
-                User user = new User();
-                user.setUsername(username.getText().toString());
-                user.setFirstname(firstname.getText().toString());
-                user.setLastname(lastname.getText().toString());
-                user.setPhoneNumber(phoneNo.getText().toString());
-                user.setEmail(email.getText().toString());
-
+                String type;
                 if(isDriverCheckbox.isChecked()){
-                    user.setDriver(true);
-                    user.setMileagePrice(Float.valueOf(mileagePrice.getText().toString()));
-                    user.setStartingFee(Float.valueOf(startingFee.getText().toString()));
+                    type = "Taxi";
                 }
                 else {
-                    user.setDriver(false);
+                    type = "Customer";
                 }
 
-                //Send request
-                Call<ResponseBody> call = MainActivity.client.sendNewAccount(user);
+                User user = new User(
+                        username.getText().toString(),
+                        password.getText().toString(),
+                        type,
+                        firstname.getText().toString(),
+                        lastname.getText().toString(),
+                        email.getText().toString(),
+                        phoneNo.getText().toString()
+                );
 
-                call.enqueue(new Callback<ResponseBody>() {
+                //Send request
+                Call<User> call = MainActivity.client.registerAccount(user);
+
+                call.enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.code() == 200)
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.isSuccessful())
                         {
+                            Login login = new Login(
+                                    username.getText().toString(),
+                                    password.getText().toString()
+                            );
+
                             username.setText("");
                             password.setText("");
                             phoneNo.setText("");
@@ -114,24 +123,53 @@ public class RegisterAccountActivity extends AppCompatActivity {
                             startingFee.setText("");
                             confirmPassword.setText("");
 
-                            if(isDriverCheckbox.isChecked()){
-                                Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
-                                RegisterAccountActivity.this.startActivity(registerIntent);
-                            }
-                            else{
-                                Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.CustomerMainActivity.class);
-                                RegisterAccountActivity.this.startActivity(registerIntent);
-                            }
+                            //Send Login after create
+                            Call<Token> call2 = MainActivity.client.loginRequest(login);
+
+                            call2.enqueue(new Callback<Token>() {
+                                @Override
+                                public void onResponse(Call<Token> call2, Response<Token> response) {
+                                    if(response.isSuccessful())
+                                    {
+                                        MainActivity.token.setUserId(response.body().getUserId());
+                                        MainActivity.token.setUsername(response.body().getUsername());
+                                        MainActivity.token.setUserType(response.body().getUserType());
+                                        MainActivity.token.setToken(response.body().getToken());
+
+                                        error.setVisibility(View.GONE);
+                                        username.setText("");
+                                        password.setText("");
+
+                                        if(isDriverCheckbox.isChecked()){
+                                            Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
+                                            RegisterAccountActivity.this.startActivity(registerIntent);
+                                        }
+                                        else{
+                                            Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.CustomerMainActivity.class);
+                                            RegisterAccountActivity.this.startActivity(registerIntent);
+                                        }
+                                    }
+                                    else{
+                                        error.setVisibility(View.VISIBLE);
+                                        error.setText("Something went wrong!");
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Token> call2, Throwable t) {
+                                    Toast.makeText(RegisterAccountActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                         else{
                             password.setText("");
                             error.setVisibility(View.VISIBLE);
-                            error.setText("Something went wrong!");
+                            error.setText("Could not create account! Try another username!");
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(RegisterAccountActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
                     }
                 });

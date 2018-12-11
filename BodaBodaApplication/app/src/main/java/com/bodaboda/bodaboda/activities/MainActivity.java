@@ -17,7 +17,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.bodaboda.bodaboda.classes.User;
+import com.bodaboda.bodaboda.classes.Login;
+import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.utils.BodaBodaClientApi;
 import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public static Retrofit retrofit;
     public static BodaBodaClientApi client;
 
+    public static Token token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         initLoginButton();
         initPubNub();
         initRetrofit();
+        initToken();
     }
 
     private void initRegisterButton()
@@ -83,17 +87,25 @@ public class MainActivity extends AppCompatActivity {
 
                 error.setVisibility(View.GONE);
 
-                //Send fields to server for check
-                Call<ResponseBody> call = client.loginRequest(
+                Login login = new Login(
                         username.getText().toString(),
                         password.getText().toString()
                 );
 
-                call.enqueue(new Callback<ResponseBody>() {
+                //Send fields to server for check
+                Call<Token> call = client.loginRequest(login);
+
+                call.enqueue(new Callback<Token>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.code() == 200)
+                    public void onResponse(Call<Token> call, Response<Token> response) {
+                        if(response.isSuccessful())
                         {
+                            token.setUserId(response.body().getUserId());
+                            token.setUsername(response.body().getUsername());
+                            token.setUserType(response.body().getUserType());
+                            token.setToken(response.body().getToken());
+
+                            error.setVisibility(View.GONE);
                             username.setText("");
                             password.setText("");
 
@@ -108,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<Token> call, Throwable t) {
                         Toast.makeText(MainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -131,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
         client = retrofit.create(BodaBodaClientApi.class);
+    }
+
+    private void initToken(){
+        token = new Token();
     }
 
     private void hideSoftKeyboard(){
