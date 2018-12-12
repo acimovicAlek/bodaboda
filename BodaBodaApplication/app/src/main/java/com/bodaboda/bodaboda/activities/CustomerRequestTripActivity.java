@@ -3,7 +3,6 @@ package com.bodaboda.bodaboda.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -21,20 +20,13 @@ import com.bodaboda.bodaboda.utils.PlaceAutocompleteAdapter;
 import com.bodaboda.bodaboda.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.places.AutocompletePrediction;
 import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBufferResponse;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.pubnub.api.callbacks.PNCallback;
 import com.pubnub.api.models.consumer.PNPublishResult;
@@ -50,16 +42,11 @@ public class CustomerRequestTripActivity extends AppCompatActivity
     private AutoCompleteTextView destinationTextbox;
 
     //variables
-
     private PlaceAutocompleteAdapter mPlaceAutocompleteAdapter;
-    private GoogleApiClient mGoogleApiClient;
     private GeoDataClient mGeoDataClient;
     private static final String TAG = "CustomerRequestTrip";
     private LatLng startingCoords;
     private LatLng destinationCoords;
-    /*private LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
-            new LatLng(-40, -168), new LatLng(71, 136)
-    );*/
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -81,7 +68,6 @@ public class CustomerRequestTripActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_request_trip);
         hideSoftKeyboard();
-        //LAT_LNG_BOUNDS = CustomerMainActivity.LAT_LNG_BOUNDS;
 
         startingLocationTextbox = (AutoCompleteTextView)findViewById(R.id.req_trip_start_searchbox);
         destinationTextbox = (AutoCompleteTextView)findViewById(R.id.req_trip_destination_searchbox);
