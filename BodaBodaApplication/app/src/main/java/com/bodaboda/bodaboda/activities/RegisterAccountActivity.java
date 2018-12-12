@@ -30,7 +30,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         hideSoftKeyboard();
 
         initRegisterButton();
-        initCancelButton();
+        //initCancelButton();
         initCheckboxIsDriver();
     }
 
@@ -163,7 +163,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         });
     }
 
-    private void initCancelButton(){
+    /*private void initCancelButton(){
         Button cancelButton = (Button)findViewById(R.id.reg_cancel_reg_button);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +172,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 RegisterAccountActivity.this.startActivity(registerIntent);
             }
         });
-    }
+    }*/
 
     private void initCheckboxIsDriver(){
         final CheckBox isDriverCheckbox = (CheckBox)findViewById(R.id.reg_driver_reg_checkBox);
