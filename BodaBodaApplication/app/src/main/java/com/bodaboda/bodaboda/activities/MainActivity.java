@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView error = (TextView)findViewById(R.id.main_error_textView);
 
         ///////TEST///////////
-        Intent loginIntent = new Intent(MainActivity.this, DriverMainActivity.class);
+        Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
         MainActivity.this.startActivity(loginIntent);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -79,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 //Check if the info in every field is okey before sending
                 if(username.getText().toString().length() <= 3){
                     error.setVisibility(View.VISIBLE);
-                    error.setText("Username must be atleast 3 characters!");
+                    error.setText("Username must be at least 3 characters!");
                     return;
                 }
 
                 if(password.getText().toString().length() <= 6){
                     error.setVisibility(View.VISIBLE);
-                    error.setText("Password must be atleast 6 characters!");
+                    error.setText("Password must be at least 6 characters!");
                     return;
                 }
 

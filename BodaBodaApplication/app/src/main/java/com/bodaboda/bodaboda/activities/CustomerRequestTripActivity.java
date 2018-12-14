@@ -84,10 +84,6 @@ public class CustomerRequestTripActivity extends AppCompatActivity
 
         startingLocationTextbox.setAdapter(mPlaceAutocompleteAdapter);
         destinationTextbox.setAdapter(mPlaceAutocompleteAdapter);
-
-
-        initGoBackButton();
-        initRequestButton();
     }
 
     private void initGoBackButton(){
