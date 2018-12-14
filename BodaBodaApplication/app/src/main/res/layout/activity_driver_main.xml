@@ -13,7 +13,8 @@
         android:orientation="horizontal"
         android:background="@color/primary">
 
-        <ImageView
+        <Button
+            android:id="@+id/driver_menu_button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
@@ -26,44 +27,68 @@
             android:layout_height="25dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:background="@drawable/bodabodatext"
+            android:background="@drawable/bodabodatext_white"
             android:scaleType="fitXY"
             android:inputType="textPassword"
             android:layout_weight="5"/>
 
-        <ImageView
+        <Button
+            android:id="@+id/driver_refresh_button"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/baseline_expand_less_accent_48"
+            android:background="@drawable/baseline_refresh_white_48dp"
             android:layout_weight="0.1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/driver_textView_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/driver_topbar">
+
+        <TextView
+            android:id="@+id/driver_customer_req_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primaryText"
+            android:text="Pending customer requests"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
 
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/driver_topbar">
+        app:layout_constraintTop_toBottomOf="@id/driver_textView_banner">
 
 
-
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content">
 
+        </android.support.v7.widget.RecyclerView>
 
-        </LinearLayout>
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
