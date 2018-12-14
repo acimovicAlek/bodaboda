@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRegisterButton()
     {
-        Button registerButton = (Button)findViewById(R.id.main_reg_account_button);
+        Button registerButton = (Button)findViewById(R.id.main_register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

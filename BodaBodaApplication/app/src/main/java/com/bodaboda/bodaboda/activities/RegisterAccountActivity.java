@@ -29,6 +29,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_account);
         hideSoftKeyboard();
 
+        initLoginButton();
         initRegisterButton();
         //initCancelButton();
         initCheckboxIsDriver();
@@ -163,16 +164,16 @@ public class RegisterAccountActivity extends AppCompatActivity {
         });
     }
 
-    /*private void initCancelButton(){
-        Button cancelButton = (Button)findViewById(R.id.reg_cancel_reg_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+    private void initLoginButton(){
+        Button loginButton = (Button)findViewById(R.id.reg_login_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.MainActivity.class);
                 RegisterAccountActivity.this.startActivity(registerIntent);
             }
         });
-    }*/
+    }
 
     private void initCheckboxIsDriver(){
         final CheckBox isDriverCheckbox = (CheckBox)findViewById(R.id.reg_driver_reg_checkBox);

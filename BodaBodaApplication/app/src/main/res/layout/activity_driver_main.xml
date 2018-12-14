@@ -6,6 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".activities.DriverMainActivity">
 
+    <LinearLayout
+        android:id="@+id/driver_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/primary">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/baseline_menu_white_48"
+            android:layout_weight="0.1"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bodabodatext"
+            android:scaleType="fitXY"
+            android:inputType="textPassword"
+            android:layout_weight="5"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/baseline_expand_less_accent_48"
+            android:layout_weight="0.1"/>
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,36 +53,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/driver_topbar">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/dmain_browse_trips_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Browse trips" />
 
-            <Button
-                android:id="@+id/dmain_account_settings_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Account Settings" />
-
-            <Button
-                android:id="@+id/dmain_statistics_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Earning Statistics" />
-
-            <Button
-                android:id="@+id/dmain_logout_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Log Out" />
         </LinearLayout>
     </ScrollView>
 
