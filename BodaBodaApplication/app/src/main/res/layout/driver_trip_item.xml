@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/driver_request_item_customername_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DRIVER_NAME_STRING"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/driver_request_item_distancetocustomer_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DISTANCE_TO_DRIVER"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/driver_item_estimatedprice_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="PRICE"
+            android:textSize="16sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/driver_expand_item"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/baseline_expand_more_accent_48"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/divider"/>
+    
+    
+    //Add expandle
+
+</LinearLayout>
+

@@ -68,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
         Button loginButton = (Button)findViewById(R.id.main_login_button);
         final TextView error = (TextView)findViewById(R.id.main_error_textView);
 
+        ///////TEST///////////
+        Intent loginIntent = new Intent(MainActivity.this, DriverMainActivity.class);
+        MainActivity.this.startActivity(loginIntent);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
