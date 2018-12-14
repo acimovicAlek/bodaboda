@@ -13,6 +13,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -74,6 +76,12 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
     private void init()
     {
+        int maxLength = 29;
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(maxLength);
+        startingLocationTextbox.setFilters(fArray);
+        destinationTextbox.setFilters(fArray);
+
         mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGeoDataClient, LAT_LNG_BOUNDS, null);
         startingLocationTextbox.setOnItemClickListener(mAutomcompleteClicklistenerStart);
         destinationTextbox.setOnItemClickListener(mAutomcompleteClicklistenerDest);
