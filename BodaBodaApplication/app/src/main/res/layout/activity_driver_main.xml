@@ -6,49 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".activities.DriverMainActivity">
 
+    <LinearLayout
+        android:id="@+id/driver_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/primary">
+
+        <Button
+            android:id="@+id/driver_menu_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0"
+            android:background="@drawable/baseline_menu_white_48"
+            tools:background="@drawable/baseline_menu_white_48" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:background="@drawable/bodabodatext_white"
+                android:inputType="textPassword"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/driver_refresh_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/baseline_refresh_white_48dp"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/driver_textView_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/driver_topbar">
+
+        <TextView
+            android:id="@+id/driver_customer_req_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primaryText"
+            android:text="Pending customer requests"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/driver_textView_banner">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+        <ListView
+            android:id="@+id/driver_pending_trips_listView"
+            android:layout_width="340dp"
+            android:layout_height="365dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/dmain_browse_trips_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Browse trips" />
-
-            <Button
-                android:id="@+id/dmain_account_settings_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Account Settings" />
-
-            <Button
-                android:id="@+id/dmain_statistics_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Earning Statistics" />
-
-            <Button
-                android:id="@+id/dmain_logout_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Log Out" />
-        </LinearLayout>
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

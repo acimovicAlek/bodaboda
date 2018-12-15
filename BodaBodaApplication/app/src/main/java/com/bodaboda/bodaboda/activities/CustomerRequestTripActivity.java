@@ -26,7 +26,6 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBufferResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.pubnub.api.callbacks.PNCallback;
@@ -44,14 +43,10 @@ public class CustomerRequestTripActivity extends AppCompatActivity
 
     //variables
     private PlaceAutocompleteAdapter mPlaceAutocompleteAdapter;
-    private GoogleApiClient mGoogleApiClient;
     private GeoDataClient mGeoDataClient;
     private static final String TAG = "CustomerRequestTrip";
     private LatLng startingCoords;
     private LatLng destinationCoords;
-    private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
-            new LatLng(-40, -168), new LatLng(71, 136)
-    );
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -64,6 +59,7 @@ public class CustomerRequestTripActivity extends AppCompatActivity
         map.put("startLng", String.valueOf(startLng));
         map.put("destLat", String.valueOf(destLat));
         map.put("destLng", String.valueOf(destLng));
+        //place.getLatLng();
         return map;
     }
 
@@ -82,17 +78,12 @@ public class CustomerRequestTripActivity extends AppCompatActivity
 
     private void init()
     {
-        mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGeoDataClient, LAT_LNG_BOUNDS, null);
-
+        mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGeoDataClient, CustomerMainActivity.LAT_LNG_BOUNDS, null);
         startingLocationTextbox.setOnItemClickListener(mAutomcompleteClicklistenerStart);
         destinationTextbox.setOnItemClickListener(mAutomcompleteClicklistenerDest);
 
         startingLocationTextbox.setAdapter(mPlaceAutocompleteAdapter);
         destinationTextbox.setAdapter(mPlaceAutocompleteAdapter);
-
-
-        initGoBackButton();
-        initRequestButton();
     }
 
     private void initGoBackButton(){
@@ -129,7 +120,6 @@ public class CustomerRequestTripActivity extends AppCompatActivity
             }
         });
     }
-
 
     public void checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||

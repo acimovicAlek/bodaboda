@@ -1,10 +1,14 @@
 package com.bodaboda.bodaboda.classes;
 
 public class Trip {
-    private Location startingLoc;
-    private Location destination;
-    private User customer;
-    private User driver;
+    private LocationClass startingLoc;
+    private LocationClass destination;
+    private Long customerID;
+    private String customerName;
+    private Long driverID;
+    private String driverName;
+    private float distanceToCustomer;
+    private float tripLength;
     private float estPrice;
     private int id;
 
@@ -12,40 +16,42 @@ public class Trip {
 
     }
 
-    public Location getStartingLoc() {
+    public LocationClass getStartingLoc() {
         return startingLoc;
     }
 
-    public void setStartingLoc(Location startingLoc) {
+    public void setStartingLoc(LocationClass startingLoc) {
         this.startingLoc = startingLoc;
     }
 
-    public Location getDestination() {
+    public LocationClass getDestination() {
         return destination;
     }
 
-    public void setDestination(Location destination) {
+    public void setDestination(LocationClass destination) {
         this.destination = destination;
     }
 
-    public User getCustomer() {
-        return customer;
+    public Long getCustomerID() { return customerID; }
+
+    public void setCustomerID(Long customerID) {
+        this.customerID = customerID;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public Long getDriverID() {
+        return driverID;
     }
 
-    public User getDriver() {
-        return driver;
-    }
-
-    public void setDriver(User driver) {
-        this.driver = driver;
+    public void setDriver(Long driver) {
+        this.driverID = driverID;
     }
 
     public float getEstPrice() {
         return estPrice;
+    }
+
+    public String getEstPriceString() {
+        return String.valueOf(estPrice);
     }
 
     public void setEstPrice(float estPrice) {
@@ -58,5 +64,45 @@ public class Trip {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public float getDistanceToCustomer() {
+        return distanceToCustomer;
+    }
+
+    public String getDistanceToCustomerString() {
+        return String.valueOf(distanceToCustomer);
+    }
+
+    public void setDistanceToCustomer(float distanceToCustomer) {
+        this.distanceToCustomer = distanceToCustomer;
+    }
+
+    public float getTripLength() {
+        return tripLength;
+    }
+
+    public String getTripLengthString() {
+        return String.valueOf(tripLength);
+    }
+
+    public void setTripLength(float tripLength) {
+        this.tripLength = tripLength;
     }
 }

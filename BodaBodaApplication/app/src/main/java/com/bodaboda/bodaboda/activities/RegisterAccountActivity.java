@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bodaboda.bodaboda.R;
+import com.bodaboda.bodaboda.classes.Login;
+import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.classes.User;
 
 import okhttp3.ResponseBody;
@@ -27,8 +29,9 @@ public class RegisterAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_account);
         hideSoftKeyboard();
 
+        initLoginButton();
         initRegisterButton();
-        initCancelButton();
+        //initCancelButton();
         initCheckboxIsDriver();
     }
 
@@ -80,58 +83,80 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 error.setVisibility(View.GONE);
 
                 //Make User
-                User user = new User();
-                user.setUsername(username.getText().toString());
-                user.setFirstname(firstname.getText().toString());
-                user.setLastname(lastname.getText().toString());
-                user.setPhoneNumber(phoneNo.getText().toString());
-                user.setEmail(email.getText().toString());
-
+                String type;
                 if(isDriverCheckbox.isChecked()){
-                    user.setDriver(true);
-                    user.setMileagePrice(Float.valueOf(mileagePrice.getText().toString()));
-                    user.setStartingFee(Float.valueOf(startingFee.getText().toString()));
+                    type = "Taxi";
                 }
                 else {
-                    user.setDriver(false);
+                    type = "Customer";
                 }
 
+                User user = new User(
+                        username.getText().toString(),
+                        password.getText().toString(),
+                        type,
+                        firstname.getText().toString(),
+                        lastname.getText().toString(),
+                        email.getText().toString(),
+                        phoneNo.getText().toString()
+                );
+
                 //Send request
-                Call<ResponseBody> call = MainActivity.client.sendNewAccount(user);
+                Call<User> call = MainActivity.client.registerAccount(user);
 
-                call.enqueue(new Callback<ResponseBody>() {
+                call.enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.code() == 200)
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.isSuccessful())
                         {
-                            username.setText("");
-                            password.setText("");
-                            phoneNo.setText("");
-                            firstname.setText("");
-                            lastname.setText("");
-                            email.setText("");
-                            mileagePrice.setText("");
-                            startingFee.setText("");
-                            confirmPassword.setText("");
+                            Login login = new Login(
+                                    username.getText().toString(),
+                                    password.getText().toString()
+                            );
 
-                            if(isDriverCheckbox.isChecked()){
-                                Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
-                                RegisterAccountActivity.this.startActivity(registerIntent);
-                            }
-                            else{
-                                Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.CustomerMainActivity.class);
-                                RegisterAccountActivity.this.startActivity(registerIntent);
-                            }
+                            //Send Login after create
+                            Call<Token> call2 = MainActivity.client.loginRequest(login);
+
+                            call2.enqueue(new Callback<Token>() {
+                                @Override
+                                public void onResponse(Call<Token> call2, Response<Token> response) {
+                                    if(response.isSuccessful())
+                                    {
+                                        MainActivity.token.setUserId(response.body().getUserId());
+                                        MainActivity.token.setUsername(response.body().getUsername());
+                                        MainActivity.token.setUserType(response.body().getUserType());
+                                        MainActivity.token.setToken(response.body().getToken());
+
+                                        if(MainActivity.token.getUserType() == "Taxi"){
+                                            Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
+                                            RegisterAccountActivity.this.startActivity(registerIntent);
+                                        }
+                                        else{
+                                            Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.CustomerMainActivity.class);
+                                            RegisterAccountActivity.this.startActivity(registerIntent);
+                                        }
+                                    }
+                                    else{
+                                        error.setVisibility(View.VISIBLE);
+                                        error.setText("Something went wrong!");
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Token> call2, Throwable t) {
+                                    Toast.makeText(RegisterAccountActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                         else{
                             password.setText("");
                             error.setVisibility(View.VISIBLE);
-                            error.setText("Something went wrong!");
+                            error.setText("Could not create account! Try another username!");
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(RegisterAccountActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -139,9 +164,9 @@ public class RegisterAccountActivity extends AppCompatActivity {
         });
     }
 
-    private void initCancelButton(){
-        Button cancelButton = (Button)findViewById(R.id.reg_cancel_reg_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+    private void initLoginButton(){
+        Button loginButton = (Button)findViewById(R.id.reg_login_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.MainActivity.class);

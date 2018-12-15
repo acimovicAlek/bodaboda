@@ -1,5 +1,7 @@
 package com.bodaboda.bodaboda.utils;
 
+import com.bodaboda.bodaboda.classes.Login;
+import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.classes.User;
 
 import okhttp3.ResponseBody;
@@ -11,14 +13,11 @@ import retrofit2.http.POST;
 
 public interface BodaBodaClientApi {
 
-    @FormUrlEncoded
-    @POST("/api/Users/authenticate")
-    Call<ResponseBody> loginRequest(
-            @Field("username") String username,
-            @Field("password") String password
-    );
 
-    @POST("user")
-    Call<ResponseBody> sendNewAccount(@Body User user);
+    @POST("/api/Users/authenticate")
+    Call<Token> loginRequest(@Body Login login);
+
+    @POST("/api/Users")
+    Call<User> registerAccount(@Body User user);
 
 }

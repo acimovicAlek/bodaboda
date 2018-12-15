@@ -17,7 +17,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.bodaboda.bodaboda.classes.User;
+import com.bodaboda.bodaboda.classes.Login;
+import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.utils.BodaBodaClientApi;
 import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
@@ -25,12 +26,15 @@ import com.pubnub.api.PubNub;
 
 import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_PUBLISH_KEY;
 import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_SUBSCRIBE_KEY;
+import static com.bodaboda.bodaboda.utils.Constants.SERVER_URL;
 
 public class MainActivity extends AppCompatActivity {
 
     public static PubNub pubnub;
     public static Retrofit retrofit;
     public static BodaBodaClientApi client;
+
+    public static Token token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
         initRegisterButton();
         initLoginButton();
         initPubNub();
-        initRetrofit("http://localhost:5000");
+        initRetrofit();
+        initToken();
     }
 
     private void initRegisterButton()
     {
-        Button registerButton = (Button)findViewById(R.id.main_reg_account_button);
+        Button registerButton = (Button)findViewById(R.id.main_register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
         Button loginButton = (Button)findViewById(R.id.main_login_button);
         final TextView error = (TextView)findViewById(R.id.main_error_textView);
 
+        ///////TEST///////////
+        Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+        MainActivity.this.startActivity(loginIntent);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,31 +79,37 @@ public class MainActivity extends AppCompatActivity {
                 //Check if the info in every field is okey before sending
                 if(username.getText().toString().length() <= 3){
                     error.setVisibility(View.VISIBLE);
-                    error.setText("Username must be atleast 3 characters!");
+                    error.setText("Username must be at least 3 characters!");
                     return;
                 }
 
                 if(password.getText().toString().length() <= 6){
                     error.setVisibility(View.VISIBLE);
-                    error.setText("Password must be atleast 6 characters!");
+                    error.setText("Password must be at least 6 characters!");
                     return;
                 }
 
                 error.setVisibility(View.GONE);
 
-                //Send fields to server for check
-                Call<ResponseBody> call = client.loginRequest(
+                Login login = new Login(
                         username.getText().toString(),
                         password.getText().toString()
                 );
 
-                call.enqueue(new Callback<ResponseBody>() {
+                //Send fields to server for check
+                Call<Token> call = client.loginRequest(login);
+
+                call.enqueue(new Callback<Token>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.code() == 200)
+                    public void onResponse(Call<Token> call, Response<Token> response) {
+                        if(response.isSuccessful())
                         {
-                            username.setText("");
-                            password.setText("");
+                            token.setUserId(response.body().getUserId());
+                            token.setUsername(response.body().getUsername());
+                            token.setUserType(response.body().getUserType());
+                            token.setToken(response.body().getToken());
+
+                            //Activate popup for choose customer or taxi
 
                             Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
                             MainActivity.this.startActivity(loginIntent);
@@ -107,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<Token> call, Throwable t) {
                         Toast.makeText(MainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -124,12 +139,16 @@ public class MainActivity extends AppCompatActivity {
         pubnub = new PubNub(pnConfiguration);
     }
 
-    private void initRetrofit(String url){
+    private void initRetrofit(){
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
         client = retrofit.create(BodaBodaClientApi.class);
+    }
+
+    private void initToken(){
+        token = new Token();
     }
 
     private void hideSoftKeyboard(){

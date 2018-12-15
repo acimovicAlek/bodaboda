@@ -9,32 +9,111 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="0dp"
+                android:background="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+
+                        <Button
+                            android:id="@+id/reg_login_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@color/primary"
+                            android:text="Log in"
+                            android:textSize="18sp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/textOrIcons" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/primary" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/textOrIcons" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/main_dead_register_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@color/primary"
+                            android:text="Register"
+                            android:textSize="18sp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/textOrIcons" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/textOrIcons" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/reg_username_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Username:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/secondaryText"
+                android:textSize="18sp"
+                android:text="Username" />
 
             <EditText
                 android:id="@+id/reg_username_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -42,12 +121,23 @@
                 android:id="@+id/reg_firstname_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="First name:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="First name" />
 
             <EditText
                 android:id="@+id/reg_firstname_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -55,12 +145,22 @@
                 android:id="@+id/reg_lastname_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Last name:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Last name" />
 
             <EditText
                 android:id="@+id/reg_lastname_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -68,12 +168,22 @@
                 android:id="@+id/reg_phoneNo_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone number:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Phone number" />
 
             <EditText
                 android:id="@+id/reg_phoneNo_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -81,12 +191,22 @@
                 android:id="@+id/reg_email_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Email" />
 
             <EditText
                 android:id="@+id/reg_email_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -94,12 +214,23 @@
                 android:id="@+id/reg_password_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Password:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Password" />
 
             <EditText
                 android:id="@+id/reg_password_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPassword" />
 
@@ -107,12 +238,23 @@
                 android:id="@+id/reg_confirm_password_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirm password:" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Confirm password" />
 
             <EditText
                 android:id="@+id/reg_confirm_password_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="textPassword" />
 
@@ -120,19 +262,34 @@
                 android:id="@+id/reg_driver_reg_checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
                 android:text="Register as driver" />
 
             <TextView
                 android:id="@+id/reg_mileage_price_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mileage price:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Mileage price"
                 android:visibility="gone" />
 
             <EditText
                 android:id="@+id/reg_mileage_price_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:visibility="gone" />
@@ -141,13 +298,23 @@
                 android:id="@+id/reg_trip_starting_fee_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Trip starting fee:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryText"
+                android:text="Trip starting fee"
                 android:visibility="gone" />
 
             <EditText
                 android:id="@+id/reg_trip_starting_fee_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/primaryText"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:visibility="gone" />
@@ -160,24 +327,19 @@
                 android:textColor="@color/errorRed"
                 android:visibility="gone" />
 
-            <RelativeLayout
+            <Button
+                android:id="@+id/reg_register_button"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/reg_cancel_reg_button"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Cancel"
-                    android:layout_alignParentLeft="true"/>
-
-                <Button
-                    android:id="@+id/reg_register_button"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Register"
-                    android:layout_alignParentRight="true" />
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:background="@drawable/custom_button"
+                android:text="Register account"
+                android:textColor="@color/textOrIcons"/>
 
         </LinearLayout>
     </ScrollView>
