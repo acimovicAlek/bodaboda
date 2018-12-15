@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="15dp"
+                android:paddingTop="25dp"
                 android:paddingLeft="10dp">
 
                 <ImageView
@@ -99,7 +99,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="45dp"
-                android:layout_marginRight="15dp">
+                android:layout_marginRight="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +112,9 @@
                     android:id="@+id/customer_req_from_editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="1" />
+                    android:lines="1"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,7 +125,9 @@
                     android:id="@+id/customer_req_to_editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="1" />
+                    android:lines="1"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"/>
 
             </LinearLayout>
 

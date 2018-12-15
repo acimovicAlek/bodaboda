@@ -152,6 +152,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                         PlaceBufferResponse places = task.getResult();
                         Place start = places.get(0);
                         Log.i(TAG, "Place found: " + start.getName());
+
                         startingCoords = start.getLatLng();
                         places.release();
                     } else {
