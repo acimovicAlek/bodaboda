@@ -92,6 +92,8 @@ namespace BodaBodaServer.Services
 
         public User Register(User _user){
             try{
+                if(_context.Users.FirstOrDefault(u => u.Username == _user.Username) != null) throw new Exception("User with the given username already exists");
+                if(_context.Users.FirstOrDefault(u => u.Email == _user.Email) != null) throw new Exception("User with the given e-mail already exists");
                 _context.Users.Add(_user);
                 _context.SaveChanges();
                 return _context.Users.FirstOrDefault(user => user.Username==_user.Username);
