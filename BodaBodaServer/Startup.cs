@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using BodaBodaServer.Services;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
 
 namespace BodaBodaServer
 {
@@ -37,6 +39,9 @@ namespace BodaBodaServer
             options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddCors();
+            services.Configure<ForwardedHeadersOptions>(options => {
+                options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+            });
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -105,6 +110,12 @@ namespace BodaBodaServer
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
 
             app.UseAuthentication();
 
