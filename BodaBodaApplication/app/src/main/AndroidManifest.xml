@@ -41,6 +41,7 @@
         <activity android:name=".activities.DriverMainActivity" />
         <activity android:name=".activities.RegisterAccountActivity" />
         <activity android:name=".activities.CustomerAccountSettingsActivity" />
+        <activity android:name=".activities.CustomerFindDriverActivity" />
         <activity android:name=".activities.CustomerTripInfoActivity" />
         <activity android:name=".activities.CustomerFinishedTripActivity" />
         <activity android:name=".activities.DriverAccountSettingsActivity" />
