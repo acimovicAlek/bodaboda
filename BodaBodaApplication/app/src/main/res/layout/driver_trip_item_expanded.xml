@@ -96,7 +96,7 @@
         android:focusableInTouchMode="false"
         app:layout_constraintTop_toBottomOf="@id/password_box_layout" />
 
-    <Button
+    <ImageView
         android:id="@+id/driver_collapse_item_button"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -106,6 +106,10 @@
         android:background="@drawable/baseline_expand_less_accent_48"
         android:layout_weight="0"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"/>
 
 </LinearLayout>
 

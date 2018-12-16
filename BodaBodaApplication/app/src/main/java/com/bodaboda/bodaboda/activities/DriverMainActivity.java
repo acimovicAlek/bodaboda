@@ -28,7 +28,7 @@ public class DriverMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
 
-        expandButton = (Button)findViewById(R.id.driver_expand_item_button);
+        //expandButton = ()findViewById(R.id.driver_expand_item_button);
         listView = (ExpandableListView)findViewById(R.id.driver_expandableListView);
         init();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
