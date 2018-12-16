@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CustomerMainActivity">
+    tools:context=".activities.CustomerFindDriverActivity">
+
 
     <LinearLayout
         android:id="@+id/customer_topbar"
@@ -138,16 +139,14 @@
     </fragment>
 
     <Button
-        android:id="@+id/customer_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:background="@drawable/custom_button"
-        android:text="Request requestTrip"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
         android:textAllCaps="false"
         android:textColor="@color/textOrIcons"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="20dp" />
+        android:text="Request Trip" />
 
 </android.support.constraint.ConstraintLayout>

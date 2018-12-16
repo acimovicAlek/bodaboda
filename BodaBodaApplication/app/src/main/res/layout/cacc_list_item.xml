@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/cacc_icon_itemView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/cacc_settings_item_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/cacc_expand_item_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/baseline_expand_more_accent_48"
+            android:layout_weight="0"/>
+
+        <ImageView
+            android:id="@+id/cacc_collapse_item_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:background="@drawable/baseline_expand_less_accent_48"
+            android:layout_weight="0"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

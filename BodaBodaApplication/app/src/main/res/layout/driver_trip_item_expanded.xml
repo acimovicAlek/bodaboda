@@ -10,53 +10,9 @@
     android:paddingRight="10dp">
 
     <LinearLayout
-        android:id="@+id/driver_top_ll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/trip_request_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="CUSTOMER_NAME_STRING"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DISTANCE_TO_CUSTOMER"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="PRICE"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="0"
-            android:background="@drawable/baseline_expand_less_accent_48" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/driver_top_ll"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="15dp"
         android:orientation="horizontal">
         <LinearLayout
@@ -89,6 +45,7 @@
             android:paddingRight="15dp">
 
             <TextView
+                android:id="@+id/driver_trip_start_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
@@ -101,6 +58,7 @@
                 android:background="@color/divider"/>
             
             <TextView
+                android:id="@+id/driver_trip_destination_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -112,6 +70,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/driver_trip_length"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -133,12 +92,23 @@
         android:textAllCaps="false"
         android:textColor="@color/textOrIcons"
         android:textSize="18sp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintTop_toBottomOf="@id/password_box_layout" />
+
+    <ImageView
+        android:id="@+id/driver_collapse_item_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="right"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/baseline_expand_less_accent_48"
+        android:layout_weight="0"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="3dp"
+        android:layout_height="1dp"
         android:background="@color/divider"/>
 
 </LinearLayout>

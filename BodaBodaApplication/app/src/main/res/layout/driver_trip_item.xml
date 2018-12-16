@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,23 +43,14 @@
             android:textSize="16sp"
             android:layout_weight="1"/>
 
-        <Button
-            android:id="@+id/driver_expand_item"
+        <ImageView
+            android:id="@+id/driver_expand_item_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/baseline_expand_more_accent_48"
             android:layout_weight="0"/>
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/divider"/>
-    
-    
-    //Add expandle
 
 </LinearLayout>
 

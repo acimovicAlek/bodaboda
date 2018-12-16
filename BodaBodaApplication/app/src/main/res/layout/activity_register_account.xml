@@ -115,7 +115,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
             <TextView
                 android:id="@+id/reg_firstname_textView"
@@ -139,7 +140,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
             <TextView
                 android:id="@+id/reg_lastname_textView"
@@ -162,7 +164,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
             <TextView
                 android:id="@+id/reg_phoneNo_textView"
@@ -185,7 +188,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
             <TextView
                 android:id="@+id/reg_email_textView"
@@ -208,7 +212,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
             <TextView
                 android:id="@+id/reg_password_textView"
@@ -232,7 +237,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:imeOptions="actionNext"/>
 
             <TextView
                 android:id="@+id/reg_confirm_password_textView"
@@ -256,7 +262,8 @@
                 android:textSize="16sp"
                 android:singleLine="true"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:imeOptions="actionNext"/>
 
             <CheckBox
                 android:id="@+id/reg_driver_reg_checkBox"
@@ -292,6 +299,7 @@
                 android:singleLine="true"
                 android:ems="10"
                 android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
                 android:visibility="gone" />
 
             <TextView
@@ -317,6 +325,7 @@
                 android:singleLine="true"
                 android:ems="10"
                 android:inputType="numberDecimal"
+                android:imeOptions="actionNext"
                 android:visibility="gone" />
 
             <TextView
@@ -327,7 +336,7 @@
                 android:textColor="@color/errorRed"
                 android:visibility="gone" />
 
-            <Button
+            <ImageView
                 android:id="@+id/reg_register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
