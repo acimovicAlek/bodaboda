@@ -94,15 +94,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/driver_textView_banner">
 
-        <ListView
-            android:id="@+id/driver_pending_trips_listView"
-            android:layout_width="340dp"
-            android:layout_height="365dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ExpandableListView
+            android:id="@+id/driver_expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/divider"
+            android:dividerHeight="1dp"></ExpandableListView>
 
     </ScrollView>
 
