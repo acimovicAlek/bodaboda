@@ -6,4 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".activities.DriverTripInfoActivity">
 
+    <LinearLayout
+        android:id="@+id/driver_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/primary">
+
+        <Button
+            android:id="@+id/driver_menu_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0"
+            android:background="@drawable/baseline_menu_white_48"
+            tools:background="@drawable/baseline_menu_white_48" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:background="@drawable/bodabodatext_white"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/primary"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

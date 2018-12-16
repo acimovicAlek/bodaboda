@@ -15,10 +15,10 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_account_settings);
 
-        initGoBackButton();
+        //initGoBackButton();
     }
 
-    private void initGoBackButton(){
+    /*private void initGoBackButton(){
         Button goBackButton = (Button)findViewById(R.id.dacc_go_back_button);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,5 +27,5 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
                 DriverAccountSettingsActivity.this.startActivity(registerIntent);
             }
         });
-    }
+    }*/
 }

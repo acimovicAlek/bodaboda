@@ -4,14 +4,16 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <permission
         android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
-    <uses-permission android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE"/>
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -26,27 +28,30 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAwWh0L4UmRCW6xszFROblw43lpILHp-ks" />
+
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activities.CustomerMainActivity" />
         <activity android:name=".activities.DriverMainActivity" />
         <activity android:name=".activities.RegisterAccountActivity" />
         <activity android:name=".activities.CustomerAccountSettingsActivity" />
-        <activity android:name=".activities.CustomerRequestTripActivity" />
         <activity android:name=".activities.CustomerTripInfoActivity" />
         <activity android:name=".activities.CustomerFinishedTripActivity" />
         <activity android:name=".activities.DriverAccountSettingsActivity" />
-        <activity android:name=".activities.DriverBrowseTripsActivity" />
         <activity android:name=".activities.DriverFindCustomerActivity" />
         <activity android:name=".activities.DriverTripInfoActivity" />
         <activity android:name=".activities.DriverFinishedTripActivity" />
-        <activity android:name=".activities.DriverStatisticsActivity"/>
+        <activity android:name=".activities.DriverStatisticsActivity" />
+        <activity
+            android:name=".activities.DriverCustomerAcceptedActivity"
+            android:label="@string/title_activity_driver_customer_accepted"
+            android:theme="@style/BodaBodaTheme"></activity>
     </application>
 
 </manifest>

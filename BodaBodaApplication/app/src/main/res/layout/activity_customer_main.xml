@@ -37,6 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bodabodatext_white"
+                android:inputType="textPassword"
                 android:scaleType="fitXY" />
 
         </LinearLayout>

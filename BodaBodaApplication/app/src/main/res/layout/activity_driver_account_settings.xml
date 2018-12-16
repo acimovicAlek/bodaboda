@@ -6,7 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".activities.DriverAccountSettingsActivity">
 
+    <LinearLayout
+        android:id="@+id/driversettings_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/primary">
+
+    <Button
+        android:id="@+id/driversettings_back_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0"
+        android:background="@drawable/baseline_chevron_left_white_48" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="12dp"
+            android:background="@color/primary"
+            android:text="Account settings"
+            android:textColor="@color/textOrIcons"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/primary"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
+
     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driversettings_topbar">
+
+        <ExpandableListView
+            android:id="@+id/dacc_expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/divider"
+            android:dividerHeight="1dp"></ExpandableListView>
+
+    </ScrollView>
+    <!--<ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="485dp"
@@ -250,5 +317,5 @@
             android:layout_centerHorizontal="true"
             android:text="Go back" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 </android.support.constraint.ConstraintLayout>
