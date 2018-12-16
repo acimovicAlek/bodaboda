@@ -66,6 +66,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getUserLocation();
         hideSoftKeyboard();
+        initMenuButton();
         startingLocationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);
         destinationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_to_editText);
         mGeoDataClient = Places.getGeoDataClient(this);
@@ -100,6 +101,17 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
             e.printStackTrace();
         }
 
+    }
+
+    private void initMenuButton(){
+        Button loginButton = (Button)findViewById(R.id.customer_menu_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerIntent = new Intent(CustomerMainActivity.this, CustomerAccountSettingsActivity.class);
+                CustomerMainActivity.this.startActivity(registerIntent);
+            }
+        });
     }
 
     public void checkPermission() {
