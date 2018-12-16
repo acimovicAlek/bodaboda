@@ -6,6 +6,7 @@ using BodaBodaServer.Models;
 namespace BodaBodaServer.Services{
     public interface ITripServices
     {
+        Trip Create(Trip _trip);
         IEnumerable<Trip> GetRequested();
         IEnumerable<Trip> GetByCustomerId(long id);
         IEnumerable<Trip> GetByTaxiId(long id);
@@ -24,6 +25,19 @@ namespace BodaBodaServer.Services{
         }
 
         
+        public Trip Create(Trip _trip, long id){
+            try{
+                var user = _context.Users.Find(id);
+                _trip.Customer = user;
+                _context.Trips.Add(_trip);
+                _context.SaveChanges();
+                var t = _context.Trips.Last();
+                return t;
+            }catch(Exception e){
+                throw e;
+            }
+        }
+
         public IEnumerable<Trip> GetRequested(){
             return _context.Trips.ToList().Where(x => x.Status == TripStatus.REQUESTED);
         }
