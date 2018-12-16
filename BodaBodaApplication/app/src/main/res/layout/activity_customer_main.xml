@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:background="@drawable/custom_button"
-        android:text="Request trip"
+        android:text="Request requestTrip"
         android:textAllCaps="false"
         android:textColor="@color/textOrIcons"
         android:textSize="18sp"

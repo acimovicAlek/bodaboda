@@ -1,36 +1,31 @@
 package com.bodaboda.bodaboda.classes;
 
 public class LocationClass {
-    private float longitude;
-    private float latitude;
-    private String address;
+    private double Longitude;
+    private double Latitude;
+    private long UserId;
 
-    public void Location(){
-
+    public double getLongitude() {
+        return Longitude;
     }
 
-    public float getLongitude(){
-        return longitude;
+    public void setLongitude(double longitude) {
+        Longitude = longitude;
     }
 
-    public void setLongitude(float longitude){
-        this.longitude = longitude;
+    public double getLatitude() {
+        return Latitude;
     }
 
-    public float getLatitude(){
-        return latitude;
+    public void setLatitude(double latitude) {
+        Latitude = latitude;
     }
 
-    public void setLatitude(float latitude){
-        this.latitude = latitude;
+    public long getUserId() {
+        return UserId;
     }
 
-    public String getAddress(){
-        return address;
+    public void setUserId(long userId) {
+        UserId = userId;
     }
-
-    public void setAddress(String address){
-        this.address = address;
-    }
-
 }

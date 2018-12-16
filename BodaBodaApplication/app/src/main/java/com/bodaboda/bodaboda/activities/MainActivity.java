@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import okhttp3.Headers;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +27,8 @@ import com.bodaboda.bodaboda.utils.BodaBodaClientApi;
 import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
+
+import java.io.IOException;
 
 import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_PUBLISH_KEY;
 import static com.bodaboda.bodaboda.utils.Constants.PUBNUB_SUBSCRIBE_KEY;
@@ -140,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRetrofit(){
+
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create());

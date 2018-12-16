@@ -10,24 +10,24 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.bodaboda.bodaboda.R;
-import com.bodaboda.bodaboda.classes.Trip;
+import com.bodaboda.bodaboda.classes.RequestTrip;
 
 import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<String> {
 
-    List<Trip> trips;
+    List<RequestTrip> requestTrips;
     Context mContext;
 
-    public ListAdapter(@NonNull Context context, List<Trip> tripItems) {
+    public ListAdapter(@NonNull Context context, List<RequestTrip> requestTripItems) {
         super(context, R.layout.driver_trip_item);
-        this.trips = tripItems;
+        this.requestTrips = requestTripItems;
         this.mContext = context;
     }
 
     @Override
     public int getCount() {
-        return trips.size();
+        return requestTrips.size();
     }
 
     @NonNull
@@ -51,9 +51,11 @@ public class ListAdapter extends ArrayAdapter<String> {
         {
             mViewHolder = (ViewHolder)convertView.getTag();
         }
-        mViewHolder.mCustomerName.setText(trips.get(position).getCustomerName());
-        mViewHolder.mDistanceToCustomer.setText(trips.get(position).getDistanceToCustomerString());
-        mViewHolder.mPrice.setText(trips.get(position).getEstPriceString());
+
+        mViewHolder.mCustomerName.setText("CustomerName");
+        mViewHolder.mDistanceToCustomer.setText("2 km");
+        mViewHolder.mPrice.setText("250 rwf");
+
 
         return convertView;
     }

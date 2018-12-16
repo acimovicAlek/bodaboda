@@ -68,7 +68,7 @@ namespace BodaBodaServer.Controllers{
             try{
                 var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-                return Created("New trip created!", _tripService.Create(_trip, Convert.ToInt64(identity.FindFirst("Name").Value));
+                return Created("New trip created!", _tripService.Create(_trip, Convert.ToInt64(identity.FindFirst("Name").Value)));
             }catch(Exception e){
                 return BadRequest(e.ToString());
             }
