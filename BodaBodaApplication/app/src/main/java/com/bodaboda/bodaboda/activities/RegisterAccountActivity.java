@@ -31,7 +31,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
         initLoginButton();
         initRegisterButton();
-        //initCancelButton();
         initCheckboxIsDriver();
     }
 

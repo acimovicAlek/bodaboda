@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 
+import com.bodaboda.bodaboda.classes.LocationClass;
 import com.bodaboda.bodaboda.utils.PlaceAutocompleteAdapter;
 import com.google.android.gms.location.LocationRequest;
 
@@ -67,6 +68,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         getUserLocation();
         hideSoftKeyboard();
         initMenuButton();
+        initRequestButton();
         startingLocationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);
         destinationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_to_editText);
         mGeoDataClient = Places.getGeoDataClient(this);
@@ -205,4 +207,16 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
             });
         }
     };
+
+    private void initRequestButton(){
+        Button requestButton = (Button)findViewById(R.id.customer_request_button);
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                LocationClass startLocation = new LocationClass();
+                LocationClass destinationLocation = new LocationClass();
+            }
+        });
+    }
 }

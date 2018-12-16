@@ -137,14 +137,16 @@
     </fragment>
 
     <Button
+        android:id="@+id/customer_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
         android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textSize="18sp"
+        android:background="@drawable/custom_button"
+        android:text="Request trip"
         android:textAllCaps="false"
         android:textColor="@color/textOrIcons"
-        android:text="Request trip" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
 
 </android.support.constraint.ConstraintLayout>
