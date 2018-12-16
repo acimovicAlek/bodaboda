@@ -62,6 +62,17 @@ namespace BodaBodaServer.Controllers{
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPost]
+        public ActionResult<User> Create([FromBody]Trip _trip){
+            try{
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+                return Created("New trip created!", _tripService.Create(_trip, Convert.ToInt64(identity.FindFirst("Name").Value));
+            }catch(Exception e){
+                return BadRequest(e.ToString());
+            }
+        }
     }
 
 }
