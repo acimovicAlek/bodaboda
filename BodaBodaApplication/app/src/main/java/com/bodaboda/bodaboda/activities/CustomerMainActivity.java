@@ -20,9 +20,13 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bodaboda.bodaboda.R;
@@ -61,6 +65,8 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
     private LatLng destinationCoords;
     private GoogleMap mGoogleMap;
     CameraUpdate cameraUpdate;
+    private ImageView searchLogo;
+    private TextView searchText;
 
     private AutoCompleteTextView startingLocationTextbox;
     private AutoCompleteTextView destinationTextbox;
@@ -70,10 +76,15 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        searchLogo = findViewById(R.id.customer_main_searchLogo);
+        searchText = findViewById(R.id.customer_main_searchText);
         getUserLocation();
         hideSoftKeyboard();
         initMenuButton();
         initRequestButton();
+        initWaitingAnimation();
+        showWaitingAnimations();
+        //hideWaitingAnimations();
         startingLocationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);
         destinationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_to_editText);
         mGeoDataClient = Places.getGeoDataClient(this);
@@ -213,6 +224,35 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         }
     };
 
+    private void initWaitingAnimation()
+    {
+        RotateAnimation rotate;
+        rotate = new RotateAnimation(
+                0, 360,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
+        );
+
+        rotate.setDuration(1900);
+        rotate.setRepeatCount(Animation.INFINITE);
+        searchLogo.startAnimation(rotate);
+
+
+
+
+    }
+
+    private void hideWaitingAnimations()
+    {
+        searchLogo.setVisibility(View.GONE);
+        searchText.setVisibility(View.GONE);
+    }
+    private void showWaitingAnimations()
+    {
+        searchLogo.setVisibility(View.VISIBLE);
+        searchText.setVisibility(View.VISIBLE);
+
+    }
     private void initRequestButton(){
 
         final AutoCompleteTextView startLocationTextView = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);
