@@ -13,12 +13,12 @@ namespace BodaBodaServer.Migrations
                 {
                     UserId = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
-                    Username = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    UserType = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false),
+                    UserType = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -34,9 +34,9 @@ namespace BodaBodaServer.Migrations
                         .Annotation("MySQL:AutoIncrement", true),
                     Longitude = table.Column<double>(nullable: false),
                     Latitude = table.Column<long>(nullable: false),
-                    LocationType = table.Column<string>(nullable: true),
+                    LocationType = table.Column<string>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
-                    TTL = table.Column<long>(nullable: false)
+                    TTL = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,8 +79,8 @@ namespace BodaBodaServer.Migrations
                     UserId = table.Column<long>(nullable: false),
                     StartingPrice = table.Column<double>(nullable: false),
                     PricePerUnit = table.Column<double>(nullable: false),
-                    PricePerHour = table.Column<double>(nullable: false),
-                    SpecialPrice = table.Column<double>(nullable: false)
+                    PricePerHour = table.Column<double>(nullable: true),
+                    SpecialPrice = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,15 +99,15 @@ namespace BodaBodaServer.Migrations
                 {
                     TripId = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
-                    Status = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Paid = table.Column<short>(nullable: false),
                     TripStart = table.Column<DateTime>(nullable: false),
-                    TripEnd = table.Column<DateTime>(nullable: false),
+                    TripEnd = table.Column<DateTime>(nullable: true),
                     StartingLocationId = table.Column<long>(nullable: false),
                     EndingLocationId = table.Column<long>(nullable: false),
                     CustomerId = table.Column<long>(nullable: false),
-                    TaxiId = table.Column<long>(nullable: false)
+                    TaxiId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
