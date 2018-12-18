@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
  
 services:
   db:
@@ -25,5 +25,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    depends_on:
+      - app
     links:
       - app

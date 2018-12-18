@@ -1,7 +1,7 @@
-FROM microsoft/aspnetcore:2.1
+FROM microsoft/dotnet:2.1-aspnetcore-runtime
  
 WORKDIR /app
-COPY bin/Debug/netcoreapp2.1 .
+COPY published .
  
 ENV ASPNETCORE_URLS http://+:5000
 EXPOSE 5000
