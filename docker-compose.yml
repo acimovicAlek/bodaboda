@@ -1,0 +1,25 @@
+version: '1'
+ 
+services:
+  db:
+    container_name: mysqldb
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql:/var/lib/mysql
+  app:
+    build:
+      context:  ./BodaBodaServer
+      dockerfile: Dockerfile
+    expose:
+      - "5000"
+ 
+  proxy:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - app
