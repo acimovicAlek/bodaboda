@@ -1,6 +1,13 @@
-version: '2'
+version: '1'
  
 services:
+  db:
+    container_name: mysqldb
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql:/var/lib/mysql
   app:
     build:
       context:  ./BodaBodaServer
