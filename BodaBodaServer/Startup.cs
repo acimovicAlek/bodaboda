@@ -82,7 +82,7 @@ namespace BodaBodaServer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, UserContext context)
         {
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -122,6 +122,7 @@ namespace BodaBodaServer
 
             app.UseAuthentication();
 
+            context.Database.Migrate();
             //app.UseHttpsRedirection();
             app.UseMvc();
         }
