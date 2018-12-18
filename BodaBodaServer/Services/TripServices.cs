@@ -29,6 +29,7 @@ namespace BodaBodaServer.Services{
             try{
                 var user = _context.Users.Find(_trip.CustomerId);
                 _trip.Customer = user;
+                _trip.TripStart = DateTime.Now;
                 _context.Trips.Add(_trip);
                 _context.SaveChanges();
                 var t = _context.Trips.Last();

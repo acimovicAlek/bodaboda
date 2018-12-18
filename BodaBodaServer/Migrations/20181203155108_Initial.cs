@@ -101,7 +101,7 @@ namespace BodaBodaServer.Migrations
                         .Annotation("MySQL:AutoIncrement", true),
                     Status = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    Paid = table.Column<short>(nullable: false),
+                    Paid = table.Column<bool>(nullable: true),
                     TripStart = table.Column<DateTime>(nullable: false),
                     TripEnd = table.Column<DateTime>(nullable: true),
                     StartingLocationId = table.Column<long>(nullable: false),
