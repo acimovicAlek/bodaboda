@@ -330,6 +330,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
                 Trip trip = new Trip();
                 trip.setStatus("REQUESTED");
+                trip.setPrice(2500);
                 trip.setPaid(false);
                 trip.setStartingLocationId(startLocation.getLocationId());
                 trip.setEndingLocationId(destinationLocation.getLocationId());
