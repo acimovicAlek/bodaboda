@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DriverWaitingForCustomer">
+
+    <LinearLayout
+        android:id="@+id/driver_waitingfor_customer_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/primary">
+
+        <Button
+            android:id="@+id/driver_waitingfor_menu_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0"
+            android:background="@drawable/baseline_menu_white_48"
+            tools:background="@drawable/baseline_menu_white_48" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Waiting for customer"
+                android:textSize="18sp"
+                android:textColor="@color/textOrIcons"
+                android:background="@color/primary" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/primary"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout1customeraccepted"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/driver_waitingfor_customer_topbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+
+            android:id="@+id/customer_main_searchLogo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/bodabodalogo"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/customer_main_searchText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waiting for customer to accept..."
+            android:layout_marginTop="20dp"
+            android:textColor="@color/primaryText"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <View
+        app:layout_constraintTop_toBottomOf="@id/linearlayout1customeraccepted"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/divider"/>
+
+    <LinearLayout
+        android:id="@+id/linearlayout2customeraccepted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/linearlayout1customeraccepted"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/baseline_my_location_darkprimary_48"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/baseline_more_vert_white_blackborder_48dp"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/baseline_place_green_48"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/driver_trip_start_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="ORIGINATION"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"/>
+
+            <TextView
+                android:id="@+id/driver_trip_destination_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="DESTINATION"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lower_view"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout2customeraccepted"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/lower_view"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/driver_waiting_customername_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DRIVER_NAME_STRING"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/driver_waiting_distancetocustomer_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DISTANCE_TO_DRIVER"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/driver_item_estimatedprice_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="PRICE"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/waiting_for_customer_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:textColor="@color/textOrIcons"
+        android:text="Navigate to customer" />
+
+</android.support.constraint.ConstraintLayout>

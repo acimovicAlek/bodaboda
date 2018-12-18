@@ -52,7 +52,8 @@
             android:name=".activities.DriverCustomerAcceptedActivity"
             android:label="@string/title_activity_driver_customer_accepted"
             android:theme="@style/BodaBodaTheme" />
-        <activity android:name=".activities.DriverNavigateToCustomerActivity"></activity>
+        <activity android:name=".activities.DriverNavigateToCustomerActivity" />
+        <activity android:name=".activities.DriverWaitingForCustomer"></activity>
     </application>
 
 </manifest>
