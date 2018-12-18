@@ -131,7 +131,7 @@
                 style="@style/Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="none"
                 android:imeOptions="actionNext"
                 android:textSize="22dp" />
 
