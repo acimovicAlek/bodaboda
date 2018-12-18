@@ -179,7 +179,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Waiting for driver..."
-        android:textColor="@color/secondaryText"
+        android:textColor="@color/primaryText"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
