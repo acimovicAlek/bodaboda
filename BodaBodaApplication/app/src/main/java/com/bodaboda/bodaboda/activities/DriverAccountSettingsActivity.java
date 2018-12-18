@@ -1,5 +1,6 @@
 package com.bodaboda.bodaboda.activities;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import com.bodaboda.bodaboda.R;
+import com.bodaboda.bodaboda.classes.AccountSettingsChild;
 import com.bodaboda.bodaboda.classes.AccountSettingsItem;
 import com.bodaboda.bodaboda.classes.CustomerTripItemChild;
 import com.bodaboda.bodaboda.utils.CustomerASExpandableListAdapter;
@@ -20,7 +22,8 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
     private ExpandableListView listView;
     private CustomerASExpandableListAdapter listAdapter;
     private List<AccountSettingsItem> listDataHeader;
-    private HashMap<AccountSettingsItem, List<CustomerTripItemChild>> listHash;
+    private HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHash;
+    private AccountSettingsChild paymentChild;
     private View itemView;
 
 
@@ -75,7 +78,7 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         AccountSettingsItem editVehicle = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_motorcycle_black_48), "Vehicle settings");
         AccountSettingsItem statistics = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.round_bar_chart_black_48dp), "Statistics");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
-        CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
+        //CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
 
         listDataHeader.add(editAccount);
         listDataHeader.add(editPayment);
@@ -83,6 +86,16 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         listDataHeader.add(statistics);
         listDataHeader.add(help);
 
+<<<<<<< HEAD
+        List<AccountSettingsChild> mugabe = new ArrayList<>();
+        mugabe.add(paymentChild);
+
+        List<AccountSettingsChild> jonathan = new ArrayList<>();
+        jonathan.add(paymentChild);
+
+        List<AccountSettingsChild> chingiz = new ArrayList<>();
+        chingiz.add(paymentChild);
+=======
         List<CustomerTripItemChild> item0 = new ArrayList<>();
         item0.add(ctic);
 
@@ -103,6 +116,7 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         listHash.put(listDataHeader.get(2), item2);
         listHash.put(listDataHeader.get(3), item3);
         listHash.put(listDataHeader.get(4), item4);
+>>>>>>> 38549f9f5ed85e25a45501182e12995841d4f6cb
 
 
     }

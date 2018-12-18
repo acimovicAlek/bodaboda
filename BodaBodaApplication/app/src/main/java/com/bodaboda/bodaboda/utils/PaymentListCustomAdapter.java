@@ -12,24 +12,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bodaboda.bodaboda.R;
-import com.bodaboda.bodaboda.classes.AccountSettingsChild;
 import com.bodaboda.bodaboda.classes.AccountSettingsItem;
-import com.bodaboda.bodaboda.classes.CustomerTripItemChild;
+import com.bodaboda.bodaboda.classes.AccountSettingsChild;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomerASExpandableListAdapter extends BaseExpandableListAdapter {
+public class PaymentListCustomAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<AccountSettingsItem> listDataHeader;
     private HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHashMap;
 
-    public CustomerASExpandableListAdapter(Context context, List<AccountSettingsItem> listDataHeader, HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHashMap) {
+    public PaymentListCustomAdapter(Context context, List<AccountSettingsItem> listDataHeader, HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
     }
-
 
     @Override
     public int getGroupCount() {
@@ -85,26 +83,26 @@ public class CustomerASExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        AccountSettingsChild paymentChild = (AccountSettingsChild) getChild(i, i1);
+        AccountSettingsChild paymentChild = (AccountSettingsChild) getGroup(i);
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.cacc_list_item_expanded_payment_options, null);
         }
-        TextView paymentText = view.findViewById(R.id.cacc_payment_verified_textView);
-        TextView paymentStatus = view.findViewById(R.id.cacc_payment_verified_status_textView);
+        TextView paymentText = (TextView)view.findViewById(R.id.cacc_payment_verified_textView);
+        TextView paymentStatus = (TextView)view.findViewById(R.id.cacc_payment_verified_status_textView);
         Spinner spinner = (Spinner)view.findViewById(R.id.cacc_payment_method_spinner);
         Button saveButton = (Button)view.findViewById(R.id.cacc_save_changes_edit_button);
-        //paymentText.setText(paymentChild.getPaymentMethod().getText());
-        //paymentStatus.setText(paymentChild.getVerification().getText());
-        //spinner = paymentChild.getPaymentOptions();
-        //saveButton.(saveButton);
+        paymentChild.setVerification(paymentText);
+        paymentChild.setPaymentMethod(paymentStatus);
+        paymentChild.setPaymentOptions(spinner);
+        paymentChild.setSaveChanges(saveButton);
 
         return view;
     }
 
     @Override
     public boolean isChildSelectable(int i, int i1) {
-        return true;
+        return false;
     }
 }
