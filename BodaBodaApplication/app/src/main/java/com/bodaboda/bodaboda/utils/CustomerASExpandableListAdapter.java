@@ -86,7 +86,7 @@ public class CustomerASExpandableListAdapter extends BaseExpandableListAdapter {
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.cacc_list_item_expanded, null);
+            view = inflater.inflate(R.layout.cacc_list_item_expanded_account_settings, null);
         }
         /*ImageView iconImage = (ImageView) view.findViewById(R.id.cacc_icon_itemView);
         TextView settingsTitle = (TextView)view.findViewById(R.id.cacc_settings_item_textView);

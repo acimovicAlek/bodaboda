@@ -24,6 +24,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -235,10 +236,6 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         rotate.setDuration(1900);
         rotate.setRepeatCount(Animation.INFINITE);
         searchLogo.startAnimation(rotate);
-
-
-
-
     }
 
     private void hideWaitingAnimations()
