@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                             token.setUserId(response.body().getUserId());
                             token.setUsername(response.body().getUsername());
                             token.setUserType(response.body().getUserType());
-                            token.setToken(response.body().getToken());
+                            token.setToken("Bearer " + response.body().getToken());
 
                             //Activate popup for choose customer or taxi
 

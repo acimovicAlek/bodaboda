@@ -3,9 +3,8 @@ package com.bodaboda.bodaboda.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 
-import com.bodaboda.bodaboda.classes.LocationClass;
+import com.bodaboda.bodaboda.classes.Location;
 import com.bodaboda.bodaboda.classes.RequestTrip;
 import com.bodaboda.bodaboda.classes.RequestTripArguments;
 import com.bodaboda.bodaboda.classes.User;
@@ -57,7 +56,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
     public static LatLngBounds LAT_LNG_BOUNDS;
     private FusedLocationProviderClient mFusedLocationClient;
-    private Location customerLocation;
+    private android.location.Location customerLocation;
     private PlaceAutocompleteAdapter mPlaceAutocompleteAdapter;
     private GeoDataClient mGeoDataClient;
     private SupportMapFragment mMapFragment;
@@ -143,7 +142,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         }
     }
 
-    private void setBounds(Location location){
+    private void setBounds(android.location.Location location){
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(new LatLng(location.getLatitude() ,location.getLongitude()));
         LAT_LNG_BOUNDS = builder.build();
@@ -152,9 +151,9 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
     private void getUserLocation(){
         checkPermission();
         mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                .addOnSuccessListener(this, new OnSuccessListener<android.location.Location>() {
                     @Override
-                    public void onSuccess(Location location) {
+                    public void onSuccess(android.location.Location location) {
                         if(location != null)
                         {
                             setBounds(location);
@@ -261,29 +260,74 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
             public void onClick(View view) {
 
                 //Check if the info in every field is okey before sending
-                if(startLocationTextView.getText().toString().length() <= 3){
+                if(startLocationTextView.getText().toString().length() <= 2){
                     return;
                 }
 
-                if(destinationLocationTextView.getText().toString().length() <= 3){
+                if(destinationLocationTextView.getText().toString().length() <= 2){
                     return;
                 }
 
                 String[] addressFrom = startLocationTextView.getText().toString().split(",");
                 String[] addressTo = destinationLocationTextView.getText().toString().split(",");
 
-                LocationClass startLocation = new LocationClass();
+                Location startLocation = new Location();
                 startLocation.setLongitude(startingCoords.longitude);
                 startLocation.setLatitude(startingCoords.latitude);
                 startLocation.setUserId(MainActivity.token.getUserId());
+                startLocation.setLocationType("ORIGINATION");
                 //startLocation.setLocationType(addressFrom[0]);
 
-                LocationClass destinationLocation = new LocationClass();
-                destinationLocation.setLongitude(destinationCoords.longitude);
-                destinationLocation.setLatitude(destinationCoords.latitude);
-                destinationLocation.setUserId(MainActivity.token.getUserId());
-                //destinationLocation.setLocationType(addressTo[0]);
+                Call<Location> startLocCall = MainActivity.client.sendLocation(
+                        MainActivity.token.getToken(),
+                        startLocation
+                );
 
+                startLocCall.enqueue(new Callback<Location>() {
+                    @Override
+                    public void onResponse(Call<Location> call, Response<Location> response) {
+                        if(response.isSuccessful()) {
+                            Location destinationLocation = new Location();
+                            destinationLocation.setLongitude(destinationCoords.longitude);
+                            destinationLocation.setLatitude(destinationCoords.latitude);
+                            destinationLocation.setUserId(MainActivity.token.getUserId());
+                            destinationLocation.setLocationType("DESTINATION");
+                            //destinationLocation.setLocationType(addressTo[0]);
+
+                            Call<Location> destLocCall = MainActivity.client.sendLocation(
+                                    MainActivity.token.getToken(),
+                                    destinationLocation
+                            );
+
+                            destLocCall.enqueue(new Callback<Location>() {
+                                @Override
+                                public void onResponse(Call<Location> call, Response<Location> response) {
+                                    if(response.isSuccessful()) {
+                                        Toast.makeText(CustomerMainActivity.this, "Both Location Sent", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Location> call, Throwable t) {
+                                    Toast.makeText(CustomerMainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else {
+                            Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Location> call, Throwable t) {
+                        Toast.makeText(CustomerMainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                /*
                 RequestTrip requestTrip = new RequestTrip();
                 requestTrip.setStatus("REQUESTED");
                 requestTrip.setPaid(false);
@@ -295,7 +339,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 arguments._trip = requestTrip;
                 arguments.id = MainActivity.token.getUserId();
 
-                Call<User> call = MainActivity.client.getUserById("Bearer " + MainActivity.token.getToken());
+                Call<User> call = MainActivity.client.getUserById(MainActivity.token.getToken());
 
                 call.enqueue(new Callback<User>() {
                     @Override
@@ -314,7 +358,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     public void onFailure(Call<User> call, Throwable t) {
 
                     }
-                });
+                });*/
                 /*
                 //Send request
                 Call<User> call = MainActivity.client.sendRequestedTrip(MainActivity.token.getToken(), arguments);

@@ -1,13 +1,11 @@
 package com.bodaboda.bodaboda.classes;
 
-import java.sql.Date;
-
 public class RequestTrip {
 
     private String Status;
     private Boolean Paid;
-    private LocationClass StartingLocation;
-    private LocationClass EndingLocation;
+    private Location StartingLocation;
+    private Location EndingLocation;
     private long CustomerId;
 
     public String getStatus() {
@@ -26,19 +24,19 @@ public class RequestTrip {
         Paid = paid;
     }
 
-    public LocationClass getStartingLocation() {
+    public Location getStartingLocation() {
         return StartingLocation;
     }
 
-    public void setStartingLocation(LocationClass startingLocation) {
+    public void setStartingLocation(Location startingLocation) {
         StartingLocation = startingLocation;
     }
 
-    public LocationClass getEndingLocation() {
+    public Location getEndingLocation() {
         return EndingLocation;
     }
 
-    public void setEndingLocation(LocationClass endingLocation) {
+    public void setEndingLocation(Location endingLocation) {
         EndingLocation = endingLocation;
     }
 
