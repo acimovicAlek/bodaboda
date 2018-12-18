@@ -331,7 +331,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 Trip trip = new Trip();
                 trip.setStatus("REQUESTED");
                 trip.setPrice(2500);
-                trip.setPaid(false);
+                trip.setPaid(Boolean.FALSE);
                 trip.setStartingLocationId(startLocation.getLocationId());
                 trip.setEndingLocationId(destinationLocation.getLocationId());
                 trip.setCustomerId(MainActivity.token.getUserId());
@@ -349,7 +349,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             showWaitingAnimations();
                         }
                         else{
-                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CustomerMainActivity.this, response.errorBody().toString(), Toast.LENGTH_LONG).show();
                         }
                     }
 

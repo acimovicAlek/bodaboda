@@ -79,14 +79,13 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         AccountSettingsItem statistics = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.round_bar_chart_black_48dp), "Statistics");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
         //CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
-
+/*
         listDataHeader.add(editAccount);
         listDataHeader.add(editPayment);
         listDataHeader.add(editVehicle);
         listDataHeader.add(statistics);
         listDataHeader.add(help);
 
-<<<<<<< HEAD
         List<AccountSettingsChild> mugabe = new ArrayList<>();
         mugabe.add(paymentChild);
 
@@ -95,7 +94,7 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
 
         List<AccountSettingsChild> chingiz = new ArrayList<>();
         chingiz.add(paymentChild);
-=======
+
         List<CustomerTripItemChild> item0 = new ArrayList<>();
         item0.add(ctic);
 
@@ -116,8 +115,7 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         listHash.put(listDataHeader.get(2), item2);
         listHash.put(listDataHeader.get(3), item3);
         listHash.put(listDataHeader.get(4), item4);
->>>>>>> 38549f9f5ed85e25a45501182e12995841d4f6cb
-
+*/
 
     }
 }
