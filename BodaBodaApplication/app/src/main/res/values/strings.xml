@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">BodaBoda</string>
     <string name="title_activity_driver_customer_accepted">DriverCustomerAcceptedActivity</string>
+
+    <string-array name="spinner_content">
+        <item>Visa</item>
+        <item>Cash</item>
+    </string-array>
 </resources>

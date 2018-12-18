@@ -1,20 +1,18 @@
 package com.bodaboda.bodaboda.activities;
 
+import android.accounts.Account;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 
 import com.bodaboda.bodaboda.R;
 import com.bodaboda.bodaboda.classes.AccountSettingsItem;
-import com.bodaboda.bodaboda.classes.CustomerTripItem;
 import com.bodaboda.bodaboda.classes.CustomerTripItemChild;
+import com.bodaboda.bodaboda.classes.AccountSettingsChild;
 import com.bodaboda.bodaboda.utils.CustomerASExpandableListAdapter;
-import com.bodaboda.bodaboda.utils.ExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +22,9 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
 
     private ExpandableListView listView;
     private CustomerASExpandableListAdapter listAdapter;
+    private AccountSettingsChild paymentChild;
     private List<AccountSettingsItem> listDataHeader;
-    private HashMap<AccountSettingsItem, List<CustomerTripItemChild>> listHash;
+    private HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHash;
     private View itemView;
 
     @Override
@@ -37,6 +36,7 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
         init();
         listAdapter = new CustomerASExpandableListAdapter(this, listDataHeader,listHash);
         listView.setAdapter(listAdapter);
+
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -77,20 +77,20 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
         AccountSettingsItem editAccount = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_account_circle_black_48), "Account options");
         AccountSettingsItem editPayment = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_monetization_on_black_48dp), "Payment options");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
-        CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
+        //CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
 
         listDataHeader.add(editAccount);
         listDataHeader.add(editPayment);
         listDataHeader.add(help);
 
-        List<CustomerTripItemChild> mugabe = new ArrayList<>();
-        mugabe.add(ctic);
+        List<AccountSettingsChild> mugabe = new ArrayList<>();
+        mugabe.add(paymentChild);
 
-        List<CustomerTripItemChild> jonathan = new ArrayList<>();
-        jonathan.add(ctic);
+        List<AccountSettingsChild> jonathan = new ArrayList<>();
+        jonathan.add(paymentChild);
 
-        List<CustomerTripItemChild> chingiz = new ArrayList<>();
-        chingiz.add(ctic);
+        List<AccountSettingsChild> chingiz = new ArrayList<>();
+        chingiz.add(paymentChild);
 
         listHash.put(listDataHeader.get(0), mugabe);
         listHash.put(listDataHeader.get(1), jonathan);

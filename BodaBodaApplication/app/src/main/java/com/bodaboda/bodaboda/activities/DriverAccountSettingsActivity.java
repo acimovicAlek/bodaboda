@@ -1,5 +1,6 @@
 package com.bodaboda.bodaboda.activities;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import com.bodaboda.bodaboda.R;
+import com.bodaboda.bodaboda.classes.AccountSettingsChild;
 import com.bodaboda.bodaboda.classes.AccountSettingsItem;
 import com.bodaboda.bodaboda.classes.CustomerTripItemChild;
 import com.bodaboda.bodaboda.utils.CustomerASExpandableListAdapter;
@@ -20,7 +22,8 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
     private ExpandableListView listView;
     private CustomerASExpandableListAdapter listAdapter;
     private List<AccountSettingsItem> listDataHeader;
-    private HashMap<AccountSettingsItem, List<CustomerTripItemChild>> listHash;
+    private HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHash;
+    private AccountSettingsChild paymentChild;
     private View itemView;
 
 
@@ -74,21 +77,21 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         AccountSettingsItem editPayment = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_monetization_on_black_48dp), "Payment options");
         AccountSettingsItem editVehicle = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_motorcycle_black_48), "Vehicle settings");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
-        CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
+        //CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
 
         listDataHeader.add(editAccount);
         listDataHeader.add(editPayment);
         listDataHeader.add(editVehicle);
         listDataHeader.add(help);
 
-        List<CustomerTripItemChild> mugabe = new ArrayList<>();
-        mugabe.add(ctic);
+        List<AccountSettingsChild> mugabe = new ArrayList<>();
+        mugabe.add(paymentChild);
 
-        List<CustomerTripItemChild> jonathan = new ArrayList<>();
-        jonathan.add(ctic);
+        List<AccountSettingsChild> jonathan = new ArrayList<>();
+        jonathan.add(paymentChild);
 
-        List<CustomerTripItemChild> chingiz = new ArrayList<>();
-        chingiz.add(ctic);
+        List<AccountSettingsChild> chingiz = new ArrayList<>();
+        chingiz.add(paymentChild);
 
         listHash.put(listDataHeader.get(0), mugabe);
         listHash.put(listDataHeader.get(1), jonathan);
