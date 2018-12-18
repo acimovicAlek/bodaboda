@@ -68,6 +68,9 @@ namespace BodaBodaServer
 
             // configure DI for application services
             services.AddScoped<IUserServices, UserServices>();
+            services.AddScoped<ILocationServices, LocationServices>();
+            services.AddScoped<ITripServices, TripServices>();
+            services.AddScoped<IPaymentServices, PaymentServices>();
 
 
             

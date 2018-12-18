@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:text="  Where does your requestTrip start?"
+                    android:text="  Where does your trip start?"
                     android:textSize="28dp" />
             </RelativeLayout>
 

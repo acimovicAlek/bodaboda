@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.DriverFinishedTripActivity">
     <LinearLayout
-        android:id="@+id/driver_topbar"
+        android:id="@+id/driver_customer_accepted_topbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:layout_gravity="center_horizontal"
-                android:text="Customer Accepted"
+                android:text="Customer accepted"
                 android:textSize="18sp"
                 android:textColor="@color/textOrIcons"
                 android:background="@color/primary" />
@@ -53,7 +53,120 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driver_customer_accepted_topbar"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/checkmark_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/baseline_check_green_48"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/driver_customer_accteped_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DRIVERNAME accepted!"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/primaryText"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/driver_customer_accepted_topbar"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="1dp"
+            android:background="@color/divider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/baseline_my_location_darkprimary_48"/>
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/baseline_more_vert_white_blackborder_48dp"/>
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/baseline_place_green_48"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/driver_trip_start_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:textSize="18sp"
+                    android:text="ORIGINATION"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"/>
+
+                <TextView
+                    android:id="@+id/driver_trip_destination_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:textSize="18sp"
+                    android:text="DESTINATION"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        app:layout_constraintTop_toBottomOf="@id/ll"
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="1dp"
+        android:background="@color/divider"/>
+
+
+
     <Button
+        android:id="@+id/navigate_to_customer_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
@@ -62,6 +175,6 @@
         android:textSize="18sp"
         android:textAllCaps="false"
         android:textColor="@color/textOrIcons"
-        android:text="Navigate To Customer" />
+        android:text="Navigate to customer" />
 
 </android.support.constraint.ConstraintLayout>

@@ -76,14 +76,17 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         AccountSettingsItem editAccount = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_account_circle_black_48), "Account options");
         AccountSettingsItem editPayment = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_monetization_on_black_48dp), "Payment options");
         AccountSettingsItem editVehicle = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_motorcycle_black_48), "Vehicle settings");
+        AccountSettingsItem statistics = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.round_bar_chart_black_48dp), "Statistics");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
         //CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
 
         listDataHeader.add(editAccount);
         listDataHeader.add(editPayment);
         listDataHeader.add(editVehicle);
+        listDataHeader.add(statistics);
         listDataHeader.add(help);
 
+<<<<<<< HEAD
         List<AccountSettingsChild> mugabe = new ArrayList<>();
         mugabe.add(paymentChild);
 
@@ -92,10 +95,29 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
 
         List<AccountSettingsChild> chingiz = new ArrayList<>();
         chingiz.add(paymentChild);
+=======
+        List<CustomerTripItemChild> item0 = new ArrayList<>();
+        item0.add(ctic);
 
-        listHash.put(listDataHeader.get(0), mugabe);
-        listHash.put(listDataHeader.get(1), jonathan);
-        listHash.put(listDataHeader.get(2), chingiz);
+        List<CustomerTripItemChild> item1 = new ArrayList<>();
+        item1.add(ctic);
+
+        List<CustomerTripItemChild> item2 = new ArrayList<>();
+        item2.add(ctic);
+
+        List<CustomerTripItemChild> item3 = new ArrayList<>();
+        item3.add(ctic);
+
+        List<CustomerTripItemChild> item4 = new ArrayList<>();
+        item4.add(ctic);
+
+        listHash.put(listDataHeader.get(0), item0);
+        listHash.put(listDataHeader.get(1), item1);
+        listHash.put(listDataHeader.get(2), item2);
+        listHash.put(listDataHeader.get(3), item3);
+        listHash.put(listDataHeader.get(4), item4);
+>>>>>>> 38549f9f5ed85e25a45501182e12995841d4f6cb
+
 
     }
 }

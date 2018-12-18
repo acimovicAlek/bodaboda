@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView error = (TextView)findViewById(R.id.main_error_textView);
 
         ///////TEST///////////
-        Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+        Intent loginIntent = new Intent(MainActivity.this, DriverAccountSettingsActivity.class);
         MainActivity.this.startActivity(loginIntent);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                             token.setUserId(response.body().getUserId());
                             token.setUsername(response.body().getUsername());
                             token.setUserType(response.body().getUserType());
-                            token.setToken(response.body().getToken());
+                            token.setToken("Bearer " + response.body().getToken());
 
                             //Activate popup for choose customer or taxi
 
