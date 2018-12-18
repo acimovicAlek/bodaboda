@@ -83,8 +83,8 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         initMenuButton();
         initRequestButton();
         initWaitingAnimation();
-        showWaitingAnimations();
-        //hideWaitingAnimations();
+        //showWaitingAnimations();
+        hideWaitingAnimations();
         startingLocationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);
         destinationTextbox = (AutoCompleteTextView)findViewById(R.id.customer_req_to_editText);
         mGeoDataClient = Places.getGeoDataClient(this);
@@ -287,34 +287,36 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     @Override
                     public void onResponse(Call<Location> call, Response<Location> response) {
                         if(response.isSuccessful()) {
-                            Location destinationLocation = new Location();
-                            destinationLocation.setLongitude(destinationCoords.longitude);
-                            destinationLocation.setLatitude(destinationCoords.latitude);
-                            destinationLocation.setUserId(MainActivity.token.getUserId());
-                            destinationLocation.setLocationType("DESTINATION");
-                            //destinationLocation.setLocationType(addressTo[0]);
 
-                            Call<Location> destLocCall = MainActivity.client.sendLocation(
-                                    MainActivity.token.getToken(),
-                                    destinationLocation
-                            );
+                        }
+                        else {
+                            Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                            destLocCall.enqueue(new Callback<Location>() {
-                                @Override
-                                public void onResponse(Call<Location> call, Response<Location> response) {
-                                    if(response.isSuccessful()) {
-                                        Toast.makeText(CustomerMainActivity.this, "Both Location Sent", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+                    @Override
+                    public void onFailure(Call<Location> call, Throwable t) {
+                        Toast.makeText(CustomerMainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                                @Override
-                                public void onFailure(Call<Location> call, Throwable t) {
-                                    Toast.makeText(CustomerMainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                Location destinationLocation = new Location();
+                destinationLocation.setLongitude(destinationCoords.longitude);
+                destinationLocation.setLatitude(destinationCoords.latitude);
+                destinationLocation.setUserId(MainActivity.token.getUserId());
+                destinationLocation.setLocationType("DESTINATION");
+                //destinationLocation.setLocationType(addressTo[0]);
+
+                Call<Location> destLocCall = MainActivity.client.sendLocation(
+                        MainActivity.token.getToken(),
+                        destinationLocation
+                );
+
+                destLocCall.enqueue(new Callback<Location>() {
+                    @Override
+                    public void onResponse(Call<Location> call, Response<Location> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText(CustomerMainActivity.this, "Both Location Sent", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();

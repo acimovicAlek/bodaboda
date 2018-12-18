@@ -175,11 +175,11 @@ namespace BodaBodaServer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Locations_UserId",
-                table: "Locations",
-                column: "UserId",
-                unique: true);
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Locations_UserId",
+            //    table: "Locations",
+            //    column: "UserId",
+            //    unique: false);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PaymentOptions_UserId",
