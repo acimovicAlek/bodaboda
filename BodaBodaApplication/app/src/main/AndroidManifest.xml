@@ -52,7 +52,7 @@
         <activity
             android:name=".activities.DriverCustomerAcceptedActivity"
             android:label="@string/title_activity_driver_customer_accepted"
-            android:theme="@style/BodaBodaTheme"></activity>
+            android:theme="@style/BodaBodaTheme" />
     </application>
 
 </manifest>
