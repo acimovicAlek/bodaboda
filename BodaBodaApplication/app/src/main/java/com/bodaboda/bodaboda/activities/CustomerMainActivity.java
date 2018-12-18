@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 
 import com.bodaboda.bodaboda.classes.Location;
-import com.bodaboda.bodaboda.classes.RequestTrip;
-import com.bodaboda.bodaboda.classes.RequestTripArguments;
+import com.bodaboda.bodaboda.classes.Trip;
 import com.bodaboda.bodaboda.classes.User;
 import com.bodaboda.bodaboda.utils.PlaceAutocompleteAdapter;
 
@@ -24,7 +23,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -260,23 +258,24 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
             public void onClick(View view) {
 
                 //Check if the info in every field is okey before sending
-                if(startLocationTextView.getText().toString().length() <= 2){
+                if(startLocationTextView.getText().toString().length() <= 3){
                     return;
                 }
 
-                if(destinationLocationTextView.getText().toString().length() <= 2){
+                if(destinationLocationTextView.getText().toString().length() <= 3){
                     return;
                 }
 
+                //The normal auto is address,city,country
                 String[] addressFrom = startLocationTextView.getText().toString().split(",");
                 String[] addressTo = destinationLocationTextView.getText().toString().split(",");
 
-                Location startLocation = new Location();
+                final Location startLocation = new Location();
                 startLocation.setLongitude(startingCoords.longitude);
                 startLocation.setLatitude(startingCoords.latitude);
                 startLocation.setUserId(MainActivity.token.getUserId());
                 startLocation.setLocationType("ORIGINATION");
-                //startLocation.setLocationType(addressFrom[0]);
+                //startLocation.setAddress(addressFrom[0]);
 
                 Call<Location> startLocCall = MainActivity.client.sendLocation(
                         MainActivity.token.getToken(),
@@ -287,10 +286,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     @Override
                     public void onResponse(Call<Location> call, Response<Location> response) {
                         if(response.isSuccessful()) {
-
+                            startLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
-                            Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -300,12 +299,12 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     }
                 });
 
-                Location destinationLocation = new Location();
+                final Location destinationLocation = new Location();
                 destinationLocation.setLongitude(destinationCoords.longitude);
                 destinationLocation.setLatitude(destinationCoords.latitude);
                 destinationLocation.setUserId(MainActivity.token.getUserId());
                 destinationLocation.setLocationType("DESTINATION");
-                //destinationLocation.setLocationType(addressTo[0]);
+                //destinationLocation.setAddress(addressTo[0]);
 
                 Call<Location> destLocCall = MainActivity.client.sendLocation(
                         MainActivity.token.getToken(),
@@ -316,10 +315,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     @Override
                     public void onResponse(Call<Location> call, Response<Location> response) {
                         if(response.isSuccessful()) {
-                            Toast.makeText(CustomerMainActivity.this, "Both Location Sent", Toast.LENGTH_SHORT).show();
+                            destinationLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
-                            Toast.makeText(CustomerMainActivity.this, "Problem", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -329,48 +328,24 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     }
                 });
 
-                /*
-                RequestTrip requestTrip = new RequestTrip();
-                requestTrip.setStatus("REQUESTED");
-                requestTrip.setPaid(false);
-                requestTrip.setStartingLocation(startLocation);
-                requestTrip.setEndingLocation(destinationLocation);
-                requestTrip.setCustomerId(MainActivity.token.getUserId());
+                Trip trip = new Trip();
+                trip.setStatus("REQUESTED");
+                trip.setPaid(false);
+                trip.setStartingLocationId(startLocation.getLocationId());
+                trip.setEndingLocationId(destinationLocation.getLocationId());
+                trip.setCustomerId(MainActivity.token.getUserId());
 
-                RequestTripArguments arguments = new RequestTripArguments();
-                arguments._trip = requestTrip;
-                arguments.id = MainActivity.token.getUserId();
+                Call<Trip> call = MainActivity.client.requestTrip(
+                        MainActivity.token.getToken(),
+                        trip
+                );
 
-                Call<User> call = MainActivity.client.getUserById(MainActivity.token.getToken());
-
-                call.enqueue(new Callback<User>() {
+                call.enqueue(new Callback<Trip>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(Call<Trip> call, Response<Trip> response) {
                         if(response.isSuccessful())
                         {
-                            Toast.makeText(CustomerMainActivity.this, "Fungerar", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(CustomerMainActivity.this, ":(", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
-                    }
-                });*/
-                /*
-                //Send request
-                Call<User> call = MainActivity.client.sendRequestedTrip(MainActivity.token.getToken(), arguments);
-
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful())
-                        {
-                            Toast.makeText(CustomerMainActivity.this, "AMAZING", Toast.LENGTH_LONG).show();
+                            showWaitingAnimations();
                         }
                         else{
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
@@ -378,13 +353,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                    public void onFailure(Call<Trip> call, Throwable t) {
                         Toast.makeText(CustomerMainActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
                     }
                 });
-                */
-
-
             }
         });
     }

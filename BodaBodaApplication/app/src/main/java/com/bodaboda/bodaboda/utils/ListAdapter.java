@@ -10,24 +10,24 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.bodaboda.bodaboda.R;
-import com.bodaboda.bodaboda.classes.RequestTrip;
+import com.bodaboda.bodaboda.classes.Trip;
 
 import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<String> {
 
-    List<RequestTrip> requestTrips;
+    List<Trip> trips;
     Context mContext;
 
-    public ListAdapter(@NonNull Context context, List<RequestTrip> requestTripItems) {
+    public ListAdapter(@NonNull Context context, List<Trip> tripItems) {
         super(context, R.layout.driver_trip_item);
-        this.requestTrips = requestTripItems;
+        this.trips = tripItems;
         this.mContext = context;
     }
 
     @Override
     public int getCount() {
-        return requestTrips.size();
+        return trips.size();
     }
 
     @NonNull
