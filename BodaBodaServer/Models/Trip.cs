@@ -28,6 +28,8 @@ namespace BodaBodaServer.Models{
     static public class TripStatus{
         public static string REQUESTED { get { return "REQUESTED"; } }
 
+        public static string PROPOSED { get { return "PROPOSED"; } }
+
         public static string ACCEPTED { get { return "ACCEPTED"; } }
 
         public static string IN_PROGRESS { get { return "IN_PROGRESS"; } }

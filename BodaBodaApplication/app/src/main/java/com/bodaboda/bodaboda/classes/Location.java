@@ -1,9 +1,20 @@
 package com.bodaboda.bodaboda.classes;
 
-public class LocationClass {
+public class Location {
+    private long LocationId;
     private double Longitude;
     private double Latitude;
+    private String LocationType;
     private long UserId;
+    private long TTL;
+
+    public long getLocationId() {
+        return LocationId;
+    }
+
+    public void setLocationId(long locationId) {
+        LocationId = locationId;
+    }
 
     public double getLongitude() {
         return Longitude;
@@ -21,6 +32,14 @@ public class LocationClass {
         Latitude = latitude;
     }
 
+    public String getLocationType() {
+        return LocationType;
+    }
+
+    public void setLocationType(String locationType) {
+        LocationType = locationType;
+    }
+
     public long getUserId() {
         return UserId;
     }
@@ -28,4 +47,13 @@ public class LocationClass {
     public void setUserId(long userId) {
         UserId = userId;
     }
+
+    public long getTTL() {
+        return TTL;
+    }
+
+    public void setTTL(long TTL) {
+        this.TTL = TTL;
+    }
+
 }
