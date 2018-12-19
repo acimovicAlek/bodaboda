@@ -3,13 +3,9 @@ version: '3'
 services:
   db:
     container_name: mysqldb
-    image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_HOST: '%'
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
