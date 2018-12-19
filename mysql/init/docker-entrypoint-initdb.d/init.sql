@@ -1,3 +1,1 @@
-CREATE DATABASE db;
-GRANT ALL ON *.* TO 'root@%' IDENTIFIED BY 'password' WITH GRANT OPTION;
-GRANT ALL ON *.* TO 'root@172.19.0.3' IDENTIFIED BY 'password' WITH GRANT OPTION;
+CREATE TABLE 'db'.'__EFMigrationsHistory' ( 'MigrationId' nvarchar(150) NOT NULL, 'ProductVersion' nvarchar(32) NOT NULL, PRIMARY KEY ('MigrationId') );
