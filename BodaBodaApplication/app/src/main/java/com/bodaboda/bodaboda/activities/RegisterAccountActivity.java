@@ -73,7 +73,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(password.getText().toString() == confirmPassword.getText().toString()){
+                if(!password.getText().toString().equals(confirmPassword.getText().toString())){
                     error.setVisibility(View.VISIBLE);
                     error.setText("Password does not match!");
                     return;
