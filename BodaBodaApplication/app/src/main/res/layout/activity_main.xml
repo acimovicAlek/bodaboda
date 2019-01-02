@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:text="Forgot your password?"
+            android:text="Forgot password?"
             app:layout_constraintTop_toBottomOf="@id/password_box_layout" />
 
         <Button
