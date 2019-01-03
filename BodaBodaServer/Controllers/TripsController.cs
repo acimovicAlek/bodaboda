@@ -33,13 +33,13 @@ namespace BodaBodaServer.Controllers{
         [HttpGet]
         public ActionResult GetByUser(){
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-            if(identity.FindFirst("Role").Value == UserType.Customer) 
+            if(identity.FindFirst(c => c.Type == ClaimTypes.Role).Value == UserType.Customer) 
                 return Ok(_tripService.GetByCustomerId(
-                    Convert.ToInt64(identity.FindFirst("Name").Value)
+                    Convert.ToInt64(identity.Name)
                 ));
-            else if(identity.FindFirst("Role").Value == UserType.Taxi)
+            else if(identity.FindFirst(c => c.Type == ClaimTypes.Role).Value == UserType.Taxi)
                 return Ok(_tripService.GetByTaxiId(
-                    Convert.ToInt64(identity.FindFirst("Name").Value)
+                    Convert.ToInt64(identity.Name)
                 ));
             else return BadRequest();
         }

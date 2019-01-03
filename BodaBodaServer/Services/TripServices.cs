@@ -50,7 +50,7 @@ namespace BodaBodaServer.Services{
         }
         public IEnumerable<Trip> GetByTaxiId(long id){
             var _taxi = _context.Users.Find(id);
-            if(_taxi != null) return _context.Trips.ToList().Where(x => x.Taxi == _taxi);
+            if(_taxi != null) return _context.Trips.ToList().Where(x => x.TaxiId == _taxi.UserId);
             else throw new System.Exception("No Taxi with the given ID!");
         }
         public Trip GetTrip(long id){
