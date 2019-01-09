@@ -9,6 +9,7 @@ public class User {
     private String LastName;
     private String Email;
     private String PhoneNumber;
+    private TaxiPrice taxiPrice;
 
 
     public User(String username, String password, String userType, String firstName, String lastName, String email, String phoneNumber) {
@@ -83,5 +84,13 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         PhoneNumber = phoneNumber;
+    }
+
+    public TaxiPrice getTaxiPrice() {
+        return taxiPrice;
+    }
+
+    public void setTaxiPrice(TaxiPrice taxiPrice) {
+        this.taxiPrice = taxiPrice;
     }
 }

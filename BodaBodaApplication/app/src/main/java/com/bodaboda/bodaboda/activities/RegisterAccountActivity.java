@@ -13,8 +13,11 @@ import android.widget.Toast;
 
 import com.bodaboda.bodaboda.R;
 import com.bodaboda.bodaboda.classes.Login;
+import com.bodaboda.bodaboda.classes.TaxiPrice;
 import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.classes.User;
+
+import java.io.Console;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -100,12 +103,27 @@ public class RegisterAccountActivity extends AppCompatActivity {
                         phoneNo.getText().toString()
                 );
 
+                if(type == "Taxi")
+                {
+                    TaxiPrice taxiPrice = new TaxiPrice();
+                    taxiPrice.setPricePerUnit(Double.valueOf(mileagePrice.getText().toString()));
+                    taxiPrice.setSpecialPrice(Double.valueOf(startingFee.getText().toString()));
+
+                    user.setTaxiPrice(taxiPrice);
+                }
+                else
+                {
+                    user.setTaxiPrice(null);
+                }
+
                 //Send request
-                Call<User> call = MainActivity.client.registerAccount(user);
+                Call<User> call = MainActivity.client.registerAccount("application/json", user);
 
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
+                        System.out.println(response.code());
+
                         if(response.isSuccessful())//Server cant handle this call ANYMORE, needs to be fixed...
                         {
                             Login login = new Login(
@@ -152,11 +170,14 @@ public class RegisterAccountActivity extends AppCompatActivity {
                             confirmPassword.setText("");
                             error.setVisibility(View.VISIBLE);
                             error.setText("Could not create account! Try another username!");
+                            System.out.println(response.body());
+                            System.out.println(response.errorBody());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
+                        System.out.println(t.getMessage());
                         Toast.makeText(RegisterAccountActivity.this, "Cannot establish a connection with the server", Toast.LENGTH_SHORT).show();
                     }
                 });

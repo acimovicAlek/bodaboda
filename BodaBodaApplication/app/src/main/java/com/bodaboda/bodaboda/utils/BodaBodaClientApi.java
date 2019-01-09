@@ -19,9 +19,12 @@ public interface BodaBodaClientApi {
     Call<Token> loginRequest(@Body Login login);
 
     @POST("/api/Users")
-    Call<User> registerAccount(@Body User user);
+    Call<User> registerAccount(
+            @Header("Content-Type") String value,
+            @Body User user
+    );
 
-    @GET("/api/Users/11")//FIX THIS
+    @GET("/api/Users/id")//FIX THIS, do use parameter there
     Call<User> getUserById(
             @Header("Authorization") String authToken
             //@Path("id") long id
