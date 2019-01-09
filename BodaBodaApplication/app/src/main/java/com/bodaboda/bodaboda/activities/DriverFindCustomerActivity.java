@@ -91,10 +91,10 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         sendUpdatedLocationMessage();
-        customerLocation = new LatLng(59.618746,16.528584);
-        //Get starting location from accepted trip info
 
-        //END
+        customerLocation = new LatLng(59.6342458,16.5643469);
+
+        //Get starting location from accepted trip info
 
         // Initializing
         MarkerPoints = new ArrayList<>();
