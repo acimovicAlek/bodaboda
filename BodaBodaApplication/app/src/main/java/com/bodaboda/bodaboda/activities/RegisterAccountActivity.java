@@ -23,6 +23,8 @@ import retrofit2.Response;
 
 public class RegisterAccountActivity extends AppCompatActivity {
 
+    private String type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +83,6 @@ public class RegisterAccountActivity extends AppCompatActivity {
 
                 error.setVisibility(View.GONE);
 
-                //Make User
-                String type;
                 if(isDriverCheckbox.isChecked()){
                     type = "Taxi";
                 }
@@ -106,7 +106,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful())
+                        if(response.isSuccessful())//Server cant handle this call ANYMORE, needs to be fixed...
                         {
                             Login login = new Login(
                                     username.getText().toString(),
@@ -126,7 +126,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                                         MainActivity.token.setUserType(response.body().getUserType());
                                         MainActivity.token.setToken(response.body().getToken());
 
-                                        if(MainActivity.token.getUserType() == "Taxi"){
+                                        if(type == "Taxi"){
                                             Intent registerIntent = new Intent(RegisterAccountActivity.this, com.bodaboda.bodaboda.activities.DriverMainActivity.class);
                                             RegisterAccountActivity.this.startActivity(registerIntent);
                                         }
@@ -149,6 +149,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                         }
                         else{
                             password.setText("");
+                            confirmPassword.setText("");
                             error.setVisibility(View.VISIBLE);
                             error.setText("Could not create account! Try another username!");
                         }

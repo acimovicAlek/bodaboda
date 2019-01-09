@@ -23,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.bodaboda.bodaboda.classes.Login;
 import com.bodaboda.bodaboda.classes.Token;
+import com.bodaboda.bodaboda.classes.Trip;
 import com.bodaboda.bodaboda.utils.BodaBodaClientApi;
 import com.bodaboda.bodaboda.R;
 import com.pubnub.api.PNConfiguration;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static PubNub pubnub;
     public static Retrofit retrofit;
     public static BodaBodaClientApi client;
+    public static Trip currentTrip;
 
     public static Token token;
 

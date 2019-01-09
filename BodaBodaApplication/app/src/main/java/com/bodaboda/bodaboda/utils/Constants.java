@@ -5,5 +5,5 @@ public class Constants {
     public final static String PUBNUB_SUBSCRIBE_KEY = "sub-c-2e136416-f735-11e8-b35b-72ed2feff2dd";
     public final static String PUBNUB_CHANNEL_NAME = "BodaBoda";
     public final static String GOOGLE_KEY = "AIzaSyAwWh0L4UmRCW6xszFROblw43lpILHp-ks";
-    public final static String SERVER_URL = "http://10.0.2.2:5000";
+    public final static String SERVER_URL = "http://142.93.141.169";
 }

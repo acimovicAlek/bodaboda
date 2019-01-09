@@ -12,6 +12,9 @@ public class DriverCustomerAcceptedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_customer_accepted);
 
+        /*Keep alive for 5 seconds and then go on to the DriverFindCustomerActivity.
+        Add the correct trip info to the TextViews.*/
+
     }
 
 

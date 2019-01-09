@@ -275,6 +275,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 startLocation.setLatitude(startingCoords.latitude);
                 startLocation.setUserId(MainActivity.token.getUserId());
                 startLocation.setLocationType("ORIGINATION");
+                //We should add a string of a address to the Location class
+                //on both this app and backend to be able to show the address name as well.
+                //AddressFrom[0] is the street, index 1 and 2 holds city and country if
+                //that was added when input.
                 //startLocation.setAddress(addressFrom[0]);
 
                 Call<Location> startLocCall = MainActivity.client.sendLocation(
@@ -284,12 +288,14 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
                 startLocCall.enqueue(new Callback<Location>() {
                     @Override
-                    public void onResponse(Call<Location> call, Response<Location> response) {
-                        if(response.isSuccessful()) {
+                    public void onResponse(Call<Location> call, Response<Location> response)
+                    {
+                        if(response.isSuccessful()) //Server cant handle this call ANYMORE, needs to be fixed...
+                        {
                             startLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
-                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -304,6 +310,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 destinationLocation.setLatitude(destinationCoords.latitude);
                 destinationLocation.setUserId(MainActivity.token.getUserId());
                 destinationLocation.setLocationType("DESTINATION");
+                //Same as above
                 //destinationLocation.setAddress(addressTo[0]);
 
                 Call<Location> destLocCall = MainActivity.client.sendLocation(
@@ -313,12 +320,14 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
                 destLocCall.enqueue(new Callback<Location>() {
                     @Override
-                    public void onResponse(Call<Location> call, Response<Location> response) {
-                        if(response.isSuccessful()) {
+                    public void onResponse(Call<Location> call, Response<Location> response)
+                    {
+                        if(response.isSuccessful()) //Server cant handle this call ANYMORE, needs to be fixed...
+                        {
                             destinationLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
-                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -328,9 +337,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     }
                 });
 
+                //We only fill info that we have, rest will be up to backend to fill out
+                //or added in the communication of the driver.
                 Trip trip = new Trip();
                 trip.setStatus("REQUESTED");
-                trip.setPrice(2500);
                 trip.setPaid(Boolean.FALSE);
                 trip.setStartingLocationId(startLocation.getLocationId());
                 trip.setEndingLocationId(destinationLocation.getLocationId());
@@ -347,9 +357,24 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                         if(response.isSuccessful())
                         {
                             showWaitingAnimations();
+                            //We should add info to a local Copy of the current trip like a
+                            //static trip.
+                            MainActivity.currentTrip.setStatus(response.body().getStatus());
+                            MainActivity.currentTrip.setCustomerId(response.body().getCustomerId());
+                            MainActivity.currentTrip.setPaid(response.body().getPaid());
+                            MainActivity.currentTrip.setStartingLocationId(response.body().getStartingLocationId());
+                            MainActivity.currentTrip.setEndingLocationId(response.body().getEndingLocationId());
+                            MainActivity.currentTrip.setTripId(response.body().getTripId());
+
+                            //Here we need to make a loop updating the status every one second
+                            //and check if the status has changed. Then we need to send a response
+                            //like with a 1 or 0 to accept or decline. And if we accept we want to get
+                            //more data like price and taxiID with another call to fill ito the current trip.
+                            //When that is done we need to change the intent(Activity) CustomerTripInfo as we now have a driver.
+                            //SOMETHING LIKE THAT...
                         }
                         else{
-                            Toast.makeText(CustomerMainActivity.this, response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Trip", Toast.LENGTH_LONG).show();
                         }
                     }
 

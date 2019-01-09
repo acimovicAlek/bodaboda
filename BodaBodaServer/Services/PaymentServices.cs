@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using BodaBodaServer.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,9 +76,10 @@ namespace BodaBodaServer.Services{
         }
 
         public Payment Pay(Payment payment){
-            //TODO Encrypt, processes, email notification
+            //TODO Encrypt, processes
             _context.Payments.Add(payment);
             _context.SaveChanges();
+            SendConfirmationMail(payment);
             return payment;
         }
 
@@ -84,6 +87,25 @@ namespace BodaBodaServer.Services{
             if(userType == "Taxi") return _context.Payments.ToList().Where(x => x.PayerId == userId);
             else if (userType == "Customer") return _context.Payments.ToList().Where(x => x.PayeeId == userId);
             else throw new Exception("User type does not exist!");
+        }
+
+        private void SendConfirmationMail(Payment payment){
+            using (var message = new MailMessage())
+                {
+                    message.To.Add(new MailAddress(payment.Payer.Email, payment.Payer.Username));
+                    message.From = new MailAddress("BodaBodaTaxiSe2@gmail.com", "BodaBoda");
+                    message.Subject = "Registration";
+                    message.Body = "Dear "+payment.Payer.Username+" your payment has been completed for your reacent trio and you paid"+payment.Amount+"for it!\n Your BodaBoda team!";
+                    message.IsBodyHtml = true;
+
+                    using (var client = new SmtpClient("smtp.gmail.com"))
+                    {
+                        client.Port = 587;
+                        client.Credentials = new NetworkCredential("BodaBodaTaxiSe2@gmail.com", "BodaBoda1234");
+                        client.EnableSsl = true;
+                        client.Send(message);
+                    }
+                }
         }
     }
 
