@@ -275,6 +275,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 startLocation.setLatitude(startingCoords.latitude);
                 startLocation.setUserId(MainActivity.token.getUserId());
                 startLocation.setLocationType("ORIGINATION");
+                //We should add a string of a address to the Location class
+                //on both this app and backend to be able to show the address name as well.
+                //AddressFrom[0] is the street, index 1 and 2 holds city and country if
+                //that was added when input.
                 //startLocation.setAddress(addressFrom[0]);
 
                 Call<Location> startLocCall = MainActivity.client.sendLocation(
@@ -289,7 +293,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             startLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
-                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -304,6 +308,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 destinationLocation.setLatitude(destinationCoords.latitude);
                 destinationLocation.setUserId(MainActivity.token.getUserId());
                 destinationLocation.setLocationType("DESTINATION");
+                //Same as above
                 //destinationLocation.setAddress(addressTo[0]);
 
                 Call<Location> destLocCall = MainActivity.client.sendLocation(
@@ -318,7 +323,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             destinationLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
-                            Toast.makeText(CustomerMainActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -328,9 +333,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     }
                 });
 
+                //We only fill info that we have, rest will be up to backend to fill out
+                //or added in the communication of the driver.
                 Trip trip = new Trip();
                 trip.setStatus("REQUESTED");
-                trip.setPrice(2500);
                 trip.setPaid(Boolean.FALSE);
                 trip.setStartingLocationId(startLocation.getLocationId());
                 trip.setEndingLocationId(destinationLocation.getLocationId());
@@ -347,9 +353,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                         if(response.isSuccessful())
                         {
                             showWaitingAnimations();
+                            //We should add info to a local Copy of the current trip like a
+                            //static trip.
                         }
                         else{
-                            Toast.makeText(CustomerMainActivity.this, response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Trip", Toast.LENGTH_LONG).show();
                         }
                     }
 
