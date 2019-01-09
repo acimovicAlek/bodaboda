@@ -21,14 +21,13 @@ public class DriverMainActivity extends AppCompatActivity {
     private ExpandableListAdapter listAdapter;
     private List<CustomerTripItem> listDataHeader;
     private HashMap<CustomerTripItem, List<CustomerTripItemChild>> listHash;
-    private Button expandButton;
+    private Button refreshButton;
     private View itemView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
 
-        //expandButton = ()findViewById(R.id.driver_expand_item_button);
         listView = (ExpandableListView)findViewById(R.id.driver_expandableListView);
         init();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
@@ -54,9 +53,30 @@ public class DriverMainActivity extends AppCompatActivity {
         });
     }
 
+    private void initRefreshButton() {
+        Button goBackButton = (Button) findViewById(R.id.driver_refresh_button);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*REFRESH THE LIST OF TRIP REQUESTS*/
+            }
+        });
+    }
+
+    private void initDriverAcceptButton() {
+        Button goBackButton = (Button) findViewById(R.id.driver_accept_button);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*SEND ACCEPTANCE TO THE CUSTOMER*/
+            }
+        });
+    }
+
     private void init() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
+        initRefreshButton();
 
         //Check when pressing Update button and call the server to select every trip that
         //has a status of "REQUESTED" as we want to select only the available trips.
@@ -90,6 +110,6 @@ public class DriverMainActivity extends AppCompatActivity {
         listHash.put(listDataHeader.get(1), jonathan);
         listHash.put(listDataHeader.get(2), chingiz);
 
-    }
+    };
 
 }
