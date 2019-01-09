@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         initPubNub();
         initRetrofit();
         initToken();
+        initForgotPassword();
     }
 
     private void initRegisterButton()
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView error = (TextView)findViewById(R.id.main_error_textView);
 
         ///////TEST///////////
-        Intent loginIntent = new Intent(MainActivity.this, DriverAccountSettingsActivity.class);
+        Intent loginIntent = new Intent(MainActivity.this, DriverFindCustomerActivity.class);
         MainActivity.this.startActivity(loginIntent);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +153,17 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
         client = retrofit.create(BodaBodaClientApi.class);
+    }
+
+    private void initForgotPassword()
+    {
+        final TextView forgotpassword = (TextView)findViewById(R.id.main_new_account_textView);
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PasswordActivity.class));
+            }
+        });
     }
 
     private void initToken(){

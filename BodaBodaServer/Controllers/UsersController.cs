@@ -56,7 +56,7 @@ namespace BodaBodaServer.Controllers
         [HttpGet("prices")]
         public ActionResult GetTaxiPrice(){
             var identitiy = HttpContext.User.Identity as ClaimsIdentity;
-            var userId = Convert.ToInt64(identitiy.FindFirst("Name").Value);
+            var userId = Convert.ToInt64(identitiy.Name);
             try{
                 return Ok(_userService.GetTaxiPrice(userId));
             }catch(Exception e){
@@ -68,7 +68,7 @@ namespace BodaBodaServer.Controllers
         [HttpPost("prices")]
         public ActionResult AddTaxiPrice([FromBody] TaxiPrice taxiPrice){
             var identitiy = HttpContext.User.Identity as ClaimsIdentity;
-            var userId = Convert.ToInt64(identitiy.FindFirst("Name").Value);
+            var userId = Convert.ToInt64(identitiy.Name);
             taxiPrice.UserId = userId;
             try{
                 return Ok(_userService.AddTaxiPrice(taxiPrice));
@@ -81,7 +81,7 @@ namespace BodaBodaServer.Controllers
         [HttpPut("prices")]
         public ActionResult UpdateTaxiprice([FromBody] TaxiPrice taxiPrice){
             var identitiy = HttpContext.User.Identity as ClaimsIdentity;
-            var userId = Convert.ToInt64(identitiy.FindFirst("Name").Value);
+            var userId = Convert.ToInt64(identitiy.Name);
             taxiPrice.UserId = userId;
             try{
                 return Ok(_userService.UpdateTaxiPrice(taxiPrice));

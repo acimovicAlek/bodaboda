@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using BodaBodaServer.Helpers;
@@ -96,6 +98,7 @@ namespace BodaBodaServer.Services
                 if(_context.Users.FirstOrDefault(u => u.Email == _user.Email) != null) throw new Exception("User with the given e-mail already exists");
                 _context.Users.Add(_user);
                 _context.SaveChanges();
+                SendConfirmationMail(_user.Username, _user.Email);
                 return _context.Users.FirstOrDefault(user => user.Username==_user.Username);
             }catch(Exception e){
                 throw e;
@@ -127,6 +130,25 @@ namespace BodaBodaServer.Services
 
         public TaxiPrice GetTaxiPrice(long userId){
             return _context.TaxiPrices.FirstOrDefault(x => x.UserId == userId);
+        }
+
+        private void SendConfirmationMail(String username, String email){
+            using (var message = new MailMessage())
+                {
+                    message.To.Add(new MailAddress(email, username));
+                    message.From = new MailAddress("BodaBodaTaxiSe2@gmail.com", "BodaBoda");
+                    message.Subject = "Registration";
+                    message.Body = "Dear "+username+" welcome to BodaBoda!\n Your BodaBoda team!";
+                    message.IsBodyHtml = true;
+
+                    using (var client = new SmtpClient("smtp.gmail.com"))
+                    {
+                        client.Port = 587;
+                        client.Credentials = new NetworkCredential("BodaBodaTaxiSe2@gmail.com", "BodaBoda1234");
+                        client.EnableSsl = true;
+                        client.Send(message);
+                    }
+                }
         }
     }
 }
