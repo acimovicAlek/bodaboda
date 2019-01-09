@@ -288,8 +288,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
                 startLocCall.enqueue(new Callback<Location>() {
                     @Override
-                    public void onResponse(Call<Location> call, Response<Location> response) {
-                        if(response.isSuccessful()) {
+                    public void onResponse(Call<Location> call, Response<Location> response)
+                    {
+                        if(response.isSuccessful()) //Server cant handle this call ANYMORE, needs to be fixed...
+                        {
                             startLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
@@ -318,8 +320,10 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
                 destLocCall.enqueue(new Callback<Location>() {
                     @Override
-                    public void onResponse(Call<Location> call, Response<Location> response) {
-                        if(response.isSuccessful()) {
+                    public void onResponse(Call<Location> call, Response<Location> response)
+                    {
+                        if(response.isSuccessful()) //Server cant handle this call ANYMORE, needs to be fixed...
+                        {
                             destinationLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
@@ -355,6 +359,19 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             showWaitingAnimations();
                             //We should add info to a local Copy of the current trip like a
                             //static trip.
+                            MainActivity.currentTrip.setStatus(response.body().getStatus());
+                            MainActivity.currentTrip.setCustomerId(response.body().getCustomerId());
+                            MainActivity.currentTrip.setPaid(response.body().getPaid());
+                            MainActivity.currentTrip.setStartingLocationId(response.body().getStartingLocationId());
+                            MainActivity.currentTrip.setEndingLocationId(response.body().getEndingLocationId());
+                            MainActivity.currentTrip.setTripId(response.body().getTripId());
+
+                            //Here we need to make a loop updating the status every one second
+                            //and check if the status has changed. Then we need to send a response
+                            //like with a 1 or 0 to accept or decline. And if we accept we want to get
+                            //more data like price and taxiID with another call to fill ito the current trip.
+                            //When that is done we need to change the intent(Activity) CustomerTripInfo as we now have a driver.
+                            //SOMETHING LIKE THAT...
                         }
                         else{
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Trip", Toast.LENGTH_LONG).show();

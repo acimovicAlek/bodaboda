@@ -58,6 +58,18 @@ public class DriverMainActivity extends AppCompatActivity {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
 
+        //Check when pressing Update button and call the server to select every trip that
+        //has a status of "REQUESTED" as we want to select only the available trips.
+        //Maybe we need to change the status directly on the server when a driver asks the customer.
+        //The list of trips will have ids to customers and locations that we need to call
+        //again for info. Then we just fill in every info into every item and child item in list.
+
+        //If opening a childitem and click on the button. The call should change the status on the server
+        //and ask the customer and wait for response (Send TaxiId and Price at least). Probably in a response code...
+        //If cusotmer accepts, go to next intent(DriverCustomerAcceptedActivity) which begins the trip.
+
+        //So this lines under here are examples of how to add info to the list.
+
         CustomerTripItem cti = new CustomerTripItem("Mugabe", "25km", "2500");
         CustomerTripItemChild ctic = new CustomerTripItemChild("Köping", "Västerås", "10km");
 

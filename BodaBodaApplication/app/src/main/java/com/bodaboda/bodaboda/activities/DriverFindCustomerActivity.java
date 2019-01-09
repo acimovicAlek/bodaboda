@@ -83,9 +83,18 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_find_customer);
 
+        //Call server to get trip info, Create a int for location id and copy the
+        // data to it.
+        //Then Call server and create a location instance and copy the data to that.
+
+        //If all goes well add the thing down here to END into the succesfull check
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         sendUpdatedLocationMessage();
         customerLocation = new LatLng(59.618746,16.528584);
+        //Get starting location from accepted trip info
+
+        //END
 
         // Initializing
         MarkerPoints = new ArrayList<>();
