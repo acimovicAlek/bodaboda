@@ -9,8 +9,8 @@ namespace BodaBodaServer.Models{
         public DateTime TimeStamp {get; set;}
 
         //Foregin key to trip
-        public long TripId {get; set;}
-        public virtual Trip Trip {get; set;}
+        public long DoneTripId {get; set;}
+        public virtual Trip DoneTrip {get; set;}
 
         //Foregin key to payer
         public long PayerId{get; set;}
