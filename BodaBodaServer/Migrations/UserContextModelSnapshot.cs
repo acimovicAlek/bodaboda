@@ -21,7 +21,7 @@ namespace BodaBodaServer.Migrations
                     b.Property<long>("LocationId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long>("Latitude");
+                    b.Property<double>("Latitude");
 
                     b.Property<string>("LocationType");
 
