@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface BodaBodaClientApi {
 
@@ -24,10 +25,10 @@ public interface BodaBodaClientApi {
             @Body User user
     );
 
-    @GET("/api/Users/id")//FIX THIS, do use parameter there
+    @GET("/api/Users/id")
     Call<User> getUserById(
-            @Header("Authorization") String authToken
-            //@Path("id") long id
+            @Header("Authorization") String authToken,
+            @Path("id") long id
     );
 
     @POST("/api/Location")
