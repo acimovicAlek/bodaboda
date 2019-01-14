@@ -46,6 +46,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -88,7 +90,6 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         mMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.customer_map);
         mMapFragment.getMapAsync(this);
-        getUserLocation();
     }
 
     private void init()
@@ -113,6 +114,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
             mGoogleMap = googleMap;
             mGoogleMap.setMyLocationEnabled(true);
             mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
+            getUserLocation();
         } catch (SecurityException e) {
             e.printStackTrace();
         }
@@ -295,6 +297,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             startLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
+                            try {
+                                System.out.println(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -327,6 +334,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             destinationLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
+                            try {
+                                System.out.println(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }

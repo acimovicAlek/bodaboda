@@ -9,21 +9,22 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BodaBodaServer.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20181203155108_Initial")]
-    partial class Initial
+    [Migration("20190114121624_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("BodaBodaServer.Models.Location", b =>
                 {
                     b.Property<long>("LocationId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long>("Latitude");
+                    b.Property<double>("Latitude");
 
                     b.Property<string>("LocationType");
 
@@ -66,7 +67,8 @@ namespace BodaBodaServer.Migrations
 
                     b.HasIndex("PayerId");
 
-                    b.HasIndex("TripId");
+                    b.HasIndex("TripId")
+                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -193,8 +195,8 @@ namespace BodaBodaServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BodaBodaServer.Models.Trip", "Trip")
-                        .WithMany()
-                        .HasForeignKey("TripId")
+                        .WithOne("Payment")
+                        .HasForeignKey("BodaBodaServer.Models.Payment", "TripId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

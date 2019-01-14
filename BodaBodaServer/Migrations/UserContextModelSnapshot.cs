@@ -14,7 +14,8 @@ namespace BodaBodaServer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("BodaBodaServer.Models.Location", b =>
                 {
@@ -64,7 +65,8 @@ namespace BodaBodaServer.Migrations
 
                     b.HasIndex("PayerId");
 
-                    b.HasIndex("TripId");
+                    b.HasIndex("TripId")
+                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -151,19 +153,19 @@ namespace BodaBodaServer.Migrations
                     b.Property<long>("UserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email").IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("Password").IsRequired();
+                    b.Property<string>("Password");
 
                     b.Property<string>("PhoneNumber");
 
                     b.Property<string>("UserType");
 
-                    b.Property<string>("Username").IsRequired();
+                    b.Property<string>("Username");
 
                     b.HasKey("UserId");
 
@@ -191,8 +193,8 @@ namespace BodaBodaServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BodaBodaServer.Models.Trip", "Trip")
-                        .WithOne()
-                        .HasForeignKey("TripId")
+                        .WithOne("Payment")
+                        .HasForeignKey("BodaBodaServer.Models.Payment", "TripId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
