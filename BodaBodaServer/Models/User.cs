@@ -24,8 +24,6 @@ namespace BodaBodaServer.Models{
 
         //Navigation to taxi price if user is a taxi driver
         public virtual TaxiPrice TaxiPrice {get; set;}
-        //Navigation to the location of the user
-        public virtual Location Location {get; set;}
         //Navigation to payment options for a user
         public virtual ICollection<PaymentOption> PaymentOptions {get; set;}
     }
