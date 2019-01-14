@@ -166,8 +166,6 @@ namespace BodaBodaServer.Migrations
 
                     b.Property<string>("Username");
 
-                    b.HasKey("UserId");
-
                     b.HasIndex("LocationId");
 
                     b.ToTable("Users");
