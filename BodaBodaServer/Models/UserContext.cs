@@ -14,6 +14,6 @@ namespace BodaBodaServer.Models{
         public DbSet<PaymentOption> PaymentOptions {get; set;}
         public DbSet<Payment> Payments {get; set;}
         public DbSet<Trip> Trips {get; set;}
-        
+
     }
 }

@@ -89,6 +89,10 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
 
         //If all goes well add the thing down here to END into the succesfull check
 
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        sendUpdatedLocationMessage();
+
+        customerLocation = new LatLng(59.6342458,16.5643469);
 
         //Get starting location from accepted trip info
 
@@ -105,11 +109,6 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
         locationRequest.setFastestInterval(5000); // 5 seconds fastest time in between each request
         locationRequest.setSmallestDisplacement(10); // 10 meters minimum displacement for new location request
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // enables GPS high accuracy location requests
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        sendUpdatedLocationMessage();
-
-        customerLocation = new LatLng(59.6342458,16.5643469);
     }
 
     /*
@@ -238,7 +237,7 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+/*
         mMap = googleMap;
 
         MarkerOptions markerOptions = new MarkerOptions();
@@ -261,13 +260,13 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
             mMap.setMyLocationEnabled(true);
         }
 
-        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(driverLocation, 17);
-//        mMap.animateCamera(yourLocation);
-
-        /*String url = getUrl();
+        String url = getUrl();
         FetchUrl FetchUrl = new FetchUrl();
-        FetchUrl.execute(url);*/
+        FetchUrl.execute(url);
 
+        CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(driverLocation, 17);
+        mMap.animateCamera(yourLocation);
+        */
     }
 
     private String getUrl() {

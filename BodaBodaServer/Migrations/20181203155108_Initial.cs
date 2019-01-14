@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BodaBodaServer.Migrations
 {
-    public partial class NewMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,13 +12,13 @@ namespace BodaBodaServer.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Username = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    UserType = table.Column<string>(nullable: true),
+                        .Annotation("MySQL:AutoIncrement", true),
+                    Username = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false),
+                    UserType = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -32,12 +31,12 @@ namespace BodaBodaServer.Migrations
                 columns: table => new
                 {
                     LocationId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Longitude = table.Column<double>(nullable: false),
-                    Latitude = table.Column<double>(nullable: false),
-                    LocationType = table.Column<string>(nullable: true),
+                        .Annotation("MySQL:AutoIncrement", true),
+                    Longitude = table.Column<long>(nullable: false),
+                    Latitude = table.Column<long>(nullable: false),
+                    LocationType = table.Column<string>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
-                    TTL = table.Column<long>(nullable: false)
+                    TTL = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,7 +54,7 @@ namespace BodaBodaServer.Migrations
                 columns: table => new
                 {
                     PaymentOptionId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySQL:AutoIncrement", true),
                     OptionType = table.Column<string>(nullable: true),
                     Details = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: false)
@@ -76,12 +75,12 @@ namespace BodaBodaServer.Migrations
                 columns: table => new
                 {
                     TaxiPriceId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySQL:AutoIncrement", true),
                     UserId = table.Column<long>(nullable: false),
                     StartingPrice = table.Column<double>(nullable: false),
                     PricePerUnit = table.Column<double>(nullable: false),
-                    PricePerHour = table.Column<double>(nullable: false),
-                    SpecialPrice = table.Column<double>(nullable: false)
+                    PricePerHour = table.Column<double>(nullable: true),
+                    SpecialPrice = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,16 +98,16 @@ namespace BodaBodaServer.Migrations
                 columns: table => new
                 {
                     TripId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Status = table.Column<string>(nullable: true),
+                        .Annotation("MySQL:AutoIncrement", true),
+                    Status = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    Paid = table.Column<bool>(nullable: false),
+                    Paid = table.Column<bool>(nullable: true),
                     TripStart = table.Column<DateTime>(nullable: false),
-                    TripEnd = table.Column<DateTime>(nullable: false),
+                    TripEnd = table.Column<DateTime>(nullable: true),
                     StartingLocationId = table.Column<long>(nullable: false),
                     EndingLocationId = table.Column<long>(nullable: false),
                     CustomerId = table.Column<long>(nullable: false),
-                    TaxiId = table.Column<long>(nullable: false)
+                    TaxiId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,14 +143,14 @@ namespace BodaBodaServer.Migrations
                 columns: table => new
                 {
                     PaymentId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySQL:AutoIncrement", true),
                     Description = table.Column<string>(nullable: true),
                     Amount = table.Column<double>(nullable: false),
                     Status = table.Column<string>(nullable: true),
                     TimeStamp = table.Column<DateTime>(nullable: false),
+                    TripId = table.Column<long>(nullable: false),
                     PayerId = table.Column<long>(nullable: false),
-                    PayeeId = table.Column<long>(nullable: false),
-                    TripId = table.Column<long>(nullable: false)
+                    PayeeId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,11 +175,11 @@ namespace BodaBodaServer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Locations_UserId",
-                table: "Locations",
-                column: "UserId",
-                unique: true);
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Locations_UserId",
+            //    table: "Locations",
+            //    column: "UserId",
+            //    unique: false);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PaymentOptions_UserId",
@@ -200,8 +199,7 @@ namespace BodaBodaServer.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_TripId",
                 table: "Payments",
-                column: "TripId",
-                unique: true);
+                column: "TripId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaxiPrices_UserId",

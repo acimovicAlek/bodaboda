@@ -1,10 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace BodaBodaServer.Models{
     public class Trip{
-        [Key]
         public long TripId {get; set;}
         public string Status {get; set;}
         public double Price {get; set;}
@@ -24,7 +22,6 @@ namespace BodaBodaServer.Models{
         //Foregin key to taxi
         public long TaxiId {get; set;}
         public virtual User Taxi {get; set;}
-        public virtual Payment Payment {get;set;}
     }
 
 
