@@ -4,6 +4,8 @@ using System.Linq;
 using BodaBodaServer.Models;
 
 namespace BodaBodaServer.Services{
+    
+    enum simpleEnum {REQUESTED, ACCEPTED}
     public interface ITripServices
     {
         Trip Create(Trip _trip);

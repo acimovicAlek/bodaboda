@@ -32,8 +32,8 @@ namespace BodaBodaServer.Migrations
                 {
                     LocationId = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
-                    Longitude = table.Column<long>(nullable: false),
-                    Latitude = table.Column<long>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false),
+                    Latitude = table.Column<double>(nullable: false),
                     LocationType = table.Column<string>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
                     TTL = table.Column<long>(nullable: true)

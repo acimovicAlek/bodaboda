@@ -80,6 +80,7 @@ namespace BodaBodaServer.Services{
             _context.Payments.Add(payment);
             _context.SaveChanges();
             SendConfirmationMail(payment);
+            //ADD PAYMENT LOGIC
             return payment;
         }
 

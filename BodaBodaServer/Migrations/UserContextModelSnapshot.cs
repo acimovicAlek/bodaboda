@@ -191,8 +191,8 @@ namespace BodaBodaServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BodaBodaServer.Models.Trip", "Trip")
-                        .WithOne()
-                        .HasForeignKey("TripId")
+                        .WithOne("Payment")
+                        .HasForeignKey("BodaBodaServer.Models.Payment", "TripId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -233,6 +233,7 @@ namespace BodaBodaServer.Migrations
                         .WithMany()
                         .HasForeignKey("TaxiId")
                         .OnDelete(DeleteBehavior.Cascade);
+                        
                 });
 #pragma warning restore 612, 618
         }
