@@ -123,7 +123,7 @@ namespace BodaBodaServer
 
             app.UseAuthentication();
 
-                
+            //context.Database.Migrate();
             //app.UseHttpsRedirection();
             app.UseMvc();
         }

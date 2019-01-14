@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BodaBodaServer.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20190114171857_newMigration")]
-    partial class newMigration
+    [Migration("20190114202214_Migration_v.2.1.")]
+    partial class Migration_v21
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -167,14 +167,6 @@ namespace BodaBodaServer.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BodaBodaServer.Models.Location", b =>
-                {
-                    b.HasOne("BodaBodaServer.Models.User", "User")
-                        .WithOne("Location")
-                        .HasForeignKey("BodaBodaServer.Models.Location", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BodaBodaServer.Models.Payment", b =>
