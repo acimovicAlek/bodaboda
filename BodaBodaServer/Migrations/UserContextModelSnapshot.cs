@@ -34,9 +34,6 @@ namespace BodaBodaServer.Migrations
 
                     b.HasKey("LocationId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
                     b.ToTable("Locations");
                 });
 

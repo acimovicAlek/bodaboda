@@ -32,12 +32,7 @@ namespace BodaBodaServer.Migrations
 
                     b.Property<long>("TTL");
 
-                    b.Property<long>("UserId");
-
                     b.HasKey("LocationId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Locations");
                 });

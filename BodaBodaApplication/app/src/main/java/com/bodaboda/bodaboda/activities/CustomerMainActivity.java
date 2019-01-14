@@ -297,6 +297,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             startLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
+                            try {
+                                System.out.println(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -329,6 +334,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             destinationLocation.setLocationId(response.body().getLocationId());
                         }
                         else {
+                            try {
+                                System.out.println(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Location!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -348,7 +358,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 trip.setEndingLocationId(destinationLocation.getLocationId());
                 trip.setCustomerId(MainActivity.token.getUserId());
                 trip.setTaxiId(1);
-
+                System.out.println(trip.getCustomerId()+ " " + trip.getStartingLocationId() + trip.getEndingLocationId());
                 Call<Trip> call = MainActivity.client.requestTrip(
                         MainActivity.token.getToken(),
                         trip
