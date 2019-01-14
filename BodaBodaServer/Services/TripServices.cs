@@ -28,8 +28,12 @@ namespace BodaBodaServer.Services{
         public Trip Create(Trip _trip){
             try{
                 var user = _context.Users.Find(_trip.CustomerId);
+                var startingLocation = _context.Locations.Find(_trip.StartingLocationId);
+                var endingLocation = _context.Locations.Find(_trip.EndingLocationId);
                 _trip.Customer = user;
                 _trip.TripStart = DateTime.Now;
+                _trip.EndingLocation = endingLocation;
+                _trip.StartingLocation = startingLocation;
                 _context.Trips.Add(_trip);
                 _context.SaveChanges();
                 var t = _context.Trips.Last();

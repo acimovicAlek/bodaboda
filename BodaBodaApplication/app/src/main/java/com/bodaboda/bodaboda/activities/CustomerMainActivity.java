@@ -386,6 +386,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                             //SOMETHING LIKE THAT...
                         }
                         else{
+                            try {
+                                System.out.println(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             Toast.makeText(CustomerMainActivity.this, "Something went wrong with a Trip", Toast.LENGTH_LONG).show();
                         }
                     }
