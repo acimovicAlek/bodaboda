@@ -76,7 +76,6 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         searchLogo = findViewById(R.id.customer_main_searchLogo);
         searchText = findViewById(R.id.customer_main_searchText);
-        getUserLocation();
         hideSoftKeyboard();
         initMenuButton();
         initRequestButton();
@@ -89,6 +88,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         mMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.customer_map);
         mMapFragment.getMapAsync(this);
+        getUserLocation();
     }
 
     private void init()

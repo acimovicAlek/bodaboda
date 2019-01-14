@@ -1,5 +1,8 @@
 package com.bodaboda.bodaboda.classes;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
     private long UserId;
     private String Username;
@@ -9,6 +12,7 @@ public class User {
     private String LastName;
     private String Email;
     private String PhoneNumber;
+    @SerializedName("taxiPrices")@Expose
     private TaxiPrice taxiPrice;
 
 

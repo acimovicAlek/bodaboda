@@ -1,58 +1,75 @@
 package com.bodaboda.bodaboda.classes;
 
-public class TaxiPrice {
-    private long TaxiPriceId;
-    private long UserId;
-    private double StartingPrice;
-    private double PricePerUnit;
-    private double PricePerHour;
-    private double SpecialPrice;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class TaxiPrice implements Serializable {
+    private long taxiPriceId;
+    private long userId;
+    private double startingPrice;
+    private double pricePerUnit;
+    private double pricePerHour;
+    private double specialPrice;
+
+
+    public TaxiPrice(long taxiPriceId, long userId, double startingPrice, double pricePerUnit, double pricePerHour, double specialPrice) {
+        this.taxiPriceId = taxiPriceId;
+        this.userId = userId;
+        this.startingPrice = startingPrice;
+        this.pricePerUnit = pricePerUnit;
+        this.pricePerHour = pricePerHour;
+        this.specialPrice = specialPrice;
+    }
+
+    public TaxiPrice() {
+    }
 
     public long getTaxiPriceId() {
-        return TaxiPriceId;
+        return taxiPriceId;
     }
 
     public void setTaxiPriceId(long taxiPriceId) {
-        TaxiPriceId = taxiPriceId;
+        this.taxiPriceId = taxiPriceId;
     }
 
     public long getUserId() {
-        return UserId;
+        return userId;
     }
 
-    public void setUserId(long userID) {
-        UserId = userID;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public double getStartingPrice() {
-        return StartingPrice;
+        return startingPrice;
     }
 
     public void setStartingPrice(double startingPrice) {
-        StartingPrice = startingPrice;
+        this.startingPrice = startingPrice;
     }
 
     public double getPricePerUnit() {
-        return PricePerUnit;
+        return pricePerUnit;
     }
 
     public void setPricePerUnit(double pricePerUnit) {
-        PricePerUnit = pricePerUnit;
+        this.pricePerUnit = pricePerUnit;
     }
 
     public double getPricePerHour() {
-        return PricePerHour;
+        return pricePerHour;
     }
 
     public void setPricePerHour(double pricePerHour) {
-        PricePerHour = pricePerHour;
+        this.pricePerHour = pricePerHour;
     }
 
     public double getSpecialPrice() {
-        return SpecialPrice;
+        return specialPrice;
     }
 
     public void setSpecialPrice(double specialPrice) {
-        SpecialPrice = specialPrice;
+        this.specialPrice = specialPrice;
     }
 }

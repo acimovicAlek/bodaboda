@@ -237,7 +237,7 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+/*
         mMap = googleMap;
 
         MarkerOptions markerOptions = new MarkerOptions();
@@ -266,6 +266,7 @@ public class DriverFindCustomerActivity extends AppCompatActivity implements OnM
 
         CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(driverLocation, 17);
         mMap.animateCamera(yourLocation);
+        */
     }
 
     private String getUrl() {

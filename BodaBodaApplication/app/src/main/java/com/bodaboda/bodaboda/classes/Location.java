@@ -8,6 +8,9 @@ public class Location {
     private long UserId;
     private long TTL;
 
+    public Location() {
+    }
+
     public long getLocationId() {
         return LocationId;
     }

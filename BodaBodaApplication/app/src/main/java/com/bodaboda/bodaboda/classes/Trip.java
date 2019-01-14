@@ -11,6 +11,9 @@ public class Trip {
     private long CustomerId;
     private long TaxiId;
 
+    public Trip() {
+    }
+
     public long getTripId() {
         return TripId;
     }
