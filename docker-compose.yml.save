@@ -1,0 +1,35 @@
+version: '3'
+ 
+services:
+  db:
+    container_name: mysqldb
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_HOST: 172.19.0.3
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - 
+  app:
+    build:
+      context:  ./BodaBodaServer
+      dockerfile: Dockerfile
+    expose:
+      - "5000"
+    depends_on:
+      - db
+    links:
+      - db
+  proxy:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    links:
+      - app
