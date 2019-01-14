@@ -1,7 +1,10 @@
+
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace BodaBodaServer.Models{
     public class TaxiPrice{
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long TaxiPriceId {get; set;}
         public long UserId {get; set;}
         public double StartingPrice {get; set;}

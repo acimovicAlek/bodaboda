@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BodaBodaServer.Models{
     public class Trip{
-        [Key]
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long TripId {get; set;}
         public string Status {get; set;}
         public double Price {get; set;}
