@@ -357,6 +357,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 trip.setStartingLocationId(startLocation.getLocationId());
                 trip.setEndingLocationId(destinationLocation.getLocationId());
                 trip.setCustomerId(MainActivity.token.getUserId());
+                trip.setTaxiId(1);
 
                 Call<Trip> call = MainActivity.client.requestTrip(
                         MainActivity.token.getToken(),
