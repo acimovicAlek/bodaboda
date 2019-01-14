@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using BodaBodaServer.Models;
-using Pomelo.EntityFrameworkCore;
+//using Pomelo.EntityFrameworkCore;
 using BodaBodaServer.Helpers;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -36,7 +36,7 @@ namespace BodaBodaServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<UserContext>(options =>
+            services.AddDbContext<UserContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddCors();
