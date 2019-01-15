@@ -275,14 +275,16 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 final Location startLocation = new Location();
                 startLocation.setLongitude(startingCoords.longitude);
                 startLocation.setLatitude(startingCoords.latitude);
-                startLocation.setUserId(MainActivity.token.getUserId());
+                //startLocation.setUserId(MainActivity.token.getUserId());
                 startLocation.setLocationType("ORIGINATION");
+                startLocation.setTTL(10);
                 //We should add a string of a address to the Location class
                 //on both this app and backend to be able to show the address name as well.
                 //AddressFrom[0] is the street, index 1 and 2 holds city and country if
                 //that was added when input.
                 //startLocation.setAddress(addressFrom[0]);
 
+                //System.out.println(startLocation.getLatitude() + "," + startLocation.getLongitude());
                 Call<Location> startLocCall = MainActivity.client.sendLocation(
                         MainActivity.token.getToken(),
                         startLocation
@@ -315,8 +317,9 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 final Location destinationLocation = new Location();
                 destinationLocation.setLongitude(destinationCoords.longitude);
                 destinationLocation.setLatitude(destinationCoords.latitude);
-                destinationLocation.setUserId(MainActivity.token.getUserId());
+                //destinationLocation.setUserId(MainActivity.token.getUserId());
                 destinationLocation.setLocationType("DESTINATION");
+                destinationLocation.setTTL(10);
                 //Same as above
                 //destinationLocation.setAddress(addressTo[0]);
 
@@ -353,9 +356,12 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                 //or added in the communication of the driver.
                 Trip trip = new Trip();
                 trip.setStatus("REQUESTED");
+                trip.setPrice(10.0);
                 trip.setPaid(Boolean.FALSE);
                 trip.setStartingLocationId(startLocation.getLocationId());
+                trip.setStartingLocation(startLocation);
                 trip.setEndingLocationId(destinationLocation.getLocationId());
+                trip.setEndingLocation(destinationLocation);
                 trip.setCustomerId(MainActivity.token.getUserId());
                 trip.setTaxiId(1);
                 System.out.println(trip.getCustomerId()+ " " + trip.getStartingLocationId() + trip.getEndingLocationId());
@@ -369,9 +375,11 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     public void onResponse(Call<Trip> call, Response<Trip> response) {
                         if(response.isSuccessful())
                         {
+                            System.out.println(response.body().toString());
                             showWaitingAnimations();
                             //We should add info to a local Copy of the current trip like a
                             //static trip.
+                            MainActivity.currentTrip = new Trip();
                             MainActivity.currentTrip.setStatus(response.body().getStatus());
                             MainActivity.currentTrip.setCustomerId(response.body().getCustomerId());
                             MainActivity.currentTrip.setPaid(response.body().getPaid());
