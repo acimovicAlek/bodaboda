@@ -3,6 +3,7 @@ package com.bodaboda.bodaboda.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,8 +17,11 @@ import com.bodaboda.bodaboda.classes.Login;
 import com.bodaboda.bodaboda.classes.TaxiPrice;
 import com.bodaboda.bodaboda.classes.Token;
 import com.bodaboda.bodaboda.classes.User;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
 import java.io.Console;
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -27,6 +31,7 @@ import retrofit2.Response;
 public class RegisterAccountActivity extends AppCompatActivity {
 
     private String type;
+    private User registerResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +127,20 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
+
+                        /*if (response.code() == 400 ) {
+                            Log.d("Error code 400", "onResponse - Status : " + response.code());
+                            Gson gson = new Gson();
+                            TypeAdapter<User> adapter = gson.getAdapter(User.class);
+                            try {
+                                if (response.errorBody() != null)
+                                    registerResponse =
+                                            adapter.fromJson(
+                                                    response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }*/
                         System.out.println(response.code());
 
                         if(response.isSuccessful())//Server cant handle this call ANYMORE, needs to be fixed...

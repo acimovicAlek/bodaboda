@@ -7,11 +7,29 @@ public class Trip {
     private double Price;
     private Boolean Paid;
     private long StartingLocationId;
+    private Location startingLocation;
     private long EndingLocationId;
+    private Location endingLocation;
     private long CustomerId;
     private long TaxiId;
 
     public Trip() {
+    }
+
+    public Location getEndingLocation() {
+        return endingLocation;
+    }
+
+    public void setEndingLocation(Location endingLocation) {
+        this.endingLocation = endingLocation;
+    }
+
+    public Location getStartingLocation() {
+        return startingLocation;
+    }
+
+    public void setStartingLocation(Location startingLocation) {
+        this.startingLocation = startingLocation;
     }
 
     public long getTripId() {
