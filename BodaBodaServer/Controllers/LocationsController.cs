@@ -18,6 +18,15 @@ namespace BodaBodaServer.Controllers{
             _locationService = LocationServices;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult GetLocation(long id){
+            try{
+                return Ok(_locationService.GetLocation(id));
+            }catch(Exception e){
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeleteLocation(long id){
             try{
