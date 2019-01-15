@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -226,15 +227,13 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
 
     private void initWaitingAnimation()
     {
-        RotateAnimation rotate;
-        rotate = new RotateAnimation(
-                0, 360,
-                Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f
-        );
+        RotateAnimation rotate = new RotateAnimation(0.0f, 360.0f,
+                                            Animation.RELATIVE_TO_SELF, 0.5f,
+                                            Animation.RELATIVE_TO_SELF, 0.5f);
 
         rotate.setDuration(1900);
         rotate.setRepeatCount(Animation.INFINITE);
+        rotate.setInterpolator(new LinearInterpolator());
         searchLogo.startAnimation(rotate);
     }
 
@@ -249,6 +248,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         searchText.setVisibility(View.VISIBLE);
 
     }
+
     private void initRequestButton(){
 
         final AutoCompleteTextView startLocationTextView = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);

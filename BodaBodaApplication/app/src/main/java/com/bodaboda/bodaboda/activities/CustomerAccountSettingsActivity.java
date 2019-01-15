@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.bodaboda.bodaboda.activities.MainActivity.token;
+
 public class CustomerAccountSettingsActivity extends AppCompatActivity {
 
     private ExpandableListView listView;
@@ -26,6 +28,7 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
     private List<AccountSettingsItem> listDataHeader;
     private HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHash;
     private View itemView;
+    private Button logOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
         init();
         listAdapter = new CustomerASExpandableListAdapter(this, listDataHeader,listHash);
         listView.setAdapter(listAdapter);
+        logOut = findViewById(R.id.customer_logout_button);
 
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -69,11 +73,22 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
             }
         });
     }
+    private void initLogOutButton()
+    {
+        logOut.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                token.setToken(null);
+                Intent logOutIntent = new Intent(CustomerAccountSettingsActivity.this, MainActivity.class);
+                CustomerAccountSettingsActivity.this.startActivity(logOutIntent);
+            }
+        });
+    }
 
     private void init() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
         initGoBackButton();
+        initLogOutButton();
         AccountSettingsItem editAccount = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_account_circle_black_48), "Account options");
         AccountSettingsItem editPayment = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_monetization_on_black_48dp), "Payment options");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
