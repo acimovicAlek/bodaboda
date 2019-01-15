@@ -264,7 +264,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                             //Activate popup for choose customer or taxi
 
-                            Intent loginIntent = new Intent(MainActivity.this, DriverMainActivity.class);
+                            Intent loginIntent = new Intent();
+                            if(token.getUserType().equals("Customer"))
+                                loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                            if(token.getUserType().equals("Taxi"))
+                                loginIntent = new Intent(MainActivity.this, DriverMainActivity.class);
                             MainActivity.this.startActivity(loginIntent);
                         }
                         else{

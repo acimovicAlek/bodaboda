@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.bodaboda.bodaboda.activities.MainActivity.token;
+
 public class DriverAccountSettingsActivity extends AppCompatActivity {
     private ExpandableListView listView;
     private CustomerASExpandableListAdapter listAdapter;
@@ -25,6 +27,7 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
     private HashMap<AccountSettingsItem, List<AccountSettingsChild>> listHash;
     private AccountSettingsChild paymentChild;
     private View itemView;
+    private Button logOut;
 
 
 
@@ -37,7 +40,7 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         init();
         listAdapter = new CustomerASExpandableListAdapter(this, listDataHeader,listHash);
         listView.setAdapter(listAdapter);
-
+        logOut = findViewById(R.id.driver_logout_button);
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
@@ -69,10 +72,22 @@ public class DriverAccountSettingsActivity extends AppCompatActivity {
         });
     }
 
+    private void initLogOutButton()
+    {
+        logOut.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                token.setToken(null);
+                Intent logOutIntent = new Intent(DriverAccountSettingsActivity.this, MainActivity.class);
+                DriverAccountSettingsActivity.this.startActivity(logOutIntent);
+            }
+        });
+    }
+
     private void init() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
         initGoBackButton();
+        initLogOutButton();
         AccountSettingsItem editAccount = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_account_circle_black_48), "Account options");
         AccountSettingsItem editPayment = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_monetization_on_black_48dp), "Payment options");
         AccountSettingsItem editVehicle = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_motorcycle_black_48), "Vehicle settings");

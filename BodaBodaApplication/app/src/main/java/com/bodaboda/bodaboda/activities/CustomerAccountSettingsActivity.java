@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.bodaboda.bodaboda.activities.MainActivity.token;
+
 public class CustomerAccountSettingsActivity extends AppCompatActivity {
 
     private ExpandableListView listView;
@@ -37,6 +39,7 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
         init();
         listAdapter = new CustomerASExpandableListAdapter(this, listDataHeader,listHash);
         listView.setAdapter(listAdapter);
+        logOut = findViewById(R.id.customer_logout_button);
 
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -79,6 +82,16 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent registerIntent = new Intent(CustomerAccountSettingsActivity.this, CustomerMainActivity.class);
                 CustomerAccountSettingsActivity.this.startActivity(registerIntent);
+            }
+        });
+    }
+    private void initLogOutButton()
+    {
+        logOut.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                token.setToken(null);
+                Intent logOutIntent = new Intent(CustomerAccountSettingsActivity.this, MainActivity.class);
+                CustomerAccountSettingsActivity.this.startActivity(logOutIntent);
             }
         });
     }
