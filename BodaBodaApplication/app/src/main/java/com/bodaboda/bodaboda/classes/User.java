@@ -4,15 +4,31 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
+    @SerializedName("userId")
     private long UserId;
+
+    @SerializedName("username")
     private String Username;
+
+    @SerializedName("password")
     private String Password;
+
+    @SerializedName("userType")
     private String UserType;
+
+    @SerializedName("firstName")
     private String FirstName;
+
+    @SerializedName("lastName")
     private String LastName;
+
+    @SerializedName("email")
     private String Email;
+
+    @SerializedName("phoneNumber")
     private String PhoneNumber;
-    @SerializedName("taxiPrices")@Expose
+
+    @SerializedName("taxiPrice")@Expose
     private TaxiPrice taxiPrice;
 
 

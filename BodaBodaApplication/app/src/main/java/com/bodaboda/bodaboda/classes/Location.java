@@ -1,11 +1,24 @@
 package com.bodaboda.bodaboda.classes;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Location {
+    @SerializedName("locationId")
     private long LocationId;
+
+    @SerializedName("longitude")
     private double Longitude;
+
+    @SerializedName("latitude")
     private double Latitude;
+
+    @SerializedName("locationType")
     private String LocationType;
+
+    @SerializedName("userId")
     private long UserId;
+
+    @SerializedName("ttl")
     private long TTL;
 
     public Location() {

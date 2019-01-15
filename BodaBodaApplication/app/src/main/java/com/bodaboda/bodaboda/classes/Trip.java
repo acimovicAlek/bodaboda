@@ -1,17 +1,44 @@
 package com.bodaboda.bodaboda.classes;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Trip {
 
+    @SerializedName("tripId")
     private long TripId;
+
+    @SerializedName("status")
     private String Status;
+
+    @SerializedName("price")
     private double Price;
+
+    @SerializedName("paid")
     private Boolean Paid;
+
+    @SerializedName("startingLocationId")
     private long StartingLocationId;
+
+    @SerializedName("startingLocation")
     private Location startingLocation;
+
+    @SerializedName("endingLocationId")
     private long EndingLocationId;
+
+    @SerializedName("endingLocation")
     private Location endingLocation;
+
+    @SerializedName("customerId")
     private long CustomerId;
+
+    @SerializedName("customer")
+    private User Customer;
+
+    @SerializedName("taxiId")
     private long TaxiId;
+
+    @SerializedName("taxi")
+    private User Taxi;
 
     public Trip() {
     }
@@ -94,6 +121,22 @@ public class Trip {
 
     public void setTaxiId(long taxiId) {
         TaxiId = taxiId;
+    }
+
+    public User getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(User customer) {
+        Customer = customer;
+    }
+
+    public User getTaxi() {
+        return Taxi;
+    }
+
+    public void setTaxi(User taxi) {
+        Taxi = taxi;
     }
 
     /*

@@ -68,6 +68,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
     private ImageView searchLogo;
     private TextView searchText;
 
+
     private AutoCompleteTextView startingLocationTextbox;
     private AutoCompleteTextView destinationTextbox;
 
@@ -249,6 +250,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
         searchText.setVisibility(View.VISIBLE);
 
     }
+
     private void initRequestButton(){
 
         final AutoCompleteTextView startLocationTextView = (AutoCompleteTextView)findViewById(R.id.customer_req_from_editText);

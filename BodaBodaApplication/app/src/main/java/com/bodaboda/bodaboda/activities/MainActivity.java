@@ -47,6 +47,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pubnub.api.PNConfiguration;
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         final TextView error = (TextView)findViewById(R.id.main_error_textView);
 
         ///////TEST///////////
-        /*Intent loginIntent = new Intent(MainActivity.this, DriverFindCustomerActivity.class);
+        /*Intent loginIntent = new Intent(MainActivity.this, DriverMainActivity.class);
         MainActivity.this.startActivity(loginIntent);*/
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                             //Activate popup for choose customer or taxi
 
-                            Intent loginIntent = new Intent(MainActivity.this, CustomerMainActivity.class);
+                            Intent loginIntent = new Intent(MainActivity.this, DriverMainActivity.class);
                             MainActivity.this.startActivity(loginIntent);
                         }
                         else{
