@@ -37,9 +37,9 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
 
         listView = (ExpandableListView)findViewById(R.id.cacc_expandableListView);
         init();
+        initLogOutButton();
         listAdapter = new CustomerASExpandableListAdapter(this, listDataHeader,listHash);
         listView.setAdapter(listAdapter);
-        logOut = findViewById(R.id.customer_logout_button);
 
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
