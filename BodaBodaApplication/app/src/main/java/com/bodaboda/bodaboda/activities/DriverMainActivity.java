@@ -58,7 +58,6 @@ public class DriverMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
-        barrier = new CyclicBarrier(4);
         init();
         listView = (ExpandableListView)findViewById(R.id.driver_expandableListView);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
@@ -89,7 +88,10 @@ public class DriverMainActivity extends AppCompatActivity {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*REFRESH THE LIST OF TRIP REQUESTS*/
+                if(listDataHeader.get(0) == null){
+                    initListItems();
+                }
+                fillList();
             }
         });
     }
@@ -106,101 +108,84 @@ public class DriverMainActivity extends AppCompatActivity {
 
     private void initListItems(){
         Call<List<Trip>> call = MainActivity.client.getRequestedTrips(MainActivity.token.getToken());
-        listDataHeader = new ArrayList<>();
-        listHash = new HashMap<>();
-
         call.enqueue(new Callback<List<Trip>>() {
             @Override
             public void onResponse(Call<List<Trip>> call, Response<List<Trip>> response) {
-                if(response.isSuccessful())
-                {
+                if(response.isSuccessful()) {
                     _tripList = response.body();
 
-                    for(i=0; i < _tripList.size(); i++){
+                    for (i = 0; i < _tripList.size(); i++) {
                         Call<User> customerCall = MainActivity.client.getUserById(MainActivity.token.getToken(), _tripList.get(i).getCustomerId());
-
+                        Call<Location> destinationCall = MainActivity.client.getLocation(MainActivity.token.getToken(), _tripList.get(0).getEndingLocationId());
+                        Call<Location> originCall = MainActivity.client.getLocation(MainActivity.token.getToken(), _tripList.get(0).getStartingLocationId());
                         customerCall.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
-                                if(response.isSuccessful()) {
+                                if (response.isSuccessful()) {
                                     customerName.add(response.body().getFirstName());
-
-                                    Call<Location> destinationCall = MainActivity.client.getLocation(MainActivity.token.getToken(), _tripList.get(0).getEndingLocationId());
-                                    destinationCall.enqueue(new Callback<Location>() {
-                                        @Override
-                                        public void onResponse(Call<Location> call, Response<Location> response) {
-                                            if(response.isSuccessful()){
-
-                                                destinationCoords.add(new LatLng(response.body().getLatitude(), response.body().getLongitude()));
-                                                try{
-                                                    List<Address> destinationAddresses = geocoder.getFromLocation(response.body().getLatitude(), response.body().getLongitude(), 1);
-                                                    if(null!=destinationAddresses && destinationAddresses.size()>0){
-                                                        destinationNames.add(destinationAddresses.get(0).getAddressLine(0));
-                                                    }
-                                                }catch(IOException e){
-                                                    System.out.println("FAILED DESTINATION");
-                                                }
-                                                Call<Location> originCall = MainActivity.client.getLocation(MainActivity.token.getToken(), _tripList.get(0).getStartingLocationId());
-                                                originCall.enqueue(new Callback<Location>() {
-                                                    @Override
-                                                    public void onResponse(Call<Location> call, Response<Location> response) {
-                                                        if(response.isSuccessful()){
-                                                            originCoords.add(new LatLng(response.body().getLatitude(), response.body().getLongitude()));
-                                                            try{
-                                                                List<Address> originAddresses = geocoder.getFromLocation(response.body().getLatitude(), response.body().getLongitude(), 1);
-                                                                if(null != originAddresses && originAddresses.size() >= 0){
-                                                                    originNames.add(originAddresses.get(0).getAddressLine(0));
-                                                                }
-                                                            }catch(IOException e){
-                                                                System.out.println("FAILED ORIGIN");
-                                                            }
-                                                            for(int i = 0; i < originNames.size() && i < destinationNames.size(); i++){
-                                                                CustomerTripItem cti = new CustomerTripItem(customerName.get(i), "distanceToOrigin", String.valueOf(_tripList.get(i).getPrice()));
-                                                                CustomerTripItemChild ctic = new CustomerTripItemChild(originNames.get(i), destinationNames.get(i), "tripLength");
-                                                                System.out.println("ORIGINNAME: " + originNames.get(i));
-                                                                listDataHeader.add(cti);
-                                                                List<CustomerTripItemChild> itemList = new ArrayList<>();
-                                                                itemList.add(ctic);
-                                                                listHash.put(listDataHeader.get(i), itemList);
-                                                            }
-                                                        }
-                                                        else{
-                                                        }
-                                                    }
-
-                                                    @Override
-                                                    public void onFailure(Call<Location> call, Throwable t) {
-
-                                                    }
-                                                });
-                                            }
-                                            else{
-                                            }
-                                        }
-                                        @Override
-                                        public void onFailure(Call<Location> call, Throwable t) {
-
-                                        }
-                                    });
-                                }
-                                else {
-
+                                } else {
                                 }
                             }
+
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
 
                             }
                         });
 
+                        destinationCall.enqueue(new Callback<Location>() {
+                            @Override
+                            public void onResponse(Call<Location> call, Response<Location> response) {
+                                if(response.isSuccessful()){
 
+                                    destinationCoords.add(new LatLng(response.body().getLatitude(), response.body().getLongitude()));
+                                    try{
+                                        List<Address> destinationAddresses = geocoder.getFromLocation(response.body().getLatitude(), response.body().getLongitude(), 1);
+                                        if(null!=destinationAddresses && destinationAddresses.size()>0){
+                                            destinationNames.add(destinationAddresses.get(0).getAddressLine(0));
+                                        }
+                                    }catch(IOException e){
+                                        System.out.println("FAILED DESTINATION");
+                                    }
 
+                                }
+                                else{
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<Location> call, Throwable t) {
 
+                            }
+                        });
 
+                        originCall.enqueue(new Callback<Location>() {
+                            @Override
+                            public void onResponse(Call<Location> call, Response<Location> response) {
+                                if(response.isSuccessful()){
+                                    originCoords.add(new LatLng(response.body().getLatitude(), response.body().getLongitude()));
+                                    try{
+                                        List<Address> originAddresses = geocoder.getFromLocation(response.body().getLatitude(), response.body().getLongitude(), 1);
+                                        if(null != originAddresses && originAddresses.size() >= 0){
+                                            originNames.add(originAddresses.get(0).getAddressLine(0));
+                                        }
+                                    }catch(IOException e){
+                                        System.out.println("FAILED ORIGIN");
+                                    }
+                                }
+                                else{
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Location> call, Throwable t) {
+
+                            }
+                        });
 
 
                     }
                 }
+
             }
 
             @Override
@@ -245,15 +230,31 @@ public class DriverMainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        destinationCoords = new ArrayList<>();
-        originCoords = new ArrayList<>();
-        destinationNames = new ArrayList<>();
-        originNames = new ArrayList<>();
-        customerName = new ArrayList<>();
-        geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-        initListItems();
-        initRefreshButton();
+        //destinationCoords = new ArrayList<>();
+        //originCoords = new ArrayList<>();
+        //destinationNames = new ArrayList<>();
+        //originNames = new ArrayList<>();
+        //customerName = new ArrayList<>();
+        listDataHeader = new ArrayList<>();
+        listHash = new HashMap<>();
+        //geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        //initListItems();
+        //initRefreshButton();
 
+        /*Some hardcoded list items*/
+        CustomerTripItem cti = new CustomerTripItem("Jonathan", "5km", "30kr");
+        CustomerTripItemChild ctic = new CustomerTripItemChild("Skrapan", "Östra Gryta", "5km");
+
+        listDataHeader.add(cti);
+        List<CustomerTripItemChild> itemList = new ArrayList<>();
+        itemList.add(ctic);
+        //listHash.put(listDataHeader.get(i), itemList);
+
+        cti = new CustomerTripItem("Customer", "2km", "200kr");
+        //ctic = new CustomerTripItemChild("Västerås", "Köping", "45km");
+
+        listDataHeader.add(cti);
+        listHash.put(listDataHeader.get(i), itemList);
         //Check when pressing Update button and call the server to select every trip that
         //has a status of "REQUESTED" as we want to select only the available trips.
         //Maybe we need to change the status directly on the server when a driver asks the customer.

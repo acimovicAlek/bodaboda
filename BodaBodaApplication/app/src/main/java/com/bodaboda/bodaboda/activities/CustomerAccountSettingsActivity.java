@@ -85,22 +85,11 @@ public class CustomerAccountSettingsActivity extends AppCompatActivity {
             }
         });
     }
-    private void initLogOutButton()
-    {
-        logOut.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                token.setToken(null);
-                Intent logOutIntent = new Intent(CustomerAccountSettingsActivity.this, MainActivity.class);
-                CustomerAccountSettingsActivity.this.startActivity(logOutIntent);
-            }
-        });
-    }
 
     private void init() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
         initGoBackButton();
-        initLogOutButton();
         AccountSettingsItem editAccount = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_account_circle_black_48), "Account options");
         AccountSettingsItem editPayment = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_monetization_on_black_48dp), "Payment options");
         AccountSettingsItem help = new AccountSettingsItem(this.getResources().getDrawable(R.drawable.baseline_help_black_48dp), "Help");
