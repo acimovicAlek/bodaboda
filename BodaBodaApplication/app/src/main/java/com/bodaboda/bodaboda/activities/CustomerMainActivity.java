@@ -333,7 +333,7 @@ public class CustomerMainActivity extends AppCompatActivity implements OnMapRead
                     @Override
                     public void onResponse(Call<Location> call, Response<Location> response)
                     {
-                        if(response.isSuccessful()) //Server cant handle this call ANYMORE, needs to be fixed...
+                        if(response.isSuccessful())
                         {
                             destinationLocation.setLocationId(response.body().getLocationId());
                         }

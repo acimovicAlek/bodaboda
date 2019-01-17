@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.bodaboda.bodaboda.R;
 import com.bodaboda.bodaboda.classes.CustomerTripItem;
@@ -33,10 +34,20 @@ import java.util.ListIterator;
 import java.util.Locale;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+/*
+*
+* We have some bugs here where we could not solve the multiple calls on different threads to succesfully wait and load the list.
+* Now it is problems with OutofBounds and i would suggest doing it all over again to make a better solution.
+*
+* We are continuing to use hardcorded listitems for now just for testing.
+*
+*/
 
 public class DriverMainActivity extends AppCompatActivity {
     private ExpandableListView listView;
@@ -54,6 +65,7 @@ public class DriverMainActivity extends AppCompatActivity {
     private ArrayList<String> customerName;
     Geocoder geocoder;
     int i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,10 +100,7 @@ public class DriverMainActivity extends AppCompatActivity {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listDataHeader.get(0) == null){
-                    initListItems();
-                }
-                fillList();
+                initListItems();
             }
         });
     }
@@ -114,7 +123,7 @@ public class DriverMainActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     _tripList = response.body();
 
-                    for (i = 0; i < _tripList.size(); i++) {
+                    for (int i = 0; i < _tripList.size(); i++) {
                         Call<User> customerCall = MainActivity.client.getUserById(MainActivity.token.getToken(), _tripList.get(i).getCustomerId());
                         Call<Location> destinationCall = MainActivity.client.getLocation(MainActivity.token.getToken(), _tripList.get(0).getEndingLocationId());
                         Call<Location> originCall = MainActivity.client.getLocation(MainActivity.token.getToken(), _tripList.get(0).getStartingLocationId());
@@ -182,25 +191,36 @@ public class DriverMainActivity extends AppCompatActivity {
                             }
                         });
 
-
                     }
+
+                    Toast.makeText(DriverMainActivity.this, "Before try", Toast.LENGTH_SHORT).show();
+                    try {
+                        TimeUnit.SECONDS.sleep(4);
+                        Toast.makeText(DriverMainActivity.this, "It works!", Toast.LENGTH_SHORT).show();
+                        getLocationNames();
+                        fillList();
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<Trip>> call, Throwable t) {
-
+                Toast.makeText(DriverMainActivity.this, "onFailure line 203", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    /*private void getLocationNames(){
+    private void getLocationNames(){
 
         System.out.println("TRY GET NAME");
 
         System.out.println("ORIGIN SIZE: " + originCoords.size());
-        for(int i = 0; i < destinationAddresses.size() || i < originAddresses.size(); i++) {
+        for(int i = 0; i < originNames.size() || i < destinationNames.size(); i++) {
             try {
                 List<Address> originAddresses = geocoder.getFromLocation(originCoords.get(i).latitude, originCoords.get(i).longitude, 1);
                 List<Address> destinationAddresses = geocoder.getFromLocation(destinationCoords.get(i).latitude, destinationCoords.get(i).longitude, 1);
@@ -214,7 +234,7 @@ public class DriverMainActivity extends AppCompatActivity {
             }
             System.out.println("ORIGIN: " + originNames.get(i) + "DESTINATION: " + destinationNames.get(i));
         }
-    }*/
+    }
 
     private void fillList(){
         System.out.println(originNames.size());
@@ -242,19 +262,14 @@ public class DriverMainActivity extends AppCompatActivity {
         //initRefreshButton();
 
         /*Some hardcoded list items*/
-        CustomerTripItem cti = new CustomerTripItem("Jonathan", "5km", "30kr");
+        CustomerTripItem cti = new CustomerTripItem("Lukas", "5km", "30kr");
         CustomerTripItemChild ctic = new CustomerTripItemChild("Skrapan", "Östra Gryta", "5km");
 
         listDataHeader.add(cti);
         List<CustomerTripItemChild> itemList = new ArrayList<>();
         itemList.add(ctic);
-        //listHash.put(listDataHeader.get(i), itemList);
+        listHash.put(listDataHeader.get(0), itemList);
 
-        cti = new CustomerTripItem("Customer", "2km", "200kr");
-        //ctic = new CustomerTripItemChild("Västerås", "Köping", "45km");
-
-        listDataHeader.add(cti);
-        listHash.put(listDataHeader.get(i), itemList);
         //Check when pressing Update button and call the server to select every trip that
         //has a status of "REQUESTED" as we want to select only the available trips.
         //Maybe we need to change the status directly on the server when a driver asks the customer.

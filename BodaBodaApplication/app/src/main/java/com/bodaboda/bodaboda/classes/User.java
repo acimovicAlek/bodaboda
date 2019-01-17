@@ -31,7 +31,6 @@ public class User {
     @SerializedName("taxiPrice")@Expose
     private TaxiPrice taxiPrice;
 
-
     public User(String username, String password, String userType, String firstName, String lastName, String email, String phoneNumber) {
         this.Username = username;
         this.Password = password;

@@ -22,7 +22,6 @@ public class AccountSettingsChild {
     private Spinner paymentOptions;
     private List<String> spinnerArray = new ArrayList<String>();
 
-
     public Button getSaveChanges() {
         return saveChanges;
     }
